@@ -1,0 +1,112 @@
+﻿@model IEnumerable<WebStoreMap.Models.ViewModels.Place.ServiceViewModel>
+
+@{
+    ViewBag.Title = "Услуги";
+}
+
+
+@using PagedList.Mvc;
+@using PagedList;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+<section class="section-content">
+    <div class="container container-content" style=" margin-bottom: 40px;min-height: 500px;">
+        <div class="row">
+            <div class="col-lg-4" id="addProductBlockMobile">
+                <div class="card addProductCard">
+                    <div class="card-body addProductCardBody">
+                        <h5 class="card-title ">Добавление услуги</h5>
+                        <p class="card-text">Чтобы добавить новую услугу, которого еще нет на сайте, создайте новую карточку услуги и заполните параметры. </p>
+                        <center>@Html.ActionLink("Добавить услугу", "AddService", new { PlaceId = ViewBag.PlaceId }, new { @class = "btn btn-add" })</center>
+                        <center>@Html.ActionLink("Вернуться к местам", "Places", null, null, new { @class = "btn btn-add", style = "margin-top:25px;" })</center>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="allProductsCardBlock">
+                    <div class="card allProductsCard">
+                        <div class="card-header allProductsCardHeader" id="allProductsCardHeaderDesktop">
+                            Услуги уже расположенные на сайте
+                        </div>
+                        <div class="card-header allProductsCardHeader" id="allProductsCardHeaderMobile">
+                            Ваши услуги
+                        </div>
+                    </div>
+                    @foreach (var product in ViewBag.OnePageOfServices)
+                    {
+                        <div class="card mb-3 allProductsCardItem">
+                            <div class="row g-0">
+                                <div class="col-md-4 " style="padding-left:0; padding-right:0">
+                                    <a href="/Partner/Place/EditService/@product.Id">
+                                        @if (@product.ImageName == null)
+                                        {
+                                            <img src="~/Content/img/no_image_big.png" style="width: 100%; height: 100%" />
+                                        }
+                                        else
+                                        {
+                                            <img src="/Images/Uploads/Services/@product.Id/@product.ImageName" style="width: 100%; height: 100%" />
+                                        }
+                                    </a>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <div class="row" style="height:100%; margin-right: 0 !important; margin-left: 0;">
+                                            <div class="col-sm-9 p-3 ">
+                                                <h5 class="card-title CardOfProductTitle">@product.ServiceName</h5>
+
+                                            </div>
+                                            <div class="col-3 p-3 " id="editeDeliteBlockDesktop" style=" padding: 0px !important; ">
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item">@Html.ActionLink("Изменить", "EditService", new { id = product.Id }, new { @class = "btn btn-edit" })</li>
+                                                    <li class="list-group-item">@Html.ActionLink("Удалить", "DeleteService", new { id = product.Id, PlaceId = product.PlaceId }, new { @class = "btn btn-delete " })</li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-9 p-3" id="editeDeliteBlockMobile" style=" padding: 0px !important; ">
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item">@Html.ActionLink("Изменить", "EditService", new { id = product.Id }, new { @class = "btn btn-edit" })</li>
+                                                    <li class="list-group-item">@Html.ActionLink("Удалить", "DeleteService", new { id = product.Id, PlaceId = product.PlaceId }, new { @class = "btn btn-delete " })</li>
+                                                    
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col-lg-4" id="addProductBlock">
+                <div class="card addProductCard">
+                    <div class="card-body addProductCardBody">
+                        <h5 class="card-title ">Добавление места</h5>
+                        <p class="card-text">Чтобы добавить новую услугу, которого еще нет на сайте, создайте новую карточку услуги и заполните параметры. </p>
+
+                        <center>@Html.ActionLink("Добавить услугу", "AddService", new { PlaceId = ViewBag.PlaceId }, new { @class = "btn btn-add" })</center>
+                        <center>@Html.ActionLink("Вернуться к местам", "Places", null, null, new { @class = "btn btn-add", style = "margin-top:25px;" })</center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <center>@Html.PagedListPager((IPagedList)ViewBag.OnePageOfServices, page => Url.Action("Services", new { page }))</center>
+</section>
+
+@section Scripts
+{
+    <script>
+
+        $(function () {
+
+            /*-----------------------------------------------------------*/
+
+            /* Confirm page deletion */
+
+            $("a.delete").click(function () {
+                if (!confirm("Подтвердите удаление страницы")) return false;
+            });
+
+            /*-----------------------------------------------------------*/
+        });
+    </script>
+}

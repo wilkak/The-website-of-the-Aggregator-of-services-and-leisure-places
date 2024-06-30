@@ -1,0 +1,55 @@
+﻿@model WebStoreMap.Models.ViewModels.Email.EmailViewModel
+
+@{
+    ViewBag.Title = "Отправить письмо";
+}
+
+<style>
+    .backtoproducts-link:hover {
+        color: #f44153;
+    }
+</style>
+
+<section class="text-center">
+    <!-- Background image -->
+    <div class="card mx-4 mx-md-5 shadow-5-strong" style="margin-top: 60px; margin-bottom: 60px; margin-right: 3rem !important; margin-left: 3rem !important; background: hsla(0, 0%, 100%, 0.8); backdrop-filter: blur(30px); ">
+        <div class="card-body py-5 px-md-5">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <h4 class="fw-bold mb-5 addProductHeader">Новое письмо</h4>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <form>
+                            @if (TempData["SM"] != null)
+                            {
+                                <div class="alert alert-success">
+                                    @TempData["SM"]
+                                </div>
+                            }
+                            <div class="form-outline mb-4">
+                                <center>@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", Placeholder = "Email" } })</center>
+                                <center>@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })</center>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <center>@Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control", Placeholder = "Subject" } })</center>
+                                <center>@Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })</center>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <center>@Html.EditorFor(model => model.HtmlMessage, new { htmlAttributes = new { @class = "form-control", Placeholder = "htmlMessage" } })</center>
+                                <center>@Html.ValidationMessageFor(model => model.HtmlMessage, "", new { @class = "text-danger" })</center>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <center><input type="submit" value="Отправить" class="btn-add" style=" width: 200px;" /></center>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <center>@Html.ActionLink("Назад", "Index", null, null, new { @class = "backtoproducts-link" })</center>
+                            </div>
+                        </form>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

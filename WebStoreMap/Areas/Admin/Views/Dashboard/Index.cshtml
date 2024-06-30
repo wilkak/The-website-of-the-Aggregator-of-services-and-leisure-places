@@ -1,0 +1,79 @@
+﻿
+@{ ViewBag.Title = "Главное"; }
+
+
+<style>
+    .card {
+        border: none;
+        box-shadow: 3px 5px 35px rgb(86 68 169 / 10%);
+        border-radius: 0;
+    }
+
+    .dashboard-section .col .card:hover {
+        background: #f44153;
+        color: white !important;
+    }
+
+    .dashboard-section .col .card .card-body {
+        color: black;
+    }
+
+    .dashboard-section .col .card:hover .card-body .card-text {
+        color: white !important;
+    }
+
+    .dashboard-section .col .card:hover .card-body .card-title {
+        color: white !important;
+    }
+</style>
+
+<section class="dashboard-section" style="margin-top:40px">
+
+   
+        <div class="col">
+            <div class="card h-100">
+                <a href="/admin/Place/Categories?Length=0">
+                    <div class="card-body">
+                        <h5 class="card-title">Категории</h5>
+                        <p class="card-text">Создайте новую категорию или отредактируйте уже созданные</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100">
+                <a href="/admin/User/Users?Length=0">
+                    <div class="card-body">
+                        <h5 class="card-title">Пользователи</h5>
+                        <p class="card-text">Добавьте пользователя или отредактируйте уже добавленных</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+   
+        
+        
+       
+        <div class="col">
+            <div class="card h-100">
+                <a href="/admin/Sections/%D0%A1ountries?Length=0">
+                    <div class="card-body">
+                        <h5 class="card-title">Страны</h5>
+                        <p class="card-text">Добавьте, отредактируйте, удалите страну</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <a href="/">
+                    <div class="card-body">
+                        <h5 class="card-title">Выход</h5>
+                        <p class="card-text">Выйдите из меню администратора в область для всех пользователей</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

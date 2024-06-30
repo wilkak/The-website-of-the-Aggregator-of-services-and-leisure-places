@@ -1,0 +1,84 @@
+﻿@model WebStoreMap.Models.ViewModels.Account.UserViewModel
+
+@{ ViewBag.Title = "Регистрация"; }
+
+
+
+<div class="login-wrap" style="min-height: 1020px;">
+    <div class="login-html">
+        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">РЕГИСТРАЦИЯ</label>
+        <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab"><a href="~/account/login" style="color:black; text-decoration:none; ">ВХОД</a></label>
+        <div class="login-form">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+            <div class="sign-in-htm">
+                <div class="group">
+                    <label for="user" class="label">Имя</label>
+                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "input", placeholder = "Имя" } })
+                </div>
+                <div class="group">
+                    <label for="pass" class="label">Фамилия</label>
+                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "input", placeholder = "Фамилия" } })
+                </div>
+                <div class="group">
+                    <label for="pass" class="label">Почта</label>
+                    @Html.EditorFor(model => model.EmailAddress, new { htmlAttributes = new { @class = "input", placeholder = "Почта" } })
+                </div>
+                <div class="group">
+                    <label for="pass" class="label">Телефон</label>
+                    @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "input", placeholder = "Телефон" } })
+                </div>
+                <div class="group">
+                    <label for="pass" class="label">Дата рождения</label>
+                    @Html.EditorFor(model => model.BirthDate, new { htmlAttributes = new { @class = "input", placeholder = "Дата рождения", type = "date" } })
+                </div>
+                <div class="group">
+                    <label for="pass" class="label">Пароль</label>
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "input", placeholder = "Пароль" } })
+                </div>
+                <div class="group">
+                    <label for="pass" class="label">Подтвержение пароля</label>
+                    @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "input", placeholder = "Подтверждение пароля" } })
+                </div>
+                <div class="group">
+                    <img src='@Url.Action("Captcha", "Account")' alt='captcha' style=" display: block; margin: 0 auto; "/>
+                </div>
+                <div class="group" style="margin-bottom:30px;">
+                    @Html.EditorFor(model => model.Captcha, new { htmlAttributes = new { @class = "input", placeholder = "Введите текст с картинки" } })
+                </div>
+
+                <div class="group">
+                    <input type="submit" class="button" value="ЗАРЕГИСТРИРОВАТЬСЯ">
+                </div>
+                <div class="hr"></div>
+            </div>
+            }
+            @*<div class="sign-up-htm">
+                    <div class="group">
+                        <label for="user" class="label">Username</label>
+                        <input id="user" type="text" class="input">
+                    </div>
+                    <div class="group">
+                        <label for="pass" class="label">Password</label>
+                        <input id="pass" type="password" class="input" data-type="password">
+                    </div>
+                    <div class="group">
+                        <label for="pass" class="label">Repeat Password</label>
+                        <input id="pass" type="password" class="input" data-type="password">
+                    </div>
+                    <div class="group">
+                        <label for="pass" class="label">Email Address</label>
+                        <input id="pass" type="text" class="input">
+                    </div>
+                    <div class="group">
+                        <input type="submit" class="button" value="Sign Up">
+                    </div>
+                    <div class="hr"></div>
+                    <div class="foot-lnk">
+                        <label for="tab-1">Already Member?</a>
+                    </div>
+                </div>*@
+        </div>
+    </div>
+</div>

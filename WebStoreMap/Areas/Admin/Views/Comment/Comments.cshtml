@@ -1,0 +1,79 @@
+﻿@model IEnumerable<WebStoreMap.Models.ViewModels.Chat.CommentViewModel>
+
+@{
+    ViewBag.Title = "Комментарии";
+}
+@using PagedList.Mvc;
+@using PagedList;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+<section class="section-content">
+    <div class="container container-content" style=" margin-bottom: 40px;min-height: 500px;">
+        <div class="row">
+            <div class="col-lg-4" id="addProductBlockMobile">
+                <div class="card addProductCard">
+                    <div class="card-body addProductCardBody">
+                        <h5 class="card-title ">Комментарии</h5>
+                        <p class="card-text" style="padding-bottom: 1rem;">Просмотрите и удалите нужные комментарии</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="allProductsCardBlock">
+                    <div class="card allProductsCard">
+                        <div class="card-header allProductsCardHeader" id="allProductsCardHeaderDesktop">
+                            Комментарии
+                        </div>
+                        <div class="card-header allProductsCardHeader" id="allProductsCardHeaderMobile">
+                            Комментарии
+                        </div>
+                    </div>
+
+                    @foreach (var item in ViewBag.OnePageOfComment)
+                    {
+                        <div class="card mb-3 allProductsCardItem">
+                            <div class="row g-0">
+                                <div class="col">
+                                    <div class="card-body">
+                                        <div class="row" style="height:100%; margin-right: 0 !important; margin-left: 0;">
+                                            <div class="col " style="width: 75%;flex: auto;">
+
+                                                <h5 class="card-title CardOfProductTitle">UserId: @item.UserId</h5>
+                                                <h5 class="card-title CardOfProductTitle">Id услуги: @item.PlaceId</h5>
+
+
+                                                <h5 class="card-title CardOfProductTitle">Дата: @item.Date</h5>
+
+                                                <h5 class="card-title CardOfProductTitle">Текст: @item.Text</h5>
+                                            </div>
+                                            <div class="col " style=" padding: 0px !important; width:25% ">
+                                                <ul class="list-group list-group-flush">
+
+                                                    <li class="list-group-item">
+                                                        @Html.ActionLink("Удалить", "DeleteComment", new { id = item.Id }, new { @class = "btn btn-delete" })
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="col-lg-4" id="addProductBlock">
+                <div class="card addProductCard">
+                    <div class="card-body addProductCardBody">
+                        <h5 class="card-title ">Комментарии</h5>
+                        <p class="card-text" style="padding-bottom: 1rem;">Просмотрите и удалите нужные комментарии</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <center>@Html.PagedListPager((IPagedList)ViewBag.OnePageOfComment, page => Url.Action("Comments", new { page }))</center>
+</section>

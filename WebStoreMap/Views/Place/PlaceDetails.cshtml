@@ -1,0 +1,847 @@
+﻿@model WebStoreMap.Models.ViewModels.Chat.PlaceCommentViewModel
+
+@{ ViewBag.Title = Model.Place.PlaceName;
+}
+
+@*@section head {
+        <meta name="description" content=" @Model.Producti.PlaceName. @Model.Producti.CategoryName. @Model.Producti.Description">
+        <meta name="keywords" content="@Model.Producti.Categories, @Model.Producti.Name, туристические услуги">
+    }*@
+
+<link rel="stylesheet" type="text/css" href="~/lightbox2-dev/dist/css/lightbox.min.css">
+<script src="~/lightbox2-dev/dist/js/lightbox-plus-jquery.min.js"></script>
+<link href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.Default.css" />
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@v0.74.0/dist/L.Control.Locate.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@v0.74.0/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+
+<div class="place-header-block">
+    <div class="place-header-block-bg"></div>
+    <div class="place-header-block-gallery">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner" style="height: 500px;">
+                <div class="carousel-item active">
+                    <img style="height: 500px;" src="/Images/Uploads/Places/@Model.Place.Id/@Model.Place.ImageName" class="d-block w-100" alt="...">
+                </div>
+                @if (Model.Place.GalleryImages.Any())
+                {
+                    foreach (var image in Model.Place.GalleryImages)
+                    {
+                        <div class="carousel-item">
+                            <img style="height: 500px;" src="/Images/Uploads/Places/@Model.Place.Id/Gallery/@image" class="d-block w-100" alt="...">
+                        </div>
+                    }
+                }
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Предыдущий</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Следующий</span>
+            </button>
+        </div>
+    </div>
+    <div class="container">
+        <div class="place-header-block-left">
+            <div class="place-header-block-title">
+                <span class="place-header-block-title-bc">
+                    <span class="place-header-block-title-place-bc">
+                        <span class="place-header-block-city-name">@Model.Place.CityName</span>
+                        <span class="place-header-block-category-name">@Model.Place.CategoryName</span>
+                    </span>
+                </span>
+                <span class="place-header-block-place-title">@Model.Place.PlaceName</span>
+                <div class="place-header-block-place-rating">
+                    <div class="place-header-block-contain">
+                        <i class="icon-star" aria-hidden="true"></i>
+                        @if (@ViewBag.NumberOfReviews != 0)
+                        {
+                            <span> Рейтинг <span class="place-header-block-place-rating-number">@ViewBag.RatingOfPlace</span></span>
+                            <span> (@ViewBag.NumberOfReviews отзывов)</span>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="place-header-block-right">
+            <div class="place-header-icons">
+                <button class="place-header-icon-to-contact-info" onclick="location.href='#contactInfo';">
+                    <i class="fa-solid fa-circle-info"></i>
+                </button>
+                @if (Request.IsAuthenticated)
+                {
+                    <button class="place-header-icon-add-to-favorites" id="addToFavorites">
+                        <i class="fa-solid fa-heart" aria-hidden="true"></i>
+                    </button>
+                }
+                else
+                {
+                    <button class="place-header-icon-add-to-favorites">
+                        <i class="fa-solid fa-heart" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#exampleModal2"></i>
+                    </button>
+                }
+                <button class="place-header-icon-to-comment" onclick="location.href='#commentBlock';">
+                    <i class="fa-sharp fa-regular fa-message"></i>
+                </button>
+                <button class="place-header-icon-to-rating" onclick="location.href = '/Rating/PlaceReviews?PlaceId=@Model.Place.Id';">
+                    <i class="fa-sharp fa-solid fa-star"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+
+    #new_gallery {
+        width: 100%;
+        height: 102px;
+        border: 1px solid #ccc;
+        overflow: auto;
+        overflow-x: hidden;
+        white-space: nowrap;
+    }
+
+    #new_gallery_content {
+        width: 100%;
+        display: block;
+        background-color: #ccc;
+    }
+
+        #new_gallery_content img {
+            height: 100px;
+            width: 150px;
+        }
+
+            #new_gallery_content img.active {
+                border: 5px solid #f44153;
+            }
+
+
+
+    .slider-btn {
+        background: #f44153;
+        color: white;
+        border: none;
+    }
+
+        .slider-btn.left {
+            border-radius: 15px 0px 0px 15px;
+        }
+
+        .slider-btn.right {
+            border-radius: 0px 15px 15px 0px;
+        }
+
+    /*  #container {
+
+    }
+
+    #content {
+        width: 250px;
+        background-color: #ccc;
+    }*/
+
+
+
+</style>
+
+
+<div class="fl-places-content-wrapper container" style="transform: none;">
+    <div class="fl-places-reviews-contain col-md-8">
+        <div class="fl-places-content">
+            <div data-elementor-type="wp-post" data-elementor-id="2433" class="elementor elementor-2433">
+                <section style="margin: 0px 0px 75px 0px; padding: 0px 0px 80px 0px; border-style: solid; border-width: 0px 0px 1px 0px; border-color: #D8E4EE;">
+                    <a @*data-lightbox="mygallery"*@ @*href="/Images/Uploads/Places/@Model.Place.Id/@Model.Place.ImageName"*@>
+                        <img class="main-place-img" src="/Images/Uploads/Places/@Model.Place.Id/@Model.Place.ImageName" style=" border-radius: 10px; height:450px; width:100%;">
+                    </a>
+                    <div style="display: flex; margin-top: 40px;">
+                        <button class="slider-btn left" id="slideLeft" type="button">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                        <div class="new_gallery" id="new_gallery">
+                            <div class="" id="new_gallery_content">
+
+                                <a class="new-gallery-item active" src-for-img="/Images/Uploads/Places/@Model.Place.Id/@Model.Place.ImageName">
+                                    <img class="active" src="/Images/Uploads/Places/@Model.Place.Id/Thumbs/@Model.Place.ImageName">
+                                </a>
+
+                                @if (Model.Place.GalleryImages.Any())
+                                {
+                                    foreach (var image in Model.Place.GalleryImages)
+                                    {
+
+                                        <a class="new-gallery-item" src-for-img="/Images/Uploads/Places/@Model.Place.Id/Gallery/@image">
+                                            <img src="/Images/Uploads/Places/@Model.Place.Id/Gallery/Thumbs/@image ">
+                                        </a>
+
+                                    }
+                                }
+                            </div>
+                        </div>
+                        <button class="slider-btn right" id="slideRight" type="button">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </section>
+                <section class="elementor-section elementor-top-section elementor-element elementor-element-2d83657 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="2d83657" data-element_type="section">
+                    <div class="elementor-container elementor-column-gap-default">
+                        <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-d084210" data-id="d084210" data-element_type="column">
+                            <div class="elementor-widget-wrap elementor-element-populated">
+                                <div class="elementor-element elementor-element-a2b560b elementor-widget elementor-widget-tm-reviews-custom-text-editor" data-id="a2b560b" data-element_type="widget" data-widget_type="tm-reviews-custom-text-editor.default">
+                                    <div class="elementor-widget-container">
+                                        <div class="page-builder-custom-text-editor-content-wrap">
+                                            <i class="fa-regular fa-gem" aria-hidden="true" style=" font-size: 18px; position: relative; bottom: 1px; color: #f44153;"></i>
+                                            <span class="fl-place-rating-title fl-text-bold-style">Описание</span>
+                                            <div class="content-editor-content" style=" white-space: pre-line;">
+                                                @Model.Place.Description
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="fl-places-map">
+            <i class="fa-solid fa-map-location-dot" style="font-size: 18px; position: relative; bottom: 1px; color: #f44153;"></i>
+            <span class="fl-place-rating-title fl-text-bold-style">
+                Расположение на карте
+            </span>
+            <div id="map" style="width: 100%; height: 380px; border-radius: 10px; margin-top: 45px;"></div>
+        </div>
+
+
+        <div class="fl-places-contact-info" id="contactInfo">
+            <i class="fa-solid fa-headset" aria-hidden="true" style=" font-size: 18px; position: relative; bottom: 1px; color: #f44153;"></i>
+            <span class="fl-place-rating-title fl-text-bold-style">
+                Контактная информация
+            </span>
+            <div class="fl-contact-info-contain">
+                <span class="fl-place-info">
+                    <i class="fa-solid fa-phone" aria-hidden="true"></i>@Model.Place.PhoneNumber
+                </span>
+                <span class="fl-place-info">
+                    <i class="fa-brands fa-vk" aria-hidden="true"></i><a style="text-decoration:none" href="@ViewBag.SlugVK"></a>Ссылка на страницу в ВК
+                </span>
+                <span class="fl-place-info">
+                    <i class="fa-brands fa-telegram" aria-hidden="true"></i><a style="text-decoration:none" href="@ViewBag.SlugTelegram"></a>Ссылка на группу в Телеграмм
+                </span>
+                <span class="fl-place-info">
+                    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i><a style="text-decoration:none" href="@ViewBag.SlugWhatsApp"></a>Ссылка на WhatsApp
+                </span>
+            </div>
+        </div>
+
+        <div class="fl-place-bottom-content" id="commentBlock">
+            <div class="fl-bottom-rating">
+                <div class="fl-place-rating">
+                    <i class="fa-sharp fa-solid fa-comments" style=" font-size: 18px; position: relative; bottom: 1px; color: #f44153;"></i>
+                    <span class="fl-place-rating-title fl-text-bold-style">
+                        Комментарии и отзывы
+                    </span>
+                    @*@if (@ViewBag.NumberOfReviews != 0)
+                    {
+                        <div class="fl-places-contain"><span class="fl-average"> Рейтинг <span>@ViewBag.RatingOfPlace</span></span><span class="fl-places-average">На основании @ViewBag.NumberOfReviews отзывов</span></div>
+                    }*@
+                </div>
+            </div>
+            @using (Html.BeginForm("PlaceReviews", "Rating", FormMethod.Get))//FormMethod.Post))
+            {
+                <input type="hidden" name="PlaceId" value="@Model.Place.Id">
+                <button class="fl-custom-btn fl-btn-place-single-anchor fl-font-style-bolt-two primary-style" type="submit" style="border:none"><span>Добавить отзыв</span></button>
+            }
+
+            <div class="comments-container " id="comments" >
+                <div class="comments-list">
+                    @if (Model.Comments.Count != 0)
+                    {
+                        foreach (var comment in Model.Comments)
+                        {
+                            <div class="comment byuser comment-author-admin bypostauthor even thread-even depth-1  fl-comment" id="comment-17">
+                                <div class="comment-container">
+                                    <div class="comment-author-content">
+                                        <div class="comment-avatar">
+                                            <a>
+                                                @if (comment.ImageName == null)
+                                                {
+                                                    <img class="rounded-circle" src="/Content/img/avatar.png" class="avatar avatar-60 photo" height="60" width="60" />
+                                                }
+                                                else
+                                                {
+                                                    <img class="rounded-circle" src="/Images/Uploads/Profile/@comment.UserId/Thumbs/@comment.ImageName" class="avatar avatar-60 photo" height="60" width="60" />
+                                                }
+                                            </a>
+                                        </div>
+                                        <div class="fl-comment-author-meta">
+                                            <div class="fl-comment-author-top">
+                                                <span class="comment-author-name sas fl-font-style-regular-two">
+                                                    @comment.LastName @comment.FirstName
+                                                </span>
+                                            </div>
+                                            <span class="comment--time fl-text-regular-style">
+                                                <span class="fl-link-comment">
+                                                    @comment.Date.ToString("HH:mm:ss dd.MM.yyyy")
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="comment-meta cf">
+                                        <div class="comment-moderation">
+                                            <p>@comment.Text</p>
+                                            <span class="fl-review-content"></span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="comment--reply-wrap fl-text-medium-style">
+                                    <div class="reply-link-wrap">
+                                        @if (Request.IsAuthenticated)
+                                        {
+                                            <button class="comment-reply-link addReply active" id="@comment.Id"> Ответить</button>
+                                        }
+                                        else
+                                        {
+                                            <button class="comment-reply-link addReply" data-bs-toggle="modal" data-bs-target="#exampleModal4"> Ответить</button>
+                                        }
+                                    </div>
+
+                                    @using (Html.BeginForm("PostReply", "Place", FormMethod.Get))
+                                    {
+                                        if (Request.IsAuthenticated)
+                                        {
+                                            <div class="bg-white replyBlock" id="reply_@comment.Id" style=" margin-top: 20px;">
+                                                <div class="custom-input-group" style="margin-top:0">
+                                                    <textarea style="width:100%; max-width:100%" name="Reply" placeholder="Добавьте ответ"></textarea>
+                                                    <input type="hidden" name="Name" value="@Model.Place.Slug" />
+                                                    @*     <input type="hidden" name="CID" value="@comment.Id" />*@
+                                                </div>
+                                                <div class="submit-btn-container" style="width: 100%; margin-top: 30px; height: 46px;">
+                                                    <button type="submit" class="fl-custom-btn fl-font-style-bolt-two primary-style" id="sendComment" style=" float: left; border:none"><span>Добавить</span></button>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+
+
+
+                            </div>
+                            if (comment.Replies.Count != 0)
+                            {
+                                <div style=" margin-top: -30px; margin-bottom: 20px; font-size: 20px;">Ответы:</div>
+
+
+                                foreach (var reply in comment.Replies)
+                                {
+                                    <div class="comment byuser comment-author-admin bypostauthor even thread-even depth-1  fl-comment" style="padding-bottom:10px;margin-left:5px; margin-bottom:0px">
+                                        <div class="comment-container">
+                                            <div class="comment-author-content">
+                                                <div class="comment-avatar">
+                                                    <a>
+                                                        @if (comment.ImageName == null)
+                                                        {
+                                                            <img src="/Content/img/avatar.png" class="avatar avatar-60 photo" height="60" width="60" />
+                                                        }
+                                                        else
+                                                        {
+                                                            <img src="/Images/Uploads/Profile/@reply.UserId/Thumbs/@reply.User.ImageName" s class="avatar avatar-60 photo" height="60" width="60" />
+                                                        }
+                                                    </a>
+                                                </div>
+                                                <div class="fl-comment-author-meta">
+                                                    <div class="fl-comment-author-top">
+                                                        <span class="comment-author-name sas fl-font-style-regular-two">
+                                                            @reply.User.LastName @reply.User.FirstName
+                                                        </span>
+                                                    </div>
+                                                    <span class="comment--time fl-text-regular-style">
+                                                        <span class="fl-link-comment">
+                                                            @comment.Date.ToString("HH:mm:ss dd.MM.yyyy")
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="comment-meta cf">
+                                                <div class="comment-moderation">
+                                                    <p>>@reply.Text</p>
+                                                    <span class="fl-review-content"></span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                }
+                                <hr style="margin-bottom: 40px; border-color: #d8e4ee; ">
+                            }
+                        }
+
+
+                    }
+
+
+
+
+
+                    <!-- /#comment-list -->
+
+                </div>
+                <!-- .comment-list -->
+
+                <div class="fl-form-review-reply">
+                    <div id="respond" class="comment-respond">
+                        <h4 id="reply-title" class="comment-reply-title">
+                            <span class="reply-title fl-text-bold-style">Комментарии</span>
+                        </h4>
+
+                        @using (Html.BeginForm("PostComment", "Place", FormMethod.Get, new { @class = "fl-comment-form" }))//FormMethod.Post))
+                        {
+                            <div class="author-comment">
+                                <textarea class="required" name="CommentText" rows="5" aria-required="true" placeholder="Введите текст комментария..." style="margin-top:40px"></textarea>
+                                <input type="hidden" name="Id" value="@Model.Place.Id" />
+                                <input type="hidden" name="Name" value="@Model.Place.Slug" />
+                            </div>
+                            <div class="submit-btn-container">
+                                @if (Request.IsAuthenticated)
+                                {
+                                    <button type="submit" class="fl-custom-btn fl-font-style-bolt-two primary-style" id="sendComment"><span>Добавить</span></button>
+                                }
+                                else
+                                {
+                                    <button type="button" class="fl-custom-btn fl-font-style-bolt-two primary-style" data-bs-toggle="modal" data-bs-target="#exampleModal3"><span>Добавить</span></button>
+                                }
+
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="fl-places-sidebar-contain col-md-4 sticky" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
+        <div class="theiaStickySidebar" style="padding-top: 0px; padding-bottom: 1px; position: static; transform: none; top: 0px; left: 1092.31px;">
+            <div class="fl-places-meta">
+                <div class="fl-author-information">
+                    <span class="fl-author-title fl-text-bold-style">@Model.Place.PlaceName</span>
+                    <div class="fl-author-meta-contain">
+                        <div class="fl-author-avatar">
+                        </div>
+                        <div class="fl-author-meta" style="width:100%">
+                            <span class="fl-author-name fl-text-bold-style" style="width:100%">
+                                ~@String.Format("{0:N0}", Model.Place.Price).Replace(",", " ")₽
+                                @if ((Model.Place.OldPrice != 0.00m) && (Model.Place.OldPrice > Model.Place.Price))
+                                {
+                                    <del>  @String.Format("{0:N0}", Model.Place.OldPrice).Replace(",", " ")₽</del>
+                                }
+                            </span>
+                        </div>
+                    </div>
+                    <div class="fl-author-contact-contain">
+                        <button class="showNumber" data-bs-toggle="modal" data-bs-target="#exampleModal">Показать номер</button>
+                    </div>
+                    <div class="fl-author-social-contain">
+                    </div>
+                </div>
+                @if (Model.Place.Schedule != null)
+                {
+                    <div class="fl-working-hours">
+                        <span class="fl-working-hours-title fl-text-bold-style">График работы</span>
+                        <div class="fl-working-hours-contain">
+                            <ul class="fl-working-hours-table">
+                                @for (int i = 0; i < ViewBag.TourPlan.Count; i += 2)
+                                {
+                                    <li>
+                                        <span class="fl-hours-left">@ViewBag.TourPlan[i]</span>
+                                        <span class="fl-hours-right">@ViewBag.TourPlan[i + 1]</span>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                }
+                <div class="fl-working-hours">
+                    <div class="container mt-100">
+                        @foreach (var service in ViewBag.ListService)
+                        {
+                            <div class="col" style="border-bottom: 1px solid #e1e7ec;">
+                                <div class="card mb-30" style="background: transparent; border: none;">
+                                    <a class="card-img-tiles" href="#" data-abc="true">
+                                        <div class="inner">
+                                            <div class="main-img"><img src="/Images/Uploads/Services/@service.Id/Thumbs/@service.ImageName" style="border-radius:10px"></div>
+                                        </div>
+                                    </a>
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title">@service.ServiceName</h5>
+                                        <p class="text-muted" style=" font-family: 'Montserrat', sans-serif;">
+                                            ~@String.Format("{0:N0}", service.Price).Replace(",", " ")₽
+                                            @if ((service.OldPrice != 0.00m) && (service.OldPrice > service.Price))
+                                            {
+                                                <del>@String.Format("{0:N0}", service.OldPrice).Replace(",", " ")₽</del>
+                                            }
+
+                                        </p>
+     
+                                            <button serviceName="@service.ServiceName" servicePrice="@service.Price" serviceDescription="@service.Description" serviceImg = "/Images/Uploads/Services/@service.Id/@service.ImageName" type="submit" class="btn-sm openServiceModel" data-bs-toggle="modal" data-bs-target="#exampleModal5">ПОДРОБНЕЕ</button>
+                               
+                                     
+                                        @*<a class="btn-sm" href="/" data-abc="true">ПОДРОБНЕЕ</a>*@
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .mb-30 {
+            margin-bottom: 30px !important;
+        }
+
+        .card-img-tiles {
+            display: block;
+            /* border-bottom: 1px solid #e1e7ec;*/
+        }
+
+        a {
+            color: #0da9ef;
+            text-decoration: none !important;
+        }
+
+        .card-img-tiles > .inner {
+            display: table;
+            width: 100%;
+        }
+
+        .card-img-tiles .main-img, .card-img-tiles .thumblist {
+            display: table-cell;
+            width: 65%;
+            padding: 15px;
+            vertical-align: middle;
+        }
+
+            .card-img-tiles .main-img > img:last-child, .card-img-tiles .thumblist > img:last-child {
+                margin-bottom: 0;
+            }
+
+            .card-img-tiles .main-img > img, .card-img-tiles .thumblist > img {
+                display: block;
+                width: 100%;
+                margin-bottom: 6px;
+            }
+
+        .thumblist {
+            width: 35%;
+            border-left: 1px solid #e1e7ec !important;
+            display: table-cell;
+            width: 65%;
+            padding: 15px;
+            vertical-align: middle;
+        }
+
+
+
+        .card-img-tiles .thumblist > img {
+            display: block;
+            width: 100%;
+            margin-bottom: 6px;
+        }
+
+        .btn-group-sm > .btn, .btn-sm {
+            padding: 0.45rem 1.5rem !important;
+            font-size: .875rem;
+            border-radius: 30px;
+            line-height: 1.5;
+            /* border-radius: 0.2rem; */
+            background-color: #4da1f4;
+            color: white;
+            border:none;
+        }
+
+            .btn-group-sm > .btn, .btn-sm:hover {
+                color: white;
+            }
+
+
+        .map-text {
+            font-family: 'Montserrat', sans-serif;
+        }
+    </style>
+
+
+</div>
+
+
+
+<div class="modal fadel " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style=" border-radius: 20px !important;">
+
+            <div class="modal-body" style="text-align: center; font-family: 'Montserrat', sans-serif;">
+                @if (Request.IsAuthenticated)
+                {
+                    <a style="font-size: 30px; text-decoration: none;" href="tel:@Model.Place.PhoneNumber)">@Html.DisplayFor(model => model.Place.PhoneNumber)</a>
+                }
+                else
+                {
+                    <a style="font-family: 'Montserrat', sans-serif;">Для того чтобы увидеть номер - авторизируйтесь!</a>
+                    <br />
+                    <button onclick="location.href='/account/create-account';" class="fromPlacetoLogin">Авторизация</button>
+                    <br />
+                    <a class="autorization-link" href="/account/create-account">Нет аккаунта?</a>
+                }
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style=" border-radius: 20px !important;">
+
+            <div class="modal-body" style="text-align: center;">
+
+                <a style="font-family: 'Montserrat', sans-serif;">Для добавления места в избранное - авторизируйтесь!</a>
+                <br />
+                <button onclick="location.href='/account/create-account';" class="fromPlacetoLogin">Авторизация</button>
+                <br />
+                <a class="autorization-link" href="/account/create-account">Нет аккаунта?</a>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style=" border-radius: 20px !important;">
+
+            <div class="modal-body" style="text-align: center;">
+
+                <a style="font-family: 'Montserrat', sans-serif;">Для добавления комментария - авторизируйтесь!</a>
+                <br />
+                <button onclick="location.href='/account/create-account';" class="fromPlacetoLogin">Авторизация</button>
+                <br />
+                <a class="autorization-link" href="/account/create-account">Нет аккаунта?</a>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style=" border-radius: 20px !important;">
+
+            <div class="modal-body" style="text-align: center;">
+
+                <a style="font-family: 'Montserrat', sans-serif;">Для ответа на комментарий - авторизируйтесь!</a>
+                <br />
+                <button onclick="location.href='/account/create-account';" class="fromPlacetoLogin">Авторизация</button>
+                <br />
+                <a class="autorization-link" href="/account/create-account">Нет аккаунта?</a>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade  " id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content" style=" border-radius: 20px !important;">
+
+            <div class="modal-body" style="text-align: center; font-family: 'Montserrat', sans-serif; ">
+                <img src="/Images/Uploads/Places/@Model.Place.Id/@Model.Place.ImageName" style="border-radius:20px" id="serviceImg">
+                <div style="padding:30px; text-align:justify">
+                    <h3 id="serviceTitle"></h3>
+                    <h5 style="color: #4da1f4;" id="servicePrice"></h5>
+                    <p style="font-family: 'Montserrat', sans-serif; color: black;" id="serviceDescription">
+                    
+
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(".openServiceModel").click(function (e) {
+            $("#serviceTitle").text($(this).attr("serviceName"));
+            $("#servicePrice").text("~" + $(this).attr("servicePrice") + "₽");
+            $("#serviceDescription").text($(this).attr("serviceDescription"));
+            $("#serviceImg").attr("src", $(this).attr("serviceImg"));
+           
+        });
+
+    </script>
+    <script>
+
+        const buttonRight = document.getElementById('slideRight');
+        const buttonLeft = document.getElementById('slideLeft');
+
+        buttonRight.onclick = function () {
+            document.getElementById('new_gallery').scrollLeft += 20;
+        };
+        buttonLeft.onclick = function () {
+            document.getElementById('new_gallery').scrollLeft -= 20;
+        };
+
+    </script>
+
+
+    <script>
+        $(".new-gallery-item").click(function (e) {
+            $(".new-gallery-item").find("img").removeClass("active");
+            $(this).find("img").addClass("active");
+            $(".main-place-img").attr("src", $(this).attr("src-for-img"));
+        });
+
+
+    </script>
+
+
+    <script>
+        window.addEventListener('load', (event) => {
+            const raiting = document.getElementById('rating');
+            var raitingvalue = raiting.value;
+
+            for (var i = 1; i <= raitingvalue; ++i) {
+                document.getElementById("star-" + i).setAttribute("style", "color:#162b32");
+            }
+        });
+    </script>
+
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.74.0/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+    <script>
+
+        function addMarker(latitude, longitude, id, name, imagename, address) {
+            let config = {
+                minZoom: 7,
+                maxZomm: 18
+            };
+            const zoom = 18;
+            const lat = latitude;
+            const lon = longitude;
+
+            const map = L.map("map", config).setView([lat, lon], zoom);
+
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                attribution:
+                    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            L.Control.geocoder().addTo(map);
+            map.addControl(new L.Control.Fullscreen());
+            L.control.locate().addTo(map);
+
+
+
+                    var theMarker = new L.marker([lat, lon]).addTo(map).on('mouseover', onClick);
+                    function onClick(e) {
+                        if (!imagename) {
+                            theMarker.bindPopup('<center><h6 class="map-text">' + address + '</h6></center><img class="fit-picture" style = "width: 100%;height="100" src = "/Content/img/no_image_big.png">').openPopup();
+                        }
+                        else {
+                            theMarker.bindPopup('<center><h6 class="map-text">' + address + '</h6></center><img class="fit-picture" style = "width: 100%;height="100" src = "/Images/Uploads/Products/' + id + '/Thumbs/' + imagename + '>').openPopup();
+                        }
+                    }
+
+
+        }
+
+        addMarker(@Model.Place.Latitude, @Model.Place.Longitude, @Model.Place.Id , '@Model.Place.PlaceName', '@Model.Place.ImageName', '@Model.Place.Address');
+
+
+    </script>
+    <script>
+        $(function () {
+            $("#addToFavorites").click(function (e) {
+                var url = "/favorites/AddToFavoritesPartial";
+
+                jQuery.get(url, { Id: @Model.Place.Id
+            }, function myfunction(data) {
+                    $(".ajaxfavorites").html(data);
+                })
+            });
+        });
+    </script>
+
+
+
+    <script>
+
+        var clickOpenReply = 0;
+        $(".addReply.active").click(function (e) {
+
+            if (clickOpenReply % 2 == 0) {
+                $(this).text("Закрыть");
+                var id = $(this).attr("id");
+                var text = "#reply_" + id.toString();
+                $(text).addClass("active");
+            }
+            else {
+                $(this).text("Ответить");
+                var id = $(this).attr("id");
+                var text = "#reply_" + id.toString();
+                $(text).removeClass("active");
+            }
+            clickOpenReply++;
+        });
+
+       /* var addReplyBtns = document.getElementsByClassName("addReply");*/
+        @*for (var i = 0; i < addReplyBtns.length; i++) {
+            addReplyBtns[i].addEventListener("click", function (e) {
+                var blockId = "reply " + e.target.getAttribute('id');
+                var block = document.getElementById(blockId);
+                block.className += " active";
+
+                var closeReplyBtnId = "closeReply " + e.target.getAttribute('id');
+                var closeReplyBtnBlock = document.getElementById(closeReplyBtnId);
+                closeReplyBtnBlock.className += " active";
+            });
+        }*@
+    </script>
+
+
+    <script>
+        var closeReplyBtns = document.getElementsByClassName("closeReply");
+        for (var i = 0; i < closeReplyBtns.length; i++) {
+            closeReplyBtns[i].addEventListener("click", function (e) {
+                var closeReplyBtnId = e.target.getAttribute('id');
+                this.className = this.className.replace(" active", "");
+                var block = document.getElementById("reply " + closeReplyBtnId.replace(/closeReply /g, ""));
+                block.className = block.className.replace(" active", "");
+            });
+        }
+    </script>
+
+}
+
+
+

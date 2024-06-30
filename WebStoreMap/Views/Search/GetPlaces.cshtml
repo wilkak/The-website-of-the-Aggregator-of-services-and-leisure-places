@@ -1,0 +1,75 @@
+﻿@model  IEnumerable<WebStoreMap.Models.Data.PlaceDataTransferObject>
+
+
+    <div class="row">
+        @foreach (var item in ViewBag.PlacesList)
+        {
+       <div class="col-4">
+           <div class="place-inner">
+               <div class="place-inner-top">
+
+                   @if (Request.IsAuthenticated)
+                   {
+                       if (item.IsThisInFavorites == true)
+                       {
+                           <span class="add-in-favorite-place active" id=@item.Id>
+                               <i class="fa fa-heart-o"></i>
+                           </span>
+
+                       }
+                       else
+                       {
+                           <span class="add-in-favorite-place" id=@item.Id>
+                               <i class="fa fa-heart-o"></i>
+                           </span>
+                       }
+                   }
+                   <a href="">
+                       @if (item.ImageName != null)
+                       {
+                           <img src="/Images/Uploads/Places/@item.Id/Thumbs/@item.ImageName" class="" alt="">
+                       }
+                       else
+                       {
+                           <img alt="" src="/Content/img/no_image_big.png" style=" width: 100%; height:100%;">
+                           <img src="/Content/img/no_image_big.png" class="" alt="">
+                       }
+                   </a>
+               </div>
+               <div class="place-inner-center">
+                   <span class="place-inner-category">@item.CategoryName</span>
+                   <a class="place-inner-title" href="">@item.PlaceName</a>
+                   <div class="place-inner-description">@item.Description</div>
+                   <div class="place-inner-contact-info">
+                       <span class="place-inner-address">
+                           <i class="fa-solid fa-location-dot" aria-hidden="true"></i>@item.Address
+                       </span>
+                       <span class="place-inner-phone">
+                           <i class="fa-solid fa-phone" aria-hidden="true"></i>@item.PhoneNumber
+                       </span>
+                   </div>
+               </div>
+               <div class="place-inner-bottom">
+                   <div class="place-inner-rating">
+                       <div class="place-inner-contain">
+                           <i class="fa-regular fa-star" aria-hidden="true"></i>
+                           <span class="place-inner-rating-sr">
+                               Рейтинг
+                               <span>4.6</span>
+                           </span>
+                           <span class="place-inner-rating-count"> (12 отзывов)</span>
+                       </div>
+                   </div>
+                   <div class="place-inner-working-hours">
+                       <div class="place-inner-working-hours-contain">
+                           <span class="place-inner-working-hours-now-status fl-open">Открыто</span>
+                       </div>
+                   </div>
+                   <div class="place-inner-price">
+                       <span>~@String.Format("{0:N0}", item.Price).Replace(",", " ")₽</span>
+                   </div>
+               </div>
+           </div>
+       </div>
+        }
+    </div>

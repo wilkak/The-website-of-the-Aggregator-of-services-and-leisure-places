@@ -1,0 +1,10 @@
+﻿@model IEnumerable<WebStoreMap.Models.ViewModels.Place.CategoryViewModel>
+
+
+<ul class="list" id="CategorySelectorList">
+    <li id="0" class="option selected">Все</li>
+    @foreach (var item in Model)
+    {
+        <li id="@item.Id" class="option">@item.CategoryName</li>
+    }
+</ul>

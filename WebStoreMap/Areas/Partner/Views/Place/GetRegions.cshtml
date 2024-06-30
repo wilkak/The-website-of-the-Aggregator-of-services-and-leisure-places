@@ -1,0 +1,11 @@
+﻿@model WebStoreMap.Models.Data.RegionDataTransferObject
+
+<option value="">Регион(не выбран)</option>
+@if (ViewBag.Region != null)
+{
+
+    foreach (var item in ViewBag.Region)
+    {
+        <option value="@item.Value">@item.Text</option>
+    }
+}

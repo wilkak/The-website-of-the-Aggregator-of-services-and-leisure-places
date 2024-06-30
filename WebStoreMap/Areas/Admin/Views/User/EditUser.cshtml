@@ -1,0 +1,103 @@
+﻿@model WebStoreMap.Models.ViewModels.Account.UserRoleInformationViewModel
+
+@{
+    ViewBag.Title = "EditUser";
+}
+
+
+
+<style>
+    .backtoproducts-link:hover {
+        color: #f44153;
+    }
+</style>
+
+<!-- Section: Design Block -->
+<section class="text-center">
+    <!-- Background image -->
+    <div class="card mx-4 mx-md-5 shadow-5-strong" style="margin-top: 60px; margin-bottom: 60px; margin-right: 3rem !important; margin-left: 3rem !important; background: hsla(0, 0%, 100%, 0.8); backdrop-filter: blur(30px); ">
+        <div class="card-body py-5 px-md-5">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <h4 class="fw-bold mb-5 addProductHeader">Редактирование пользователя</h4>
+                    @using (Html.BeginForm("EditUser", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <form>
+                            @if (TempData["SM"] != null)
+                            {
+                                <div class="alert alert-success">
+                                    @TempData["SM"]
+                                </div>
+
+                            }
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-outline mb-4">
+                                <center>@Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })</center>
+                                <center>@Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })</center>
+                                <center><label class="form-label" for="form3Example3">Имя</label></center>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <center>@Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })</center>
+                                <center>@Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })</center>
+                                <center><label class="form-label" for="form3Example3">Фамилия</label></center>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <center>@Html.EditorFor(model => model.EmailAddress, new { htmlAttributes = new { @class = "form-control" } })</center>
+                                <center> @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })</center>
+                                <center><label class="form-label" for="form3Example3">Email</label></center>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <center>@Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })</center>
+                                <center> @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })</center>
+                                <center><label class="form-label" for="form3Example3">Номер телефона</label></center>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <center>@Html.EditorFor(model => model.BirthDate, new { htmlAttributes = new { @class = "form-control" } })</center>
+                                <center> @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })</center>
+                                <center><label class="form-label" for="form3Example3">Дата рождения</label></center>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <center> @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })</center>
+                                <center>@Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })</center>
+                                <center><label class="form-label" for="form3Example3">Пароль</label></center>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <center>@Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })</center>
+                                <center> @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })</center>
+                                <center><label class="form-label" for="form3Example3">Подтверждение пароля</label></center>
+                            </div>
+                            <div class="form-outline mb-4">
+
+                                <center>
+                                    @Html.DropDownListFor(model => model.RoleId, Model.Role, "Выбор роли", new { @class = "form-control" })
+                                </center>
+                                <center>   @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })</center>
+
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                @Html.LabelFor(model => model.View, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.CheckBoxFor(model => model.View, Model.View)
+                                @Html.ValidationMessageFor(model => model.View)
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <center>
+                                    <input type="submit" value="Сохранить" class="btn btn-success btn-add" style="width:200px !important" />
+                                </center>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <center>    @Html.ActionLink("Возврат к пользователям", "Users", null, null, new { @class = "backtoproducts-link" })</center>
+                            </div>
+
+                        </form>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

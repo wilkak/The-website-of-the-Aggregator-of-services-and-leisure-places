@@ -1,0 +1,88 @@
+﻿@model IEnumerable<WebStoreMap.Models.ViewModels.Company.CompanyViewModel>
+@{
+    ViewBag.Title = "Компании";
+}
+@using PagedList.Mvc;
+@using PagedList;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+<section class="section-content">
+    <div class="container container-content" style=" margin-bottom: 40px;min-height: 500px;">
+        <div class="row">
+            <div class="col-lg-4" id="addProductBlockMobile">
+                <div class="card addProductCard">
+                    <div class="card-body addProductCardBody">
+                        <h5 class="card-title ">Добавление компании</h5>
+                        <p class="card-text">Чтобы добавить новую компанию, которой еще нет на сайте, создайте новую карточку компании и заполните параметры. </p>
+                        <center>
+                            @Html.ActionLink("Добавить новую компанию", "AddCompany", "", new { @class = "btn btn-add" })
+                        </center>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="allProductsCardBlock">
+                    <div class="card allProductsCard">
+                        <div class="card-header allProductsCardHeader" id="allProductsCardHeaderDesktop">
+                            Компании
+                        </div>
+                        <div class="card-header allProductsCardHeader" id="allProductsCardHeaderMobile">
+                            Компании
+                        </div>
+                    </div>
+                    @foreach (var item in ViewBag.OnePageOfCompany)
+                    {
+                        <div class="card mb-3 allProductsCardItem">
+                            <div class="row g-0">
+                                <div class="col">
+                                    <div class="card-body">
+                                        <div class="row" style="height:100%; margin-right: 0 !important; margin-left: 0;">
+                                            @* <div class="col ">
+                                                    <h5 class="card-title CardOfProductTitle">Название: @Html.DisplayFor(modelItem => item.CompanyName)</h5>
+
+                                                    <h5 class="card-title CardOfProductTitle">UserId: @Html.DisplayFor(modelItem => item.UserId)</h5>
+
+                                                    <h5 class="card-title CardOfProductTitle">Вид: @Html.DisplayFor(modelItem => item.View)</h5>
+                                                </div>*@
+                                            <div class="col-sm-9 p-3 ">
+                                                <h5 class="card-title CardOfProductTitle">@item.CompanyName</h5>
+                                                <h5 class="card-title CardOfProductTitle">UserID: @item.UserId</h5>
+                                                <h5 class="card-title CardOfProductTitle">CompanyId: @item.Id</h5>
+                                            </div>
+                                            <div class="col " style=" padding: 0px !important; ">
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item">
+                                                        @Html.ActionLink("Изменить", "EditCompany", new { id = item.Id }, new { @class = "btn btn-edit" })
+                                                    </li>
+
+                                                    <li class="list-group-item">
+                                                        @Html.ActionLink("Удалить", "DeleteCompany", new { id = item.Id }, new { @class = "btn btn-delete" })
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col-lg-4" id="addProductBlock">
+                <div class="card addProductCard">
+                    <div class="card-body addProductCardBody">
+                        <h5 class="card-title ">Добавление компании</h5>
+                        <p class="card-text">Чтобы добавить новую компанию, которой еще нет на сайте, создайте новую карточку компании и заполните параметры. </p>
+                        <center>
+                            @Html.ActionLink("Добавить новую компанию", "AddCompany", "", new { @class = "btn btn-add" })
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <center>@Html.PagedListPager((IPagedList)ViewBag.OnePageOfCompany, page => Url.Action("Companies", new { page }))</center>
+</section>
+

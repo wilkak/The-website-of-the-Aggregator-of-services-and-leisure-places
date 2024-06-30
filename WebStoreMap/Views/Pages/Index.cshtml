@@ -1,0 +1,8 @@
+﻿@model WebStoreMap.Models.ViewModels.Pages.PageViewModel
+
+@{
+    ViewBag.Title = ViewBag.PageTitle;
+    TempData["PageTitle"] = ViewBag.PageTitle;
+}
+
+@Html.Raw(Model.Body)

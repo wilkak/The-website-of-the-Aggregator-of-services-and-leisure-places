@@ -1,0 +1,113 @@
+﻿@model IEnumerable<WebStoreMap.Models.ViewModels.geodan.RegionInformationViewModel>
+
+@{
+    ViewBag.Title = "Регионы";
+}
+
+@using PagedList.Mvc;
+@using PagedList;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" s />
+
+<section class="section-content">
+    <div class="container container-content" style=" margin-bottom: 40px;min-height: 500px;">
+        <div class="row">
+            <div class="col-lg-4" id="addProductBlockMobile">
+                <div class="card addProductCard">
+                    <div class="card-body addProductCardBody">
+                        <h5 class="card-title ">Добавление региона</h5>
+                        <p class="card-text">Чтобы добавить новый регион, которого еще нет на сайте, создайте новую карточку региона и заполните параметры. </p>
+                        <center>@Html.ActionLink("Добавить новый регион", "AddRegion", new { CountryId = ViewBag.ContryId }, new { @class = "btn btn-add" })</center>
+                        <center>@Html.ActionLink("Вернуться к странам", "Сountries", null, null, new { @class = "btn btn-add", style = "margin-top:25px;" })</center>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="allProductsCardBlock">
+                    <div class="card allProductsCard">
+                        <div class="card-header allProductsCardHeader" id="allProductsCardHeaderDesktop">
+                            Регионы
+                        </div>
+                        <div class="card-header allProductsCardHeader" id="allProductsCardHeaderMobile">
+                            Регионы
+                        </div>
+                    </div>
+                    @foreach (var item in ViewBag.OnePageOfRegionInfo)
+                    {
+                        <div class="card mb-3 allProductsCardItem">
+                            <div class="row g-0">
+                                <div class="col-md-4 " style="padding-left:0; padding-right:0">
+                                    <a href="/moderator/Sections/EditRegion/@item.Region">
+                                        @if (@item.ImageName == null)
+
+                                        {
+                                            <img src="/Content/img/no_image.png" style="width: 100%; height: 100%;" /> }
+
+                                        else
+
+                                        {
+                                            <img src="/Images/Uploads/Regions/@item.RegionInformationId/Thumbs/@item.ImageName" style="width: 100%; height: 100%;" />}
+                                    </a>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <div class="row" style="height:100%; margin-right: 0 !important; margin-left: 0;">
+                                            <div class="col-sm-9 p-3 ">
+                                                <h5 class="card-title CardOfProductTitle">@item.RegionName</h5>
+                                            </div>
+                                            <div class="col-3 p-3 " id="editeDeliteBlockDesktop" style=" padding: 0px !important; ">
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item">@Html.ActionLink("Изменить", "EditRegion", new { id = item.RegionInformationId }, new { @class = "btn btn-edit" })</li>
+                                                    <li class="list-group-item"> @Html.ActionLink("Города", "Cities", new { page = 1, RegionId = item.RegionInformationId }, new { @class = "btn btn-edit" })</li>
+                                                    <li class="list-group-item">@Html.ActionLink("Удалить", "DeleteRegion", new { id = item.RegionInformationId }, new { @class = "btn btn-delete " })</li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-9 p-3" id="editeDeliteBlockMobile" style=" padding: 0px !important; ">
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item">@Html.ActionLink("Изменить", "EditRegion", new { id = item.RegionInformationId }, new { @class = "btn btn-edit" })</li>
+                                                    <li class="list-group-item"> @Html.ActionLink("Города", "Cities", new { page = 1, RegionId = item.RegionInformationId }, new { @class = "btn btn-edit" })</li>
+                                                    <li class="list-group-item">@Html.ActionLink("Удалить", "DeleteRegion", new { id = item.RegionInformationId }, new { @class = "btn btn-delete " })</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="col-lg-4" id="addProductBlock">
+                <div class="card addProductCard">
+                    <div class="card-body addProductCardBody">
+                        <h5 class="card-title ">Добавление региона</h5>
+                        <p class="card-text">Чтобы добавить новый регион, которого еще нет на сайте, создайте новую карточку региона и заполните параметры. </p>
+                        <center>@Html.ActionLink("Добавить новый регион", "AddRegion", new { CountryId = ViewBag.ContryId }, new { @class = "btn btn-add" })</center>
+                        <center>@Html.ActionLink("Вернуться к странам", "Сountries", null, null, new { @class = "btn btn-add", style = "margin-top:25px;" })</center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <center>@Html.PagedListPager((IPagedList)ViewBag.OnePageOfRegionInfo, page => Url.Action("Regions", new { page, ViewBag.ContryId }))</center>
+</section>
+
+
+@section Scripts
+{
+
+    <script>
+        $(function () {
+
+            /*-----------------------------------------------------------*/
+
+            /* Confirm page deletion */
+
+            $("a.delete").click(function () {
+                if (!confirm("Подтвердите удаление страницы")) return false;
+            });
+
+            /*-----------------------------------------------------------*/
+        });
+    </script>
+}

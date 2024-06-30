@@ -1,0 +1,530 @@
+﻿@model WebStoreMap.Models.ViewModels.Rating.RatingViewModel
+@{ ViewBag.Title = "Отзывы"; }
+
+@using PagedList.Mvc;
+@using PagedList;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="~/lightbox2-dev/dist/css/lightbox.min.css">
+<script src="~/lightbox2-dev/dist/js/lightbox-plus-jquery.min.js"></script>
+
+<style>
+    .rating__label {
+        cursor: pointer;
+        padding: 0 0.1em;
+        font-size: 1.4rem;
+    }
+
+
+        .rating__label i {
+            color: gainsboro;
+        }
+
+    .rating__input {
+        position: absolute !important;
+        left: -9999px !important;
+    }
+
+    .rating__label:hover i {
+        color: #f44153;
+    }
+
+    .input-file input[type=file] {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+        display: block;
+        width: 0;
+        height: 0;
+    }
+
+    .input-file span {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        outline: none;
+        text-decoration: none;
+        font-size: 12px;
+        vertical-align: middle;
+        color: rgb(255 255 255);
+        text-align: center;
+        border-radius: 75px;
+        background-color: #f44153;
+        line-height: 22px;
+        height: 40px;
+        padding: 10px 14px;
+        box-sizing: border-box;
+        border: none;
+        margin: 0;
+        transition: background-color 0.2s;
+    }
+</style>
+
+
+<style>
+    .navbar-style {
+        background: #f44153;
+    }
+
+    .navbar-nav .nav-item .nav-link:hover {
+        color: #fff;
+    }
+
+    .navbar-nav .nav-item .nav-link:hover {
+        color: #D0D0D0;
+    }
+
+    .listing-item .listing-item-link:before {
+        display: none;
+    }
+
+
+
+    .fixed-pricing-button {
+        position: fixed;
+        top: 70px;
+        right: 10px;
+        z-index: 32;
+    }
+
+
+        .fixed-pricing-button .ribbon {
+            border-radius: 0 5px 5px 0;
+            font-size: 14px;
+            margin: 0;
+            padding: 0 0 0 8px;
+            height: 44px;
+            line-height: 46px;
+            box-shadow: 1px 1px 8px rgb(0 0 0 / 20%), -1px -1px 8px rgb(0 0 0 / 20%);
+        }
+
+            .fixed-pricing-button .ribbon:before {
+                left: -22px;
+                border: 22px solid transparent;
+                border-top-color: #f44153;
+                border-bottom-color: #f44153;
+                z-index: -1000;
+            }
+
+            .fixed-pricing-button .ribbon:after {
+                font-family: 'icon';
+                content: "";
+                border: 0;
+                right: auto;
+                position: relative;
+                font-size: 24px;
+                width: 0px;
+                height: 44px;
+                float: right;
+                text-align: center;
+                margin-left: 10px;
+            }
+
+        .fixed-pricing-button .pricing-data {
+            display: inline-block;
+            float: left;
+        }
+
+
+    .write-review .button2 {
+        font-size: 12px;
+        padding: 10px 10px 10px 13px;
+        overflow: hidden;
+        position: relative;
+        text-align: end;
+        display: inline-block;
+        text-decoration: none;
+        /* width: 175PX; */
+        /* background: #f44153; */
+        color: #fff;
+        background: #f44153;
+        border-radius: 10px;
+        border: none;
+        font-family: 'Montserrat', sans-serif;
+        border-radius: 30px;
+    }
+
+    .btn-submit {
+        width: 50%;
+        padding: 15px 20px;
+        position: relative;
+        /* left: -60px; */
+        text-transform: uppercase;
+        border: none;
+        background-color: #f44153;
+        color: white;
+        border-radius: 30px;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+        .btn-submit:hover {
+            background: #4da1f4;
+            color: white;
+        }
+
+    .back_to_product-btn {
+        width: 60px;
+        height: 60px;
+        border-radius: 50px;
+        position: fixed;
+        bottom: 30px;
+        left: 50px;
+        z-index: 100;
+        font-size: 18px;
+        padding: 16px 21px;
+        background: white;
+        color: #f44153;
+        display: block;
+        box-shadow: 0 8px 22px 0 rgb(0 0 0 / 0.2);
+    }
+
+    .gallery-title.text-left {
+        color: black;
+        margin-top: 30px;
+        font-family: 'Montserrat', sans-serif;
+    }
+</style>
+
+<div class="container listing-review" id="rev">
+    @*<div class="pg-header-icon icon-star" style=" line-height: 60px;"><i class="fa fa-star"></i></div>*@
+    <div class="row" style=" background-color: #f2f7fb; border-radius: 30px; padding: 20px;">
+        <div class="col-sm-3 text-center">
+            <div class="average-review">
+                @if (ViewBag.OnePageOfRatinglist.Count == 0)
+                {
+
+                    <div class="rating"><i class="fa-regular fa-star"></i></div>
+                }
+                @if (ViewBag.RatingOfPlace == 5)
+                {
+                    <div class="mood-icon icon-happy">
+                    </div>
+                    <div class="rating">@ViewBag.RatingOfPlace</div>
+                    <div class="stars">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                }
+                @if (ViewBag.RatingOfPlace == 4)
+                {
+                    <div class="mood-icon icon-happy">
+                    </div>
+                    <div class="rating">@ViewBag.RatingOfPlace</div>
+                    <div class="stars">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                }
+                @if (ViewBag.RatingOfPlace == 3)
+                {
+                    <div class="mood-icon icon-normal">
+                    </div>
+                    <div class="rating">@ViewBag.RatingOfPlace</div>
+                    <div class="stars">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                }
+                @if (ViewBag.RatingOfPlace == 2)
+                {
+                    <div class="mood-icon icon-sad">
+                    </div>
+                    <div class="rating">@ViewBag.RatingOfPlace</div>
+                    <div class="stars">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                }
+                @if (ViewBag.RatingOfPlace == 1)
+                {
+                    <div class="mood-icon icon-sad">
+                    </div>
+                    <div class="rating">@ViewBag.RatingOfPlace</div>
+                    <div class="stars">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                }
+                @if (@ViewBag.RatingOfPlace == 0)
+                {
+                    <div class="mood-icon icon-normal">
+                    </div>
+                    <div class="rating">@ViewBag.RatingOfPlace</div>
+                    <div class="stars">
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                }
+                @if (ViewBag.OnePageOfRatinglist.Count != 0)
+                {
+                    <div class="review-stats">
+                        <div class="review-counter">@ViewBag.NumberOfReviews</div>
+                        <div>Отзывов</div>
+                    </div>
+                }
+            </div>
+            @if (ViewBag.OnePageOfRatinglist.Count != 0)
+            {
+                <div class="review-reputation text-center">
+                    <div>
+                        <h4>@ViewBag.Rating</h4>
+                    </div>
+                </div>
+            }
+            @if (ViewBag.OnePageOfRatinglist.Count != 0)
+            {
+                <div class="write-review">
+                    <button data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop" class="button">Добавить</button>
+                </div>
+            }
+        </div>
+
+        <div class="col-sm-9">
+            @if (ViewBag.OnePageOfRatinglist.Count != 0)
+            {
+                foreach (var item in ViewBag.OnePageOfRatinglist)
+                {
+                    <div class="row author-block">
+                        <div class="col-sm-12 text-left">
+                            @if (item.ImageUser != null)
+                            {
+                                <a href="#" class="author-avatar pull-left" style=" margin-bottom: -90px; background-image: url(/Images/Uploads/Profile/@item.UserId/Thumbs/@item.ImageUser)"></a>
+                            }
+                            else
+                            {
+                                <a href="#" class="author-avatar pull-left" style=" margin-bottom: -90px; background-image: url(/Content/img/avatar.png)"></a>
+                            }
+                            <a href="#" class="author-name">@item.FirstName @item.LastName</a>
+                            @if (item.Rating == 5)
+                            {
+                                <div class="author-vote-mood icon-happy"></div>
+                                <div class="author-vote">
+                                    <text>ОТЛИЧНО</text>
+                                    <div class="stars user">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                </div>
+                            }
+                            @if (item.Rating == 4)
+                            {
+                                <div class="author-vote-mood icon-happy"></div>
+                                <div class="author-vote">
+                                    <text>ХОРОШО</text>
+                                    <div class="stars user">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    </div>
+                                </div>
+                            }
+                            @if (item.Rating == 3)
+                            {
+                                <div class="author-vote-mood icon-normal"></div>
+                                <div class="author-vote">
+                                    <text>НОМАЛЬНО</text>
+                                    <div class="stars user">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    </div>
+                                </div>
+                            }
+                            @if (item.Rating == 2)
+                            {
+                                <div class="author-vote-mood icon-sad"></div>
+                                <div class="author-vote">
+                                    <text>ПЛОХО</text>
+                                    <div class="stars user">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    </div>
+                                </div>
+                            }
+                            @if (item.Rating == 1)
+                            {
+                                <div class="author-vote-mood icon-sad"></div>
+                                <div class="author-vote">
+                                    <text>УЖАСНО</text>
+                                    <div class="stars user">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    </div>
+                                </div>
+                            }
+                            @if (item.Rating == 0)
+                            {
+                                <div class="author-vote-mood sad-happy"></div>
+                                <div class="author-vote">
+                                    <text>КОШМАР</text>
+                                    <div class="stars user">
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    </div>
+                                </div>
+                            }
+                            <span class="data icon-calendar-full">@item.Date.ToString("HH:mm:ss dd.MM.yyyy")</span>
+                            <div class="clear"></div>
+                            <div class="author-description">
+                                @item.Text
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <h3 class="gallery-title text-left" style=" color: black; font-family: 'Montserrat', sans-serif;"> Отзывы </h3>
+                <p style=" font-family: 'Montserrat', sans-serif;">Отзывов к этому месту еще нет! Для добавления отзыва авторизируйтесь</p>
+                <div class="write-review">
+                    <a class="button2" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop">Оставить комментарий</a>
+                </div>
+            }
+        </div>
+
+    </div>
+    <div class="more-listing icon-plus" title="" data-toggle="tooltip" data-placement="top" data-original-title="More Reviews"></div>
+</div>
+
+
+<div class="offcanvas offcanvas-start offcanvas-add-comment" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
+    <div class="offcanvas-header">
+        <div class="back-from-comment-button" data-bs-dismiss="offcanvas" aria-label="Close">
+            <i class="fa-solid fa-arrow-left"></i>
+        </div>
+    </div>
+    <div class="offcanvas-body" style=" text-align: center;">
+        <div class="panel panel-form" style=" display: inline-block; width: 530px; top: 0px; padding: 30px; opacity: 1; border-radius: 20px; overflow: hidden;">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h4 style="font-family: 'Montserrat', sans-serif;">Оставь комментарий</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        @using (Html.BeginForm("AddReview", "Rating", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <form>
+                                <div class="comment-respond">
+                                    <div>
+                                        <div class="custom-input-group">
+                                            @Html.HiddenFor(model => model.PlaceId, new { Value = ViewBag.PlaceId })
+                                            @Html.TextAreaFor(model => model.Text, new { @class = "", PlaceHolder = "Оставьте отзыв", style = "width:100%; max-width:100%;     font-family: 'Montserrat', sans-serif;", name = "ReviewText" })
+                                        </div>
+                                        <div class="input-file-row" style="margin-top:20px">
+                                            <label class="input-file">
+                                                <input accept="image/*" type="file" id="imgInp" name="file" />
+                                                <span><i class="fa-regular fa-image"></i></span> Добавить изображение
+                                            </label>
+                                            <div class="input-file-list"></div>
+                                            @if (@Model.ImageName == null)
+                                            {
+                                                <img id="blah" src="~/Content/img/no_image.png" alt="your image" style="width: 90px; height:auto" />
+                                            }
+                                            <div class="input-file-list"></div>
+                                        </div>
+                                        <div class="rating-group">
+                                            <input disabled checked class="rating__input rating__input--none" name="rating3" id="rating3-none" value="0" type="radio">
+                                            <label aria-label="1 star" class="rating__label" for="rating3-1"><i class="rating__icon rating__icon--star fa fa-star" id="star-1" valueofinput="1"></i></label>
+                                            @Html.RadioButtonFor(model => model.Rating, 1, new { @class = "rating__input", name = "Rating", id = "rating3-1", value = "1", type = "radio" })
+                                            <label aria-label="2 stars" class="rating__label" for="rating3-2"><i class="rating__icon rating__icon--star fa fa-star" id="star-2" valueofinput="2"></i></label>
+                                            @Html.RadioButtonFor(model => model.Rating, 2, new { @class = "rating__input", name = "Rating", id = "rating3-2", value = "2", type = "radio" })
+                                            <label aria-label="3 stars" class="rating__label" for="rating3-3"><i class="rating__icon rating__icon--star fa fa-star" id="star-3" valueofinput="3"></i></label>
+                                            @Html.RadioButtonFor(model => model.Rating, 3, new { @class = "rating__input", name = "Rating", id = "rating3-3", value = "3", type = "radio" })
+                                            <label aria-label="4 stars" class="rating__label" for="rating3-4"><i class="rating__icon rating__icon--star fa fa-star" id="star-4" valueofinput="4"></i></label>
+                                            @Html.RadioButtonFor(model => model.Rating, 4, new { @class = "rating__input", name = "Rating", id = "rating3-4", value = "4", type = "radio" })
+                                            <label aria-label="5 stars" class="rating__label" for="rating3-5"><i class="rating__icon rating__icon--star fa fa-star" id="star-5" valueofinput="5"></i></label>
+                                            @Html.RadioButtonFor(model => model.Rating, 5, new { @class = "rating__input", name = "Rating", id = "rating3-5", value = "4", type = "radio" })
+                                        </div>
+                                        @Html.HiddenFor(model => model.PlaceId, new { Value = ViewBag.PlaceId, name = "Id" })
+                                        <div class="form-group" style="display:none">
+                                            @Html.DisplayNameFor(model => model.ImageName)
+                                        </div>
+                                        <p class="form-submit">
+                                            <input type="submit" class="form-control btn btn-submit" id="sendComment" value="Отправить" style="margin-top: 20px;">
+                                        </p>
+                                    </div>
+                                </div>
+                            </form>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a class="back_to_product-btn" href="/place/place-details/@ViewBag.PlaceSlug">
+    <i class="fa-solid fa-arrow-left"></i>
+</a>
+
+
+
+@*<center>@Html.PagedListPager((IPagedList)ViewBag.OnePageOfRatinglist, page => Url.Action("ProductOtziv", new { page }))</center>*@
+
+
+
+<script>
+    $('input[type=radio][name=Rating]').change(function () {
+        var raitingvalue = this.value;
+        for (var i = 1; i <= 5; ++i) {
+            document.getElementById("star-" + i).setAttribute("style", "color:#ddd");
+
+        }
+        for (var i = 1; i <= raitingvalue; ++i) {
+            document.getElementById("star-" + i).setAttribute("style", "color: #f44153");
+
+        }
+    });
+
+
+    $('.rating__icon').mouseover(function () {
+        var raitingvalue = $(this).attr('valueofinput')
+        console.log(raitingvalue);
+        for (var i = 1; i <= 5; ++i) {
+            document.getElementById("star-" + i).setAttribute("style", "color:#ddd");
+
+        }
+        for (var i = 1; i <= raitingvalue; ++i) {
+            document.getElementById("star-" + i).setAttribute("style", "color: #f44153");
+
+        }
+    });
+</script>

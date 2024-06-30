@@ -1,0 +1,135 @@
+﻿@model WebStoreMap.Models.ViewModels.Place.ServiceViewModel
+
+@{
+    ViewBag.Title = "Добавление услуги";
+}
+
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+
+<style>
+    .backtoproducts-link:hover {
+        color: #f44153;
+    }
+</style>
+
+
+@using (Html.BeginForm("AddService", "Place", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <!-- Section: Design Block -->
+    <section class="text-center">
+        <!-- Background image -->
+        <div class="card mx-4 mx-md-5 shadow-5-strong" style="margin-top: 60px; margin-bottom: 60px; margin-right: 3rem !important; margin-left: 3rem !important; background: hsla(0, 0%, 100%, 0.8); backdrop-filter: blur(30px); ">
+            <div class="card-body py-5 px-md-5">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-lg-8">
+                        <h4 class="fw-bold mb-5 addProductHeader">Добавление услуги</h4>
+                        <form>
+                            @if (TempData["SM"] != null)
+                            {
+                                <div class="alert alert-success">
+                                    @TempData["SM"]
+                                </div>
+                            }
+                            <div class="form-outline mb-4">
+                                <center>@Html.EditorFor(model => model.ServiceName, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "Название" } })</center>
+                                <center>@Html.ValidationMessageFor(model => model.ServiceName, "", new { @class = "text-danger" })</center>
+                                <center><label class="form-label" for="form3Example3" style=" font-family: 'Montserrat' , sans-serif;">Название</label></center>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <center>@Html.TextAreaFor(model => model.Description, new { @class = "form-control", PlaceHolder = "Описание" })</center>
+                                <center>@Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })</center>
+                                <center><label class="form-label" for="form3Example3" style=" font-family: 'Montserrat' , sans-serif;">Описание</label></center>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <center>@Html.DropDownListFor(model => model.PlaceId, Model.Place, "Выбери место", new { @class = "form-control" })</center>
+                                <center>@Html.ValidationMessageFor(model => model.PlaceId, "", new { @class = "text-danger" })</center>
+                                <center><label class="form-label" for="form3Example3" style=" font-family: 'Montserrat' , sans-serif;">Место</label></center>
+                            </div>
+
+                            <div class="form-outline mb-4" style="margin-bottom: 0rem !important;">
+                                <center>@Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })</center>
+                                <center>@Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })</center>
+                                <center><label class="form-label" for="form3Example3" style=" font-family: 'Montserrat' , sans-serif;">Цена</label></center>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <center>@Html.EditorFor(model => model.OldPrice, new { htmlAttributes = new { @class = "form-control" } })</center>
+                                <center>@Html.ValidationMessageFor(model => model.OldPrice, "", new { @class = "text-danger" })</center>
+                                <center><label class="form-label" for="form3Example3" style=" font-family: 'Montserrat' , sans-serif;">Старая цена</label></center>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                @Html.EditorFor(model => model.ImageName, new { htmlAttributes = new { @class = "form-control", style = "display:none" } })
+                                <center><label class="form-label" style="font-family: 'Montserrat', sans-serif; font-size:18px">Изображение услуги</label></center>
+                                <div class="input-file-row" style="margin-top:10px">
+                                    <label class="input-file">
+                                        <input type="file" name="file" id="imageUpload" />
+                                        <span>Добавить изображение</span>
+                                    </label>
+                                    <div class="input-file-list"></div>
+                                    <img id="imgpreview" src="~/Content/img/no_image.png" alt="your image" style="width: 90px; height:auto" />
+                                </div>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <center>@Html.LabelFor(model => model.View, htmlAttributes: new { @class = "control-label col-md-2" })</center>
+                                <center>@Html.CheckBoxFor(model => model.View, Model.View)</center>
+                                <center>@Html.ValidationMessageFor(model => model.View) </center>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <center> <button id="AddService" onclick="beforeSubmit();" class="btn btn-success btn-add" style="width:auto">Добавить услугу</button></center>
+                            </div>
+                            <div class="form-outline mb-4">
+                                
+                                <center>@Html.ActionLink("Вернуться к услугам", "Services", new { PlaceId = ViewBag.PlaceId }, new { @class = "backtoproducts-link" })</center>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+}
+@section Scripts
+{
+
+    <script>
+        // Скрипт предпросмотра картинок
+        $(function () {
+
+            /* Preview selected image */
+
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $("img#imgpreview")
+                            .attr("src", e.target.result)
+                            .width(200)
+                            .height(200);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            $("#imageUpload").change(function () {
+                readURL(this);
+            });
+
+            /*-----------------------------------------------------------*/
+
+        });
+
+    </script>
+}

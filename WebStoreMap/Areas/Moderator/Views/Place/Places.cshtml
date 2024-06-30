@@ -1,0 +1,106 @@
+﻿@model IEnumerable<WebStoreMap.Models.ViewModels.Place.PlaceViewModel>
+@{
+    ViewBag.Title = "Места";
+}
+
+@using PagedList.Mvc;
+@using PagedList;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+<section class="section-content">
+    <div class="container container-content" style=" margin-bottom: 40px;min-height: 500px;">
+        <div class="row">
+            <div class="col-lg-4" id="addProductBlockMobile">
+                <div class="card addProductCard">
+                    <div class="card-body addProductCardBody">
+                        <h5 class="card-title ">Добавление места</h5>
+                        <p class="card-text">Чтобы добавить новое место, которого еще нет на сайте, создайте новую карточку места и заполните параметры.</p>
+                        <center>@Html.ActionLink("Добавить место", "AddPlace", "", new { @class = "btn btn-add" })</center>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="allProductsCardBlock">
+                    <div class="card allProductsCard">
+                        <div class="card-header allProductsCardHeader" id="allProductsCardHeaderDesktop">
+                            Места уже расположенные на сайте
+                        </div>
+                        <div class="card-header allProductsCardHeader" id="allProductsCardHeaderMobile">
+                            Ваши места
+                        </div>
+                    </div>
+                    @foreach (var product in ViewBag.OnePageOfPlaces)
+                    {
+                        <div class="card mb-3 allProductsCardItem">
+                            <div class="row g-0">
+                                <div class="col-md-4 " style="padding-left:0; padding-right:0">
+                                    <a href="/moderator/place/EditProduct/@product.Id">
+                                        @if (@product.ImageName == null)
+                                        {
+                                            <img src="~/Content/img/no_image_big.png" style="width: 100%; height: 100%" />
+                                        }
+                                        else
+                                        {
+                                            <img src="/Images/Uploads/Places/@product.Id/@product.ImageName" style="width: 100%; height: 100%" />
+                                        }
+                                    </a>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <div class="row" style="height:100%; margin-right: 0 !important; margin-left: 0;">
+                                            <div class="col-sm-9 p-3 ">
+                                                <h5 class="card-title CardOfProductTitle">@product.PlaceName</h5>
+                                            </div>
+                                            <div class="col-3 p-3 " id="editeDeliteBlockDesktop" style=" padding: 0px !important; ">
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item">@Html.ActionLink("Изменить", "EditPlace", new { id = product.Id }, new { @class = "btn btn-edit" })</li>
+                                                    <li class="list-group-item">@Html.ActionLink("Удалить", "DeletePlace", new { id = product.Id }, new { @class = "btn btn-delete " })</li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-9 p-3" id="editeDeliteBlockMobile" style=" padding: 0px !important; ">
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item">@Html.ActionLink("Изменить", "EditPlace", new { id = product.Id }, new { @class = "btn btn-edit" })</li>
+                                                    <li class="list-group-item">@Html.ActionLink("Удалить", "DeletePlace", new { id = product.Id }, new { @class = "btn btn-delete " })</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col-lg-4" id="addProductBlock">
+                <div class="card addProductCard">
+                    <div class="card-body addProductCardBody">
+                        <h5 class="card-title ">Добавление места</h5>
+                        <p class="card-text">Чтобы добавить новое место, которого еще нет на сайте, создайте новую карточку места и заполните параметры. </p>
+                        <select id="SelectCategory" name="SelectCategory" class="btn btn-add" style="margin-bottom:20px">
+                            <option value="0" class="option-category">All</option>
+                            @foreach (var item in ViewBag.Categories)
+                            {
+                                if (ViewBag.SelectedCat == item.Value)
+                                {
+                                    <option selected="selected" class="option-category" value="@item.Value">@item.Text</option>
+                                }
+                                else
+                                {
+                                    <option class="option-category" value="@item.Value">@item.Text</option>
+                                }
+                            }
+                        </select>
+                        <center>@Html.ActionLink("Добавить место", "AddPlace", "", new { @class = "btn btn-add" })</center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <center>@Html.PagedListPager((IPagedList)ViewBag.OnePageOfPlaces, page => Url.Action("Places", new { page }))</center>
+</section>
+
+@section Scripts
+{
+    <script src="~/Content/MyScripts/ProductsScript.js"></script>
+}
+

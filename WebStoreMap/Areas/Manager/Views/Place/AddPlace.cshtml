@@ -1,0 +1,447 @@
+﻿@model WebStoreMap.Models.ViewModels.Place.PlaceViewModel
+@{
+    ViewBag.Title = "Добавление места";
+}
+
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+
+<style>
+    .backtoproducts-link:hover {
+        color: #f44153;
+    }
+</style>
+
+
+@using (Html.BeginForm("AddPlace", "Place", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <!-- Section: Design Block -->
+    <section class="text-center">
+        <!-- Background image -->
+        <div class="card mx-4 mx-md-5 shadow-5-strong" style="margin-top: 60px; margin-bottom: 60px; margin-right: 3rem !important; margin-left: 3rem !important; background: hsla(0, 0%, 100%, 0.8); backdrop-filter: blur(30px); ">
+            <div class="card-body py-5 px-md-5">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-lg-8">
+                        <h4 class="fw-bold mb-5 addProductHeader">Добавление места</h4>
+                        <form>
+                            @if (TempData["SM"] != null)
+                            {
+                                <div class="alert alert-success">
+                                    @TempData["SM"]
+                                </div>
+                            }
+                            <div class="form-outline mb-4">
+                                <center>@Html.EditorFor(model => model.PlaceName, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "Название" } })</center>
+                                <center>@Html.ValidationMessageFor(model => model.PlaceName, "", new { @class = "text-danger" })</center>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <center>@Html.TextAreaFor(model => model.Description, new { @class = "form-control", PlaceHolder = "Описание" })</center>
+                                <center>@Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })</center>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <center>@Html.DropDownListFor(model => model.CategoryId, Model.Categories, "Выбери категорию", new { @class = "form-control" })</center>
+                                <center>@Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })</center>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <center>@Html.DropDownListFor(model => model.CompanyId, Model.Company, new { @class = "form-control" })</center>
+                                <center>@Html.ValidationMessageFor(model => model.CompanyId, "", new { @class = "text-danger" })</center>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <center>@Html.TextAreaFor(model => model.Address, new { @class = "form-control", PlaceHolder = "Адрес" })</center>
+                                <center>@Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })</center>
+
+                            </div>
+                            <div class="form-outline mb-4">
+                                <center>@Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "Телефон" } })</center>
+                                <center>@Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })</center>
+                            </div>
+                            <div class="row">
+                                <label class="form-label" style="font-family: 'Montserrat', sans-serif; font-size:18px">Укажите дату проведения мероприятия</label>
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-outline">
+                                        <center>
+                                            @Html.EditorFor(model => model.FirstDay, new { htmlAttributes = new { @class = "form-control", style = "text-decoration: none; font-family: 'Montserrat', sans-serif;", type = "date", id = "firstDay", value = "2022-12-10" } })
+                                        </center>
+                                        <center>
+                                            @Html.ValidationMessageFor(model => model.FirstDay, "", new { @class = "text-danger", style = "text-decoration: none; font-family: 'Montserrat', sans-serif;" })
+                                        </center>
+                                        <center>
+                                            <label class="form-label" for="form3Example3">Дата начала проведения</label>
+                                        </center>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-outline">
+                                        <center>
+                                            @Html.EditorFor(model => model.LastDay, new { htmlAttributes = new { @class = "form-control", style = "text-decoration: none; font-family: 'Montserrat', sans-serif;", type = "date", id = "lastDay", value = "2021-01-01" } })
+                                        </center>
+                                        <center>
+                                            @Html.ValidationMessageFor(model => model.LastDay, "", new { @class = "text-danger", style = "text-decoration: none; font-family: 'Montserrat', sans-serif;" })
+                                        </center>
+                                        <center>
+                                            <label class="form-label" for="form3Example3">Дата конца проведения</label>
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-outline mb-4" style="margin-bottom:0!important">
+                                <center><label class="form-label" style="font-family: 'Montserrat', sans-serif; font-size:18px">Расписание</label></center>
+                                <p class="form-label" style="font-family: 'Montserrat', sans-serif; color:black; font-size:16px">Добавьте расписание с подробным описанием для каждого дня.</p>
+                            </div>
+                            <div class="form-outline mb-4" id="placeForTourDays">
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <button type="button" class="btn-add" id="add_day" style="width:40px" data-bs-toggle="tooltip" data-bs-placement="top" title="Добавить день"><i class="fa-solid fa-calendar-plus"></i></button>
+                                <button class="btn-add" id="delete_day" type="button" style="width:40px" data-bs-toggle="tooltip" data-bs-placement="top" title="Удалить день"><i class="fa-solid fa-calendar-minus"></i></button>
+                            </div>
+
+                            <div class="form-outline mb-4" style="display:none">
+                                <center>@Html.TextAreaFor(model => model.Schedule, new { @class = "form-control", id = "tourplan" })</center>
+                                <center>@Html.ValidationMessageFor(model => model.Schedule, "", new { @class = "text-danger" })</center>
+                                <center><label class="form-label" for="form3Example3">Описание</label></center>
+                            </div>
+
+                            <div class="form-outline mb-4" style="margin-bottom: 0rem !important;">
+                                <center>@Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })</center>
+                                <center>@Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })</center>
+                                <center><label class="form-label" for="form3Example3" style=" font-family: 'Montserrat' , sans-serif;">Цена</label></center>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <center>@Html.EditorFor(model => model.OldPrice, new { htmlAttributes = new { @class = "form-control" } })</center>
+                                <center>@Html.ValidationMessageFor(model => model.OldPrice, "", new { @class = "text-danger" })</center>
+                                <center><label class="form-label" for="form3Example3" style=" font-family: 'Montserrat' , sans-serif;">Старая цена</label></center>
+                            </div>
+                            <div class="form-outline mb-4">
+
+                                <center>@Html.DropDownListFor(model => model.CountryId, Model.Country as SelectList, "Выберите страну", new { @class = "form-control" })</center>
+                                <center>@Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })</center>
+
+                                <center><label class="form-label" for="form3Example3">Страна</label></center>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <center>@Html.DropDownListFor(model => model.RegionId, new SelectList(""), "Выбери регион", new { @class = "form-control", id = "RegionId" })</center>
+                                @*  <center>@Html.DropDownListFor(model => model.RegionId, Model.Region, "Выбери регион", new { @class = "form-control", id = "Region", name = "Region", placeholder = "" })</center>*@
+                                <center>@Html.ValidationMessageFor(model => model.RegionId, "", new { @class = "text-danger" })</center>
+                                <center><label class="form-label" for="form3Example3">Регион</label></center>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <center>@Html.DropDownListFor(model => model.CityId, new SelectList(""), "Выберите город", new { @class = "form-control" })</center>
+                                @*  <center>@Html.DropDownListFor(model => model.RegionId, Model.Region, "Выбери регион", new { @class = "form-control", id = "Region", name = "Region", placeholder = "" })</center>*@
+                                <center>@Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger" })</center>
+                                <center><label class="form-label" for="form3Example3">Город</label></center>
+                            </div>
+                            <div class="row" style="display:none;">
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-outline">
+                                        <center>@Html.EditorFor(model => model.Latitude, new { htmlAttributes = new { @class = "form-control", id = "latitude" } })</center>
+                                        <center>@Html.ValidationMessageFor(model => model.Latitude, "", new { @class = "text-danger" })</center>
+                                        <center><label class="form-label" for="form3Example1">Широта</label></center>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-outline">
+                                        <center>@Html.EditorFor(model => model.Longitude, new { htmlAttributes = new { @class = "form-control", id = "longtitude" } })</center>
+                                        <center>@Html.ValidationMessageFor(model => model.Longitude, "", new { @class = "text-danger" })</center>
+                                        <center><label class="form-label" for="form3Example2">Долгота</label></center>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <center><div class="map-add-item" id="map"></div></center>
+                            </div>
+                            <div class="form-outline mb-4">
+                                @Html.EditorFor(model => model.ImageName, new { htmlAttributes = new { @class = "form-control", style = "display:none" } })
+                                <center><label class="form-label" style="font-family: 'Montserrat', sans-serif; font-size:18px">Изображение места</label></center>
+                                <div class="input-file-row" style="margin-top:10px">
+                                    <label class="input-file">
+                                        <input type="file" name="file" id="imageUpload" />
+                                        <span>Добавить изображение</span>
+                                    </label>
+                                    <div class="input-file-list"></div>
+                                    <img id="imgpreview" src="~/Content/img/no_image.png" alt="your image" style="width: 90px; height:auto" />
+                                </div>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <center>@Html.LabelFor(model => model.View, htmlAttributes: new { @class = "control-label col-md-2" })</center>
+                                <center>@Html.CheckBoxFor(model => model.View, Model.View)</center>
+                                <center>@Html.ValidationMessageFor(model => model.View) </center>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <center> <button id="addProduct" onclick="beforeSubmit();" class="btn btn-success btn-add" style="width:auto">Добавить место</button></center>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <center>@Html.ActionLink("Вернуться к товарам", "Places", null, null, new { @class = "backtoproducts-link" })</center>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+}
+<!-- Section: Design Block -->
+@section Scripts
+{
+    <script src="~/Scripts/jquery-3.6.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#CountryId").change(function () {
+                var ContryIds = $(this).val();
+
+                $.ajax({
+                    type: "post",
+                    url: "/Manager/Place/GetRegions?CountryId=" + ContryIds,
+                    contentType: "html",
+                    success: function (response) {
+
+                        $("#RegionId").empty();
+                        $("#RegionId").append(response);
+                    }
+
+                })
+            })
+        })
+
+
+        $(document).ready(function () {
+            $("#RegionId").change(function () {
+                var RegionIds = $(this).val();
+
+                $.ajax({
+                    type: "post",
+                    url: "/Manager/Place/GetCities?RegionId=" + RegionIds,
+                    contentType: "html",
+                    success: function (response) {
+
+                        $("#CityId").empty();
+                        $("#CityId").append(response);
+                    }
+                })
+
+            })
+        })
+
+        window.addEventListener('load', (event) => {
+            var date1 = document.getElementById('firstDay');
+            var date2 = document.getElementById('lastDay');
+            date1.value = null;
+            date2.value = null;
+        });
+    </script>
+
+    <script type="text/javascript">
+        beforeSubmit = function () {
+            if (1 == 1) {
+                var tourplans = document.getElementsByClassName("tour-plan");
+                var tourplansnames = document.getElementsByClassName("tour-plan-name");
+                var alltourplans = '';
+                for (var i = 0; i < tourplans.length; ++i) {
+
+                    alltourplans += tourplansnames[i].value;
+                    alltourplans += '☹';
+                    alltourplans += tourplans[i].value;
+                    if (i != tourplans.length - 1) {
+                        alltourplans += '☹';
+                    }
+                }
+                const tourplan = document.getElementById('tourplan');
+                tourplan.value = `${alltourplans}`;
+
+                var d = new Date();
+                var curr_date = d.getDate();
+                var curr_month = d.getMonth() + 1;
+                var curr_year = d.getFullYear();
+                var todayDate = curr_year + "-" + curr_month + "-" + curr_date;
+
+                var field = document.querySelector('#firstDay'), field2 = document.querySelector('#lastDay');
+
+                if (field.value == "" || field2.value == "") {
+                    (function () {
+                        var date = new Date().toISOString().substring(0, 10),
+                            date2 = new Date(2030, 0, 30).toISOString().substring(0, 10);
+                        field.value = date;
+                        field2.value = date2;
+                    })()
+                }
+            }
+            $("#addProduct").submit();
+        }
+    </script>
+
+    <script>
+        var input = document.getElementById('add_day');
+        var x = 1;
+        input.addEventListener("click", function () {
+
+            if (x == 1) {
+                var str = '<div id="input' + x + '"><center><label class="form-label" for="form3Example3">День №' + x + ' тура</label></center><center><input placeholder="Название" class="form-control tour-plan-name" style="margin-bottom:20px;" /></center><center><textarea placeholder="Описание" class="form-control tour-plan"></textarea></center> <div style="margin-top:15px" class="form-outline mb-4" id="input' + (x + 1) + '"></div ></div >';
+                document.getElementById('placeForTourDays').innerHTML = str;
+            }
+            else {
+                var str = '<center><label class="form-label" for="form3Example3">День №' + x + ' тура</label></center><center><input placeholder="Название" class="form-control tour-plan-name" style="margin-bottom:20px;" /></center><center><textarea placeholder="Описание" class="form-control tour-plan"></textarea></center> <div style="margin-top:15px" class="form-outline mb-4" id="input' + (x + 1) + '"></div >';
+                document.getElementById('input' + x).innerHTML = str;
+            }
+            ++x;
+        });
+
+        var del = document.getElementById('delete_day');
+        del.addEventListener("click", function () {
+            document.getElementById('input' + x).remove();
+            if (x != 1) {
+                --x;
+            }
+        });
+
+        window.addEventListener('load', (event) => {
+            const tourplan = document.getElementById('tourplan');
+            var tourplanValue = tourplan.value;
+            if (tourplanValue != "") {
+                var partsOfStr = tourplanValue.split('☹');
+
+                for (var i = 0; i < partsOfStr.length; i += 2) {
+                    if (x == 1) {
+                        var str = '<div id="input' + x + '"><center><label class="form-label" for="form3Example3">День №' + x + ' тура</label></center><center><input placeholder="Название" value="' + partsOfStr[i] + '" class="form-control tour-plan-name" style="margin-bottom:20px;" /></center><center><textarea placeholder="Описание" class="form-control tour-plan">' + partsOfStr[i + 1] + '</textarea></center> <div class="form-outline mb-4" id="input' + (x + 1) + '"></div ></div >';
+                        document.getElementById('placeForTourDays').innerHTML = str;
+                    }
+                    else {
+                        var str = '<center><label class="form-label" for="form3Example3">День №' + x + ' тура</label></center><center><input placeholder="Название" value="' + partsOfStr[i] + '" class="form-control tour-plan-name" style="margin-bottom:20px;" /></center><center><textarea placeholder="Описание" class="form-control tour-plan">' + partsOfStr[i + 1] + '</textarea></center> <div class="form-outline mb-4" id="input' + (x + 1) + '"></div >';
+                        document.getElementById('input' + x).innerHTML = str;
+                    }
+                    ++x;
+                }
+            }
+        });
+    </script>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <script>
+        let config = {
+            minZoom: 1,
+            maxZomm: 18
+        };
+        // magnification with which the map will start
+        const zoom = 3;
+        // co-ordinates
+        const lat = 66.25;
+        const lon = 94.15;
+        // calling map
+        var map = L.map("map", config).setView([lat, lon], zoom);
+        // Used to load and display tile layers on the map
+        // Most tile servers require attribution, which you can set under `Layer`
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            attribution:
+                '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+        L.Control.geocoder().addTo(map);
+
+        var theMarker = {};
+        map.on('click', function (e) {
+            const lat2 = e.latlng.lat;
+            const lon2 = e.latlng.lng;
+            if (theMarker != undefined) {
+                map.removeLayer(theMarker);
+            };
+            const markerPlace = document.getElementById("latitude");
+            markerPlace.value = `${lat2}`;
+            const markerPlace2 = document.getElementById("longtitude");
+            markerPlace2.value = `${lon2}`;
+            theMarker = L.marker([lat2, lon2]).addTo(map).bindPopup(buttonRemove);;
+            theMarker.on("popupopen", removeMarker);
+        });
+        const buttonRemove =
+            '<button type="button" class="remove" style="background:red; color:white; border:none;">Удалить метку</button>';
+        // remove marker
+        function removeMarker() {
+            const marker = this;
+            const btn = document.querySelector(".remove");
+            btn.addEventListener("click", function () {
+                const markerPlace = document.getElementById("latitude");
+                const markerPlace2 = document.getElementById("longtitude");
+                markerPlace.value = "";
+                markerPlace2.value = "";
+                map.removeLayer(marker);
+            });
+        }
+
+
+        function zoomTo(newlat, newlon) {
+            map = map.setView([newlat, newlon], zoom);
+        }
+
+        $(document).ready(function () {
+            $("#CountryId").change(function () {
+                var contryIds = $(this).val();
+
+                $.ajax({
+                    url: "/Manager/Place/GetCountryCoordinate?CountryId=" + contryIds,
+                    method: "GET",
+                    success: function (data) {
+                        data = JSON.parse(data);
+                        zoomTo(data.Latitude, data.Longitude);
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                })
+            })
+        })
+
+
+        $(document).ready(function () {
+            $("#RegionId").change(function () {
+                var regionIds = $(this).val();
+                $.ajax({
+                    url: "/Manager/Place/GetRegionCoordinate?RegionId=" + regionIds,
+                    method: "GET",
+                    success: function (data) {
+
+                        data = JSON.parse(data);
+
+                        zoomTo(data[0], data[1]);
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                })
+            })
+        })
+
+
+        $(document).ready(function () {
+            $("#SityId").change(function () {
+                var cityIds = $(this).val();
+                $.ajax({
+                    url: "/Manager/Place/GetCityCoordinate?CityId=" + cityIds,
+                    method: "GET",
+                    success: function (data) {
+
+                        data = JSON.parse(data);
+                        console.log(data[0]);
+                        zoomTo(data[0], data[1]);
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                })
+            })
+        })
+    </script>
+    <script src="~/Content/MyScripts/AddProductScript.js"></script>
+
+}

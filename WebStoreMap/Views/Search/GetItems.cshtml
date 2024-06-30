@@ -1,0 +1,12 @@
+﻿@model  IEnumerable <WebStoreMap.Models.Data.RegionDataTransferObject>
+<div class="input-group" style=" margin-left: 0 !important;">
+
+    <select id="Region" name="Region" class="input--style-1" style="background:white; border:none!important; margin-left: 5PX !important;">
+    
+        <option value="null">Регион(не выбран)</option>
+        @foreach (var item in Model)
+        {
+            <option value="@item.Id">@item.RegionName</option>
+        }
+    </select>
+</div>

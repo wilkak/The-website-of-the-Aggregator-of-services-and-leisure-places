@@ -1,0 +1,144 @@
+﻿﻿@model WebStoreMap.Models.ViewModels.Company.CompanyViewModel
+
+@{
+    ViewBag.Title = "О Компании";
+}
+
+@*@Html.Action("CompanyProducts", "Company")*@
+<link rel="stylesheet" type="text/css" href="~/lightbox2-dev/dist/css/lightbox.min.css">
+<script src="~/lightbox2-dev/dist/js/lightbox-plus-jquery.min.js"></script>
+
+<section style="font-family: 'Montserrat', sans-serif;">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card mb-4" style=" border-radius: 15px;  box-shadow: 3px 5px 35px rgba(86, 68, 169, 0.1);">
+                    <div class="card-body text-center card_body-company">
+                        @if (Model.ImageName != null)
+                        {
+                        <img src="/Images/Uploads/Companys/@Model.Id/@Model.ImageName" alt="avatar"
+                             class="rounded-circle img-fluid" style="width: 150px;height: 150px;">
+
+                        }
+                        @if (Model.ImageName == null)
+                        {
+                        <img src="/Content/img/avatar.png" alt="avatar"
+                             class="rounded-circle img-fluid" style="width: 150px;height: 150px;">
+                        }
+                        <h5 style=" font-family: 'Montserrat', sans-serif; font-weight: 600;" class="my-3">@Html.DisplayFor(model => model.CompanyName)</h5>
+                    </div>
+                </div>
+                <div class="package-widget-style-2 widget-recent-package-entries mt-30" id="companyproductsdesktop">
+                    <div style="border-radius: 15px 15px 0px 0px !important;" class="widget-title text-center">
+                        <h4 style="color:white">Услуги</h4>
+                    </div>
+                    <div class="widget-body" style="border-radius: 0px 0px 15px 15px  !important;">
+                        <ul style="margin-top: -35px;">
+                            @Html.Action("CompanyProducts", "Company", new { name = Model.Id })
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="card mb-4" style="border-radius: 15px;box-shadow: 3px 5px 35px rgba(86, 68, 169, 0.1);">
+                    <div class="card-body card_body-company">
+                        <div class="row" style="margin-top:30px">
+                            <div class="col-sm-3">
+                                <p class="mb-0" style="color: inherit; font-family: 'Montserrat', sans-serif;">Полное наименование</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class=" mb-0" style="color: inherit; font-family: 'Montserrat', sans-serif;">@Html.DisplayFor(model => model.FullCompanyName)</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0" style=" color: inherit; font-family: 'Montserrat', sans-serif;">Email</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class=" mb-0" style=" color:inherit; font-family: 'Montserrat', sans-serif;">@Html.DisplayFor(model => model.EmailAdress)</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0" style=" color: inherit; font-family: 'Montserrat', sans-serif;">Телефон</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class=" mb-0" style=" color: inherit; font-family: 'Montserrat', sans-serif;">@Html.DisplayFor(model => model.PhoneNumber)</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0" style=" color: inherit; font-family: 'Montserrat', sans-serif;">Юридический адрес</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class=" mb-0" style=" color: inherit; font-family: 'Montserrat', sans-serif;">@Html.DisplayFor(model => model.YourAddress)</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0" style=" color: inherit; font-family: 'Montserrat', sans-serif;">Почтовый Адрес</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class=" mb-0" style=" color: inherit; font-family: 'Montserrat', sans-serif;">@Html.DisplayFor(model => model.PostalAddress )</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0" style=" color: inherit; font-family: 'Montserrat', sans-serif;">ИНН</p>
+                            </div>
+                            <div class="col-sm-9">
+
+                                <p class=" mb-0" style=" color: inherit; font-family: 'Montserrat', sans-serif;">@Html.DisplayFor(model => model.INN)</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0" style=" color: inherit; font-family: 'Montserrat', sans-serif;">ОГРН</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class=" mb-0" style=" color: inherit; font-family: 'Montserrat', sans-serif;">@Html.DisplayFor(model => model.OGRN)</p>
+                            </div>
+                        </div>
+
+                        @if (Model.KPP != null)
+                        {
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0" style=" color: inherit; font-family: 'Montserrat', sans-serif;">КПП</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class=" mb-0" style=" color: inherit; font-family: 'Montserrat', sans-serif;">@Html.DisplayFor(model => model.PhoneNumber)</p>
+                            </div>
+                        </div>
+                        }
+                        <hr>
+                        <div class="row">
+                            <div>
+                                <center>  <p class=" mb-0" style=" color: inherit; font-family: 'Montserrat', sans-serif; font-weight: 600;">Описание</p></center>
+                                <p class="mb-0" style="margin-bottom: 30px !important; white-space:pre-wrap; color: inherit; font-family: 'Montserrat', sans-serif; ">@Html.DisplayFor(model => model.Description)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <aside class="package-widget-style-2 widget-recent-package-entries mt-30" id="companyproductsmobile">
+                    <div style="border-radius: 15px 15px 0px 0px !important;" class="widget-title text-center">
+                        <h4 style="color:white">Услуги</h4>
+                    </div>
+                    <div class="widget-body" style="border-radius: 0px 0px 15px 15px  !important;">
+
+                        <ul style="margin-top: -35px;">
+                            @Html.Action("CompanyProducts", "Company", new { name = Model.Id })
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+</section>

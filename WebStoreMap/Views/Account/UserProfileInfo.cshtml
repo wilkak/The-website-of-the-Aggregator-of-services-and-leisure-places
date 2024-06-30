@@ -1,0 +1,147 @@
+﻿@model WebStoreMap.Models.ViewModels.Account.UserProfileInformationViewModel
+
+@{
+    ViewBag.Title = "Мой Профиль";
+}
+<style>
+    .navbar-style {
+        background: #f44153;
+    }
+
+    .navbar-nav .nav-item .nav-link:hover {
+        color: #fff;
+    }
+
+    .navbar-nav .nav-item .nav-link:hover {
+        color: #D0D0D0;
+    }
+
+    .listing-item .listing-item-link:before {
+        display: none;
+    }
+</style>
+<section class="text-center" style="margin-bottom:40px">
+    <center>
+        <div class="card shadow-5-strong user-profile-card" style=" margin-top: 80px; margin-bottom: 80px; max-width: 1200px; background-color: #f2f7fb; border-radius: 30px; overflow: hidden; border: none ">
+            <div class="card-body py-5 px-md-5">
+                <div class="row d-flex justify-content-center">
+                    <h4 class="userprodile-header">Профиль</h4>
+                    <div class="col-lg-4 userprofile-image-zone-mobile">
+                        @using (Html.BeginForm("UpdatePicture", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <center>
+                                <div class="profile-img" style="margin-bottom:20px;">
+                                    @if (@Model.ImageName != null)
+                                    {
+                                        <img id="blah2" src="/Images/Uploads/Profile/@Model.Id/Thumbs/@Model.ImageName" alt="your image" name="Picture" />
+                                    }
+                                    else
+                                    {
+                                        <img id="blah2" src="/Content/img/avatar.png" alt="your image" name="Picture" />
+                                    }
+                                    <div class="file btn btn-lg btn-primary">
+                                        Изменить
+                                        <input accept="image/*" type='file' id="imgInp2" name="Picture" />
+                                    </div>
+                                </div>
+                            </center>
+                            <button type="submit" class="btn-edit-img">Сохранить</button>
+                        }
+                    </div>
+                    <div class="col-lg-8">
+                        <form>
+                            <div class="form-outline mb-4" style=" margin-bottom: 0.8rem !important; ">
+                                <center>
+                                    <div class="group">
+                                        <input class="input-profile" type="text" disabled value="@Model.FirstName">
+                                        <center>
+                                            <label class="label-profile">Имя</label>
+                                        </center>
+                                    </div>
+                                </center>
+                            </div>
+                            <div class="form-outline mb-4" style=" margin-bottom: 0.8rem !important;">
+                                <center>
+                                    <div class="group">
+                                        <input class="input-profile" type="text" disabled value="@Model.LastName">
+                                        <center>
+                                            <label class="label-profile">Фамилия</label>
+                                        </center>
+                                    </div>
+                                </center>
+                            </div>
+                            <div class="form-outline mb-4" style=" margin-bottom: 0.8rem !important; ">
+                                <center>
+                                    <div class="group">
+                                        <input class="input-profile" type="text" disabled value="@Model.EmailAddress">
+                                        <center>
+                                            <label class="label-profile">Почта</label>
+                                        </center>
+                                    </div>
+                                </center>
+                            </div>
+                            <div class="form-outline mb-4" style=" margin-bottom: 0.8rem !important; ">
+                                <center>
+                                    <div class="group">
+                                        <input class="input-profile" type="text" disabled value="@Model.PhoneNumber">
+                                        <center>  <label class="label-profile">Номер телефона</label></center>
+                                    </div>
+                                </center>
+                            </div>
+                            <div class="form-outline mb-4" style=" margin-bottom: 0.8rem !important; ">
+                                <center>
+                                    <input type="button" class="btn-edit-profile" onclick="location.href ='/account/user-profile'" value="РЕДАКТИРОВАТЬ" />
+                                </center>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col-lg-4 userprofile-image-zone-desktop">
+                        @using (Html.BeginForm("UpdatePicture", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <center>
+                                <div class="profile-img" style="margin-bottom:20px;">
+                                    @if (@Model.ImageName != null)
+                                    {
+                                        <img id="blah" src="/Images/Uploads/Profile/@Model.Id/Thumbs/@Model.ImageName" alt="your image" name="Picture" />
+                                    }
+                                    else
+                                    {
+                                        <img id="blah" src="/Content/img/avatar.png" alt="your image" name="Picture" />
+                                    }
+                                    <div class="file btn btn-lg btn-primary" style=" margin-top: -30% !important">
+                                        Изменить
+                                        <input accept="image/*" type='file' id="imgInp" name="Picture" />
+                                    </div>
+                                </div>
+                            </center>
+                            <button type="submit" class="btn-edit-img">Сохранить</button>
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </center>
+</section>
+
+
+<script>
+    imgInp.onchange = evt => {
+        const [file] = imgInp.files
+        if (file) {
+            blah2.src = URL.createObjectURL(file)
+            blah.src = URL.createObjectURL(file)
+        }
+    }
+</script>
+
+<script>
+    imgInp2.onchange = evt => {
+        const [file] = imgInp2.files
+        if (file) {
+            blah2.src = URL.createObjectURL(file)
+            blah.src = URL.createObjectURL(file)
+        }
+    }
+</script>

@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Почта";
+}
+<section class="text-center">
+    <div class="card mx-4 mx-md-5 shadow-5-strong" style="margin-top: 60px; margin-bottom: 60px; margin-right: 3rem !important; margin-left: 3rem !important; background: hsla(0, 0%, 100%, 0.8); backdrop-filter: blur(30px); ">
+        <div class="card-body py-5 px-md-5">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <h4 class="fw-bold mb-5 addProductHeader">Почта</h4>
+                    <div class="form-outline mb-4">
+                        @Html.ActionLink("Новое письмо", "SendEmail", "Email", null, new { @class = "btn btn-add", style = " width: 200px;" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

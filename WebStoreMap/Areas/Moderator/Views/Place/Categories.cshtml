@@ -1,0 +1,81 @@
+﻿@model IEnumerable<WebStoreMap.Models.ViewModels.Place.CategoryViewModel>
+@{
+    ViewBag.Title = "Категории";
+}
+
+<section class="section-content">
+    <div class="container container-content" style="min-height:500px;">
+        @if (TempData["SM"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["SM"]
+            </div>
+        }
+        <!--Создаём новый блок для добавления новых категорий AJAX методом -->
+        <div class="new-cat">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default" style="border-radius: 0rem !important; height: 40px; ">Название категории</span>
+                </div>
+                <input type="text" id="newcatname" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+            </div>
+            @*<div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default" style="border-radius: 0rem !important; height: 40px; ">Иконка категории</span>
+                    </div>
+                    <input type="text" id="newcaticon" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                </div>*@
+            <p>
+                <a href="#" id="newcata" class="btn btn-add" style="width:auto">Добавить новую категорию</a>
+                <span class="ajax-text">
+                    <img src="~/Content/img/gifs/Filling broken ring.gif" height="50" />
+
+                </span>
+            </p>
+        </div>
+        @if (!Model.Any())
+        {
+            <h1 class="text-center">Здесь нет категорий.</h1>
+        }
+        else
+        {
+            <table class="table sorting" id="pages">
+                <tr class="home">
+                    <th>Название</th>
+                    <th></th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr id="id_@item.Id">
+                        <td>
+                            @*<div class="ajaxdivtd"></div>*@
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="ajaxdivtd"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="ui-icon ui-icon-arrowthick-2-n-s" style="margin-top: 10px; float:left"></div>
+                                    </div>
+                                    <div class="col">
+                                        @Html.EditorFor(modelItem => item.CategoryName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            @Html.ActionLink("Удалить", "DeleteCategory", new { id = item.Id }, new { @class = "btn btn-delete" })
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+    </div>
+</section>
+
+@section Scripts
+{
+    <script src="~/Content/MyScripts/CategoriesScriptsModer.js"></script>
+}

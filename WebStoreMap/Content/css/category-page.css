@@ -1,0 +1,322 @@
+﻿/*Баннер страницы категории*/
+.section-top-category {
+    height: 510px;
+    min-height: 510px;
+    background: #54a15d url(../../Content/img/background-images/background.jpg) no-repeat center;
+    background-size: cover;
+    color: #54a15d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    padding: 170px 0 100px;
+}
+
+.section-top-category::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(22, 43, 50, 0.65);
+    width: 100%;
+    height: 100%;
+}
+
+.section-top-category__container {
+    position: relative;
+}
+
+.container.section-top-category__container {
+    width: 500px;
+}
+
+.section-top-category__info {
+    font-size: 24px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    color: white;
+    margin: 0;
+    transform: translate(0px, 120%);
+    opacity: 0;
+    transition: all 0.8s ease 0s;
+}
+
+.section-top-category__info._active {
+    transform: translate(0px, 0px);
+    opacity: 1;
+}
+
+.section-top-category__infobig {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 70px;
+    font-weight: 900;
+    margin: 0 0 35px;
+    transform: translate(0px, 120%);
+    opacity: 0;
+    transition: all 0.8s ease 0s;
+}
+
+.section-top-category__infobig._active {
+    transform: translate(0px, 0px);
+    opacity: 1;
+    transition: all 0.8s ease 0.4s;
+}
+
+.section-top-category__btn a {
+    background: transparent;
+    color: white !important;
+    text-decoration: none;
+    border: 2px solid #54a15d;
+    font-weight: bold;
+    padding: 10px 50px;
+    border-radius: 0px;
+    transform: translate(0px, 120%);
+    opacity: 0;
+    transition: all 0.8s ease 0s;
+}
+
+.section-top-category__btn a._active {
+    transform: translate(0px, 0px);
+    opacity: 1;
+    transition: transform 0.8s ease 0.4s;
+}
+
+.section-top-category__btn a:focus {
+    box-shadow: none;
+}
+
+.section-top-index__btn a:hover {
+    background: #54a15d;
+    border: 2px solid transparent;
+}
+
+.product-items-block.category {
+    padding-top: 20px;
+}
+
+@media (max-width: 991px) {
+    .product-item {
+        flex: 0 0 auto;
+        width: 50%;
+    }
+}
+
+@media (max-width: 575px) {
+    .product-item {
+        flex: 0 0 auto;
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .user-info-box2 span {
+        transform: translate(-64px, 34px);
+    }
+}
+/*Баннер страницы категории*/
+
+
+/*Зона с кнопками для фильтров*/
+
+.seach_filter-btn-zone {
+    display: block;
+    text-align: right;
+}
+
+/*Кнопка перехода к карте*/
+.btn-to_map_page {
+    height: 40px;
+    width: 40px;
+    border: none;
+    background: WHITE;
+    border-radius: 30px;
+    box-shadow: 3px 5px 35px rgb(86 68 169 / 10%);
+}
+
+.btn-to_map_page i{
+      color:#54a15d;
+}
+
+.btn-to_map_page:hover {
+    background: #54a15d;
+}
+
+.btn-to_map_page:hover i {
+    color: white;
+}
+
+.btn-to_map_page:focus {
+    background: #54a15d;
+}
+
+.btn-to_map_page:focus i {
+    color: white;
+}
+/*Кнопка перехода к карте*/
+
+/*Кнопка вызова всплывающего окна для фильтров*/
+.btn-active_filter-popup {
+    height: 40px;
+    width: 40px;
+    border: none;
+    background: WHITE;
+    border-radius: 30px;
+    box-shadow: 3px 5px 35px rgb(86 68 169 / 10%);
+    margin-left:10px;
+}
+
+.btn-active_filter-popup i{
+    color:#54a15d;
+}
+
+.btn-active_filter-popup:hover {
+    background: #54a15d;
+}
+
+.btn-active_filter-popup:hover i {
+    color: white;
+}
+
+.btn-active_filter-popup:focus {
+    background: #54a15d;
+}
+
+.btn-active_filter-popup:focus i {
+    color: white;
+}
+/*Кнопка вызова всплывающего окна для фильтров*/
+
+/*Зона с кнопками для фильтров*/
+
+/*Карточка услуги*/
+.product_card-type1 {
+    box-shadow: 3px 5px 35px rgb(86 68 169 / 10%);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+
+.product_card-type1 .product_card-thumb {
+    position: relative;
+    overflow: hidden;
+}
+
+
+.product_card-type1 .product_card-thumb .hovereffect {
+    width: 100%;
+    height: 100%;
+    float: left;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    cursor: default;
+}
+
+.product_card-type1 .product_card-thumb .hovereffect img {
+    display: block;
+    position: relative;
+    -webkit-transition: all .4s linear;
+    transition: all .2s linear;
+}
+
+.product_card-type1 .product_card-thumb .hovereffect:hover img {
+    -ms-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.product_card-type1 .product_card-thumb .addtocart-heart {
+    font-weight: 600;
+    font-size: 18px;
+    color: #ffffff;
+    border-radius: 3px;
+    position: absolute;
+    padding: 3px 0px;
+    top: 0;
+    width: 28px;
+    right: 18px;
+    transform: translateY(40%);
+}
+
+
+.addtocart-heart:hover i {
+    color: #f44153;
+}
+
+
+.addtocart-heart.active i {
+    color:  #f44153;
+}
+
+
+.product_card-type1 .product_card-body {
+    padding: 20px;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+    .product_card-type1 .product_card-body {
+        padding: 30px 15px;
+    }
+}
+
+.product_card-type1 .product_card-body .product_card-title {
+    font-weight: 600;
+    font-size: 18px;
+    color: #2d373c;
+}
+
+
+@media (max-width: 1199px) {
+    .product_card-type1 .product_card-body .product_card-title {
+        font-size: 18px;
+    }
+}
+
+
+.product_card-type1 .product_card-body .product_card-price {
+    margin-top: 10px;
+}
+
+.product_card-type1 .product_card-body .product_card-price .product_card-price-info {
+    margin-top: -5px;
+}
+
+.product_card-type1 .product_card-body .product_card-price .product_card-price-info span {
+    font-weight: 500;
+    font-size: 16px;
+    text-transform: capitalize;
+    color: #2d373c;
+}
+
+@media (max-width: 1199px) {
+    .product_card-type1 .product_card-body .product_card-price .product_card-price-info span {
+        font-size: 14px;
+    }
+}
+
+.product_card-type1 .product_card-body .product_card-price .product_card-price-info h6 {
+    color: #54a15d;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 1;
+}
+
+
+@media only screen and (max-width: 991px) {
+    .product_card-type1 .product_card-body .product_card-price .product_card-price-info h6 {
+        font-size: 17px;
+    }
+}
+
+
+@media only screen and (max-width: 575.98px) {
+    .product_card-type1 .product_card-body .product_card-price .product_card-price-info h6 {
+        font-size: 14px;
+    }
+}
+
+.product_card-type1 .product_card-body .product_card-btn-zone {
+    margin-top: 10px;
+}
+/*Карточка услуги*/

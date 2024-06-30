@@ -1,0 +1,63 @@
+﻿@model IEnumerable<WebStoreMap.Models.ViewModels.Place.PlaceViewModel>
+
+<div class="row g-4" style="margin-top:10px">
+    @foreach (var item in Model)
+    {
+    <div class="col-lg-4 col-md-6">
+        <div class="product_card-type1">
+            <div class="product_card-thumb">
+                <div class="hovereffect">
+                    <a href="/shop/product-details/@item.Slug">
+                        @if (item.ImageName != null)    
+                        {
+                            <img style="width:100%; height:250px;" src="/Images/Uploads/Products/@item.CategoryId/@item.ImageName" class="attachment-package-card size-package-card wp-post-image" alt="...">
+                        }
+                        else
+                        {
+                            <img src="/Content/img/no_image_big.png" style="width:100%; height:250px;" class="attachment-package-card size-package-card wp-post-image" alt="...">
+                        }
+                    </a>
+
+                    @if (Request.IsAuthenticated)
+                        {
+                            if (item.IsThisInFavorites == true)
+                            {
+                    
+                               <a class="addtocart-heart active" onclick="sendData(@item.CategoryId )"><i class="fa-solid fa-heart"></i></a>
+                            }
+                            else
+                            {
+                    
+                            <a class="addtocart-heart" onclick="sendData(@item.CategoryId)"><i class="fa-solid fa-heart"></i></a>
+                            }
+                        }
+                </div>
+            </div>
+            <div class="product_card-body">
+                <h3 class="product_card-title">
+                    <a href="/shop/product-details/@item.Slug">
+                        @Html.DisplayFor(modelItem => item.PlaceName)
+                    </a>
+                </h3>
+                <div class="product_card-price">
+                    <div class="product_card-price-info">
+                        <span>От</span>
+                        <input class="price-input" style="display:none" value="@Html.DisplayFor(modelItem => item.Price)" />
+                        <input class="old_price-input" style="display:none" value="@Html.DisplayFor(modelItem => item.OldPrice)" />
+                        <h6>
+                            @String.Format("{0:N2}", item.Price).Replace(",", " ")₽&nbsp;
+                            @if ((item.OldPrice != 0.00m) && (item.OldPrice > item.Price))
+                                {
+                            <del style="color:gray">@String.Format("{0:N2}", item.OldPrice).Replace(",", " ") ₽</del>
+                                }
+                        </h6>
+                    </div>
+                </div>
+                <div class="product_card-btn-zone">
+                    <center><button onclick="location.href = '/shop/product-details/@item.Slug'" class="btn-type1">Подробности</button></center>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+</div>

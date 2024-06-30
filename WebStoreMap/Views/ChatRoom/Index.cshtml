@@ -1,0 +1,56 @@
+﻿@model IEnumerable<WebStoreMap.Models.Data.СommentDataTransferObject>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Chat Room</h2>
+
+@using (Html.BeginForm("PostComment", "ChatRoom", FormMethod.Post))
+{
+<span class="pull-right">
+    <img src="@Url.Content("~/Profile Images/avatar.png")" style="height:64px" class="img-responsive img-circle" />
+    <br />
+    <input type="text" name="CommentText" />
+    <br />
+
+    <input type="submit" value="Post Comment" class="btn-success" />
+</span>
+}
+<table class="table text-center">
+
+    @foreach (var comment in Model)
+    {
+    <tr>
+        <td>
+            <span style="margin-right:15px">@comment.UserId </span>
+            <span><img src="@Url.Content("~/Profile Images/avatar.png")" style="height:64px" class="img-responsive img-circle" /> </span>
+            <span>@Html.DisplayFor(modelItem => comment.Text)</span>
+            <span style="margin-left">@Html.DisplayFor(modelItem => comment.Date)</span>
+            @foreach (var reply in comment.Replies)
+                {
+            <br />
+
+            <span style="margin-right: 15px">
+                @reply.UserId
+            </span>
+            <span><img src="@Url.Content("~/Profile Images/avatar.png")" style="height:64px" class="img-responsive img-circle" /> </span>
+            <span style="margin-right: 15px">
+                @reply.Text
+            </span>
+            <span style="margin-left">
+                @reply.Date
+            </span>
+                }
+            @using (Html.BeginForm("PostReply", "ChatRoom", FormMethod.Post))
+                {
+            <br />
+            <input type="text" name="Reply" />
+            <br />
+            <input type="hidden" name="CID" value="@comment.Id" />
+            <input type="submit" value="Post Reply" class="btn-success" />
+                }
+        </td>
+    </tr>
+    }
+</table>

@@ -1,0 +1,1159 @@
+﻿
+/*section-admin*/
+
+
+
+/*.btn-edit {
+    background: #f44153;
+    color: white;
+    border: 1px solid #f44153;
+    width: 100%;
+    height: 38px;
+    border-radius: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+    .btn-edit:hover {
+        background: white;
+        color: #f44153;
+    }
+
+    .btn-edit:focus {
+        background: white;
+        color: #f44153;
+    }
+
+
+.btn-delete {
+    background: #C41E3A;
+    border: 1px solid #C41E3A;
+    color: white;
+    width: 100%;
+    height: 38px;
+    border-radius: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+    .btn-delete:hover {
+        background: white;
+        border: 1px solid #C41E3A;
+        color: #C41E3A;
+    }
+
+
+.btn-edit:focus {
+    background: white;
+    color: #54a15d;
+}
+
+@media(max-width:1400px) {
+    .btn-edit {
+        font-size: 12px;
+        padding: 10px 6px;
+    }
+
+    .btn-delete {
+        font-size: 12px;
+        padding: 10px 6px;
+    }
+}
+
+@media(max-width:770px) {
+    .btn-edit {
+        font-size: 16px;
+        padding: 6px 12px;
+    }
+
+    .btn-delete {
+        font-size: 16px;
+        padding: 6px 12px;
+    }
+}
+
+
+#addProductBlockMobile {
+    display: none;
+}
+
+
+#allProductsCardHeaderMobile {
+    display: none;
+}
+
+#allProductsCardHeaderDesktop {
+    display: inline;
+}
+
+#editeDeliteBlockMobile {
+    display: none;
+}
+
+#editeDeliteBlockDesktop {
+    display: inline;
+}
+
+@media(max-width: 991px) {
+    #addProductBlock {
+        display: none;
+    }
+
+    #addProductBlockMobile {
+        display: inline;
+        margin-bottom: 25px;
+    }
+
+    .addProductCard {*/
+        /*   padding: 1rem 1rem !important;*/
+    /*}
+
+    #allProductsCardHeaderMobile {
+        display: inline;
+    }
+
+    #allProductsCardHeaderDesktop {
+        display: none;
+    }
+
+    .CardOfProductTitle {
+        padding: 0rem 0rem !important;
+    }
+}
+
+
+
+@media(max-width: 767px) {
+
+    #editeDeliteBlockMobile {
+        display: inline;
+        width: 100%;
+    }
+
+    #editeDeliteBlockDesktop {
+        display: none;
+    }
+}
+
+
+
+
+
+
+
+h5 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+h6 {
+    font-family: 'Montserrat', sans-serif;
+    color: #54a15d;
+    font-weight: 600;
+}
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+    z-index: 2;
+    color: #ffffff !important;
+    cursor: default;
+    background-color: #54a15d !important;
+    border-color: #54a15d !important;
+    border-radius: 0px !important;
+    font-family: 'Montserrat', sans-serif !important;
+    border-radius: 5px !important;
+}
+
+
+.pagination > li > a, .pagination > li > span {
+    color: #54a15d !important;
+}
+
+.card1 {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: none;
+    border-radius: 0.25rem;
+    box-shadow: 3px 5px 35px rgb(86 68 169 / 10%);
+}
+
+.p-3 {
+    padding: 0 !important;
+}
+
+
+
+
+.card-body {
+    flex: 1 1 auto;
+  
+    height: 100%;
+}
+
+    .card-body p {
+        font-family: 'Montserrat', sans-serif;
+    }
+
+
+.card-header {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    padding: 0.5rem 0rem !important;
+}
+
+.list-group-item {
+    padding: 0.5rem 0.05rem !important;
+    border: none !important;
+}
+
+.card-text {
+    font-size: 14px;
+}
+
+.addProductCard {
+    border: none;
+    padding: 1rem 2rem;
+    box-shadow: 3px 5px 35px rgb(86 68 169 / 10%);
+}
+
+@media(max-width:540px) {
+    .allProductsCardBlock {
+        padding: 1rem 0.8rem !important;
+    }
+}
+
+.addProductCardBody {
+    padding: 0rem 0rem !important;
+}
+
+.card-title {
+    font-size: 18px !important;
+    margin-bottom: 0;
+    padding: 1rem 0rem;
+}
+
+.allProductsCard {
+    border: none !important;
+}
+
+.allProductsCardHeader {
+    background: none !important;
+    border: none !important;
+    font-size: 18px !important;
+    border: none !important;
+    padding: 1rem 0rem !important;
+}
+
+.allProductsCardBlock {
+    padding: 1rem 2rem;
+    background: white;
+    box-shadow: 3px 5px 35px rgb(86 68 169 / 10%);
+}
+
+.allProductsCardItem {
+    overflow: hidden;
+}
+
+
+.backtoproducts-link {
+    color: black;
+    text-decoration: none !important;
+    font-family: 'Montserrat', sans-serif;
+}
+
+    .backtoproducts-link:hover {
+        color: #54a15d;
+    }
+
+.addProductHeader {
+    font-family: 'Montserrat', sans-serif !important;
+    margin-bottom:30px;
+}
+
+@media(max-width:990px) {
+    .addProductHeader {
+        font-size: 20px;
+    }
+}*/
+/*section-admin*/
+
+
+/*th {
+    font-family: 'Montserrat', sans-serif;
+}
+
+td {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.del-zvon-desktop {
+    display: inline;
+}
+
+.del-zvon-mobile {
+    display: none;
+}
+
+@media(max-width:990px) {
+    .del-zvon-desktop {
+        display: none;
+    }
+
+    .del-zvon-mobile {
+        display: inline;
+    }
+}*/
+
+
+/*navbar*/
+
+
+/*.navbar-dark .navbar-text a {
+    color: black;
+}
+
+    .navbar-dark .navbar-text a:hover, .navbar-dark .navbar-text a:focus {
+        color: #54a15d !important;
+    }
+
+
+
+.navbar-nav .nav-item {
+    color: black;
+}
+
+    .navbar-nav .nav-item:hover {
+        color: #54a15d !important;
+    }
+
+.navbar-nav-mobile .nav-item:hover {
+    color: #54a15d !important;
+}
+
+
+.navbar-nav-mobile li {
+    margin-bottom: 8px;
+}
+
+
+.offcanvas-header .btn-close:focus {
+    box-shadow: none !important;
+}
+
+.offcanvas-body {
+    flex-grow: 1;
+    padding: 0.5rem 1.5rem;
+    overflow-y: auto;
+}
+
+.offcanvas-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+}
+
+.offcanvas-body a {
+    color: #2D373C;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.navbar-toggler {
+    padding: 0.04rem 0.35rem !important;
+}*/
+
+
+/*navbar*/
+
+
+/*dashboard*/
+
+
+/*.feature-section .counter-single .icon {
+    margin-bottom: 15px;
+}
+
+.elementor-8 .elementor-element.elementor-element-247401c .feature-section .counter-single .icon svg {
+    width: 58px;
+    height: 58px;
+}
+
+.feature-section .counter-single .icon svg {
+    fill: var(--c-primary);
+}
+
+.feature-section .counter-single h3 {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.odometer.odometer-auto-theme, .odometer.odometer-theme-default {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+}
+
+    .odometer.odometer-auto-theme .odometer-digit, .odometer.odometer-theme-default .odometer-digit {
+        display: inline-block;
+        vertical-align: middle;
+        position: relative;
+    }
+
+
+
+.elementor-8 .elementor-element.elementor-element-f903304 {
+    margin-top: 120px;
+    margin-bottom: 0px;
+}
+
+.elementor:not(.elementor-bc-flex-widget) .elementor-widget-wrap {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.elementor-widget-wrap {
+    position: relative;
+    width: 100%;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-line-pack: start;
+    align-content: flex-start;
+}
+
+
+    .elementor-widget-wrap > .elementor-element {
+        width: 100%;
+    }
+
+.elementor-element {
+    --widgets-spacing: 20px;
+}
+
+.elementor-widget {
+    position: relative;
+}
+
+.newsletter-section3 {
+    background: #54a15d url(../../Content/img/background-images/category-background.jpg) no-repeat center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+    .newsletter-section3 .newslatter-side {
+        color: #fff;
+    }
+
+.feature-section {
+    margin-top: -90px;
+}
+
+
+.counter-single:hover {
+    transform: scale(1.04);
+}
+
+.counter-single:focus {
+    transform: scale(0.2);
+}
+
+.icon i {
+    font-size: 1.65em;
+    color: #54a15d;
+}
+
+
+.icon {
+    margin-bottom: 0px !important;
+}
+
+.feature-section .counter-single .icon svg {
+    fill: var(--c-primary);
+    height: 29px;
+}
+
+.feature-section .counter-single {
+    text-align: center;
+    background: #fff;
+    box-shadow: 3px 5px 35px rgb(86 68 169 / 10%);
+    border-radius: 10px;
+    padding: 30px;
+    transition: all 0.30s ease-out 0s;
+}
+
+.p-name {
+    margin-bottom: 0;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: #2D373C;
+}
+
+.p-desc {
+    color: #9999a9;
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 0 !important
+}
+
+
+@media(max-width:1070px) {
+    .p-desc {
+        font-size: 12px;
+    }
+
+    .feature-section .counter-single {
+        padding: 20px;
+    }
+}
+
+@media(max-width:805px) {
+    .p-desc {
+        font-size: 12px;
+    }
+
+    .feature-section .counter-single {
+        padding: 20px;
+    }
+}
+
+@media(max-width:1070px) {
+    .p-name {
+        font-size: 18px;
+    }
+}
+
+
+
+@media(max-width:705px) {
+    .p-name {
+        font-size: 16px;
+    }
+}
+
+@media(max-width:705px) {
+    .p-desc {
+        font-size: 10px;
+    }
+}
+
+
+@media(max-width:605px) {
+    .p-name {
+        font-size: 14px;
+    }
+}
+
+
+@media(max-width:605px) {
+    .p-name {
+        font-size: 12px;
+    }
+}
+
+
+@media(max-width:580px) {
+    .dashboard-item {
+        flex-shrink: 0 !important;
+        flex: 0 0 100% !important;
+    }
+
+    .feature-section .counter-single {
+        padding: 20px;
+    }
+
+    .p-name {
+        font-size: 18px;
+    }
+
+
+    .p-desc {
+        font-size: 14px;
+    }
+}*/
+/*dashboard*/
+
+
+/*companys prosucts*/
+
+
+
+
+
+/*h5 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+h6 {
+    font-family: 'Montserrat', sans-serif;
+    color: #54a15d;
+    font-weight: 600;
+}
+
+
+.card1 {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: none;
+    border-radius: 0.25rem;
+    box-shadow: 3px 5px 35px rgb(86 68 169 / 10%);
+}
+
+.p-3 {
+    padding: 0 !important;
+}
+
+.btn-edit {
+    background: #54a15d;
+    color: white;
+    border: 1px solid #54a15d;
+    width: 100%;
+    height: 38px;
+    border-radius: 5px;
+}
+
+
+    .btn-edit:hover {
+        background: white;
+        color: #54a15d;
+    }
+
+    .btn-edit:focus {
+        background: white;
+        color: #54a15d;
+    }
+
+
+.btn-delete {
+    background: #C41E3A;
+    border: 1px solid #C41E3A;
+    color: white;
+    width: 100%;
+    height: 38px;
+    border-radius: 5px;
+}
+
+
+    .btn-delete:hover {
+        background: white;
+        color: #C41E3A;
+    }
+
+    .btn-delete:focus {
+        background: white;
+        color: #C41E3A;
+    }
+
+.card-body {
+    flex: 1 1 auto;
+ 
+    height: 100%;
+}
+
+    .card-body p {
+        font-family: 'Montserrat', sans-serif;
+    }
+
+
+.card-header {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    padding: 0.5rem 0rem !important;
+}
+
+.list-group-item {
+    padding: 0.5rem 0.05rem !important;
+    border: none !important;
+}
+
+.card-text {
+    font-size: 14px;
+}
+
+.addProductCard {
+    border: none;
+    border-radius: 15px;
+    padding: 1rem 2rem;
+    box-shadow: 3px 5px 35px rgb(86 68 169 / 10%);
+}
+
+.addProductCardBody {
+    padding: 0rem 0rem !important;
+}
+
+.card-title {
+    font-size: 18px !important;
+    margin-bottom: 0;
+    padding: 1rem 0rem;
+}
+
+.allProductsCard {
+    border: none !important;
+}
+
+.allProductsCardHeader {
+    background: none !important;
+    border: none !important;
+    font-size: 18px !important;
+    border: none !important;
+    padding: 1rem 0rem !important;
+}
+
+.allProductsCardBlock {
+    padding: 1rem 2rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 3px 5px 35px rgb(86 68 169 / 10%);
+}
+
+.allProductsCardItem {
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.tab-content > .tab-pane {
+    padding-bottom: 25px
+}
+
+@media(max-width:357px) {
+    .tab-content > .tab-pane {
+        padding-bottom: 10px !important;
+    }
+}
+
+
+.card-add-item {
+    margin-right: 2rem;
+    margin-left: 2rem;
+    margin-top: 25px;
+    margin-bottom: 45px;
+}
+
+
+.map-add-item {
+    width: 80%;
+    height: 350px;
+}
+
+@media(max-width:540px) {
+    .card-add-item {
+        margin-top: 10px;
+        margin-bottom: 30px;
+        margin-right: 1rem;
+        margin-left: 1rem;
+    }
+
+    .form-control {
+        max-width:90% !important;
+    }
+
+
+    .map-add-item {
+        width: 90%;
+        height: 300px;
+    }
+}*/
+
+
+
+
+.map-add-item {
+    width: 80%;
+    height: 350px;
+}
+/*section-admin*/
+
+.btn-add {
+    background: #f44153;
+    color: white;
+    border: 1px solid #f44153;
+    width: 100%;
+    height: 38px;
+    border-radius: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.btn-add:hover{
+
+          background: white;
+        color: #f44153;
+        border: 1px solid #f44153 !important;
+}
+
+
+.btn-edit {
+    background: #f44153;
+    color: white;
+    border: 1px solid #f44153;
+    width: 100%;
+    height: 38px;
+    border-radius: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+    .btn-edit:hover {
+        background: white;
+        color: #f44153;
+        border: 1px solid #f44153 !important;
+    }
+
+    .btn-edit:focus {
+        background: white;
+        color: #f44153;
+        border: 1px solid #f44153 !important;
+    }
+
+
+.btn-delete {
+    background: #C41E3A;
+    border: 1px solid #C41E3A;
+    color: white;
+    width: 100%;
+    height: 38px;
+    border-radius: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+    .btn-delete:hover {
+        background: white;
+        border: 1px solid #C41E3A !important;
+        color: #C41E3A;
+    }
+
+
+    .btn-delete:focus {
+        background: white;
+        border: 1px solid #C41E3A;
+        color: #C41E3A;
+    }
+
+@media(max-width:1400px) {
+    .btn-edit {
+        font-size: 12px;
+        padding: 10px 6px;
+    }
+
+    .btn-delete {
+        font-size: 12px;
+        padding: 10px 6px;
+    }
+}
+
+@media(max-width:770px) {
+    .btn-edit {
+        font-size: 16px;
+        padding: 6px 12px;
+    }
+
+    .btn-delete {
+        font-size: 16px;
+        padding: 6px 12px;
+    }
+}
+
+
+#addProductBlockMobile {
+    display: none;
+}
+
+
+#allProductsCardHeaderMobile {
+    display: none;
+}
+
+#allProductsCardHeaderDesktop {
+    display: inline;
+}
+
+#editeDeliteBlockMobile {
+    display: none;
+}
+
+#editeDeliteBlockDesktop {
+    display: inline;
+}
+
+@media(max-width: 991px) {
+    #addProductBlock {
+        display: none;
+    }
+
+    #addProductBlockMobile {
+        display: inline;
+        margin-bottom: 25px;
+    }
+
+    .addProductCard {
+        /*   padding: 1rem 1rem !important;*/
+    }
+
+    #allProductsCardHeaderMobile {
+        display: inline;
+    }
+
+    #allProductsCardHeaderDesktop {
+        display: none;
+    }
+
+/*    .CardOfProductTitle {
+        padding: 0rem 0rem !important;
+    }*/
+}
+
+
+
+@media(max-width: 767px) {
+
+    #editeDeliteBlockMobile {
+        display: inline;
+        width: 100%;
+    }
+
+    #editeDeliteBlockDesktop {
+        display: none;
+    }
+}
+
+
+
+
+
+
+
+h5 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+h6 {
+    font-family: 'Montserrat', sans-serif;
+    color: #54a15d;
+    font-weight: 600;
+}
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+    z-index: 2;
+    color: #ffffff !important;
+    cursor: default;
+    background-color: #f44153 !important;
+    border-color: #f44153 !important;
+    border-radius: 0px !important;
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+
+.pagination > li > a, .pagination > li > span {
+    color: #f44153 !important;
+}
+
+
+.card1 {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: none;
+    border-radius: 0.25rem;
+    box-shadow: 3px 5px 35px rgb(86 68 169 / 10%);
+}
+
+.p-3 {
+    padding: 0 !important;
+}
+
+
+
+
+.card-body {
+    flex: 1 1 auto;
+    padding: 1rem 1rem;
+    height: 100%;
+}
+
+    .card-body p {
+        font-family: 'Montserrat', sans-serif;
+    }
+
+
+.card-header {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    padding: 0.5rem 0rem !important;
+}
+
+.list-group-item {
+    padding: 0.5rem 0.05rem !important;
+    border: none !important;
+}
+
+.card-text {
+    font-size: 14px;
+}
+
+.addProductCard {
+    border: none;
+    padding: 1rem 2rem;
+    box-shadow: 3px 5px 35px rgb(86 68 169 / 10%);
+}
+
+@media(max-width:540px) {
+    .allProductsCardBlock {
+        padding: 1rem 0.8rem !important;
+    }
+}
+
+.addProductCardBody {
+    padding: 0rem 0rem !important;
+}
+
+.card-title {
+    font-size: 18px !important;
+    margin-bottom: 0;
+    padding: 1rem 0rem;
+}
+
+.allProductsCard {
+    border: none !important;
+}
+
+.allProductsCardHeader {
+    background: none !important;
+    border: none !important;
+    font-size: 18px !important;
+    border: none !important;
+    padding: 1rem 0rem !important;
+}
+
+.allProductsCardBlock {
+    padding: 1rem 2rem;
+    background: white;
+    box-shadow: 3px 5px 35px rgb(86 68 169 / 10%);
+}
+
+.allProductsCardItem {
+    overflow: hidden;
+}
+
+
+.backtoproducts-link {
+    color: black;
+    text-decoration: none !important;
+    font-family: 'Montserrat', sans-serif;
+}
+
+    .backtoproducts-link:hover {
+        color: #f44153;
+    }
+
+.addProductHeader {
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+@media(max-width:990px) {
+    .addProductHeader {
+        font-size: 22px;
+    }
+}
+/*section-admin*/
+
+
+th {
+    font-family: 'Montserrat', sans-serif;
+}
+
+td {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.del-zvon-desktop {
+    display: inline;
+}
+
+.del-zvon-mobile {
+    display: none;
+}
+
+@media(max-width:990px) {
+    .del-zvon-desktop {
+        display: none;
+    }
+
+    .del-zvon-mobile {
+        display: inline;
+    }
+}
+
+
+
+/*Добавление картинки*/
+
+
+.input-file {
+    position: relative;
+    display: inline-block;
+}
+
+
+    .input-file span {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        outline: none;
+        text-decoration: none;
+        font-size: 14px;
+        vertical-align: middle;
+        color: #f44153;
+        text-align: center;
+        background-color: #fff;
+        border: 1.7px solid #f44153 !important;
+        line-height: 27px;
+        height: 40px;
+        padding: 6px 10px 10px 10px;
+        box-sizing: border-box;
+        border: none;
+        margin: 0;
+        transition: background-color 0.2s;
+        margin-bottom: 20px;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .input-file input[type=file] {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+        display: block;
+        width: 0;
+        height: 0;
+    }
+
+        /* Focus */
+        .input-file input[type=file]:focus + span {
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+        }
+
+    /* Hover/active */
+    .input-file:hover span {
+        background-color: #f44153;
+        color: #fff;
+    }
+
+    .input-file:active span {
+        background-color: #f44153;
+        color: #fff;
+    }
+
+    /* Disabled */
+    .input-file input[type=file]:disabled + span {
+        background-color: #eee;
+    }

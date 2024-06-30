@@ -1,0 +1,39 @@
+﻿﻿@model IEnumerable<WebStoreMap.Models.ViewModels.Place.PlaceViewModel>
+
+@foreach (var item in Model)
+{
+
+<li class="package-sm" style="margin-top: 15px;">
+    <div class="thumb">
+        <a href="/shop/product-details/@item.Slug">
+            @if (item.ImageName != null)    
+            {
+            
+                <img style="border-radius: 5px;" src="/Images/Uploads/Products/@item.Id/@item.ImageName" width="80" height="80" alt="...">
+            }
+                
+            else    
+            {
+            
+                <img style="border-radius: 5px;" src="/Content/img/no_image.png" width="80" height="80" alt="...">
+                
+            }
+        </a>
+    </div>
+    <div class="info">
+        <h6 style="margin-bottom:0 !important"><a href="/shop/product-details/@item.Slug/">@Html.DisplayFor(model => item.CompanyName)</a></h6>
+        <div class="price">
+            <span>От</span>
+            <h6 style="color:#54a15d">
+                @Html.DisplayFor(modelItem => item.Price)₽
+                @if ((item.OldPrice != 0.00m) && (item.OldPrice > item.Price))   
+                 {
+                
+                    <del style="color:grey"> @Html.DisplayFor(modelItem => item.OldPrice)₽</del>
+                   
+                 }
+            </h6>
+        </div>
+    </div>
+</li>
+}

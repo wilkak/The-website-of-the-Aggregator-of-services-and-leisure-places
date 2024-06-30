@@ -1,0 +1,11 @@
+﻿@model WebStoreMap.Models.ViewModels.Favorites.FavoritesViewModel
+
+<span class="navbar-brand" style=" bottom: 30px; position: fixed; z-index: 40; right: 40px; ">
+    <a class="ajaxfavorites add-to-favorites-block" href="/Favorites/Index"  >
+        @if (@Model.Quantity != 0m)
+        {
+            <span class="quantity">@Model.Quantity</span>
+        }
+        <i class="fa-solid fa-heart"></i>
+    </a>
+</span>

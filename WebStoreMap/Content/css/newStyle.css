@@ -1,0 +1,1445 @@
+﻿
+
+
+
+
+/*Информация о городе*/
+.city-header {
+    min-height: 500px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+@media (max-width: 900px) {
+    .city-header {
+        min-height: 630px;
+    }
+}
+
+@media (max-width: 665px) {
+    .city-header {
+        min-height: 800px;
+    }
+}
+
+.city-header .header--bg-shadow {
+    bottom: 0;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: #000000;
+    opacity: .7;
+    z-index: -1;
+}
+
+.city-header .city-header-text-container {
+    color: #fff;
+    height: fit-content;
+    margin: 90px 0;
+    display: block;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.city-header .city-header-text-container .city-title {
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.city-header .city-header-text-container .city-description {
+    font-size: 18px;
+    width: 50%;
+    display: block;
+    margin: auto;
+}
+
+@media(max-width:1200px){
+    .city-header .city-header-text-container .city-description {
+        width: 85%;
+        font-size: 16px;
+    }
+}
+
+.city-header .city-header-text-container .city-meta {
+    margin-top: 53px;
+}
+
+.city-header .city-header-text-container .city-meta .city-meta-single {
+    width: 222px;
+    display: inline-block;
+    padding: 10px 0;
+    border-left: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+@media(max-width: 1000px) {
+    .city-header .city-header-text-container .city-meta .city-meta-single {
+        width: 160px;
+    }
+}
+
+@media (max-width: 665px){
+    .city-header .city-header-text-container .city-meta .city-meta-single {
+        width: 40%;
+        display: inline-block;
+        margin: 30px 0;
+    }
+
+    .city-header .city-header-text-container .city-meta .city-meta-single.third {
+        border-left: unset;
+    }
+
+     .city-header .city-header-text-container .city-meta .city-meta-single i {
+        font-size: 32px;
+        margin-bottom: 10px;
+    }
+}
+
+
+.city-header .city-header-text-container .city-meta .city-meta-single.first {
+    border-left: unset;
+    border-right: unset;
+}
+
+.city-header .city-header-text-container .city-meta .city-meta-single .city-meta-title {
+    font-size: 16px;
+}
+
+.city-header .city-header-text-container .city-meta .city-meta-single i {
+    font-size: 45px;
+    margin-bottom: 13px;
+    display: block;
+}
+
+.city-header .city-header-text-container .city-meta .city-meta-single.first i {
+    color: #4da1f4;
+}
+
+.city-header .city-header-text-container .city-meta .city-meta-single.second i {
+    color: #f44153;
+}
+
+.city-header .city-header-text-container .city-meta .city-meta-single.third i {
+    color: #4da1f4;
+}
+
+.city-header .city-header-text-container .city-meta .city-meta-single.fouth i {
+    color: #f44153;
+}
+
+.city-header .city-header-text-container .city-meta .city-meta-single .city-meta-sm {
+    font-size: 16px;
+    font-weight: 600;
+    display: block;
+}
+/*Информация о городе*/
+
+
+
+    /*Блок с карточками*/
+
+    /*@media screen and (max-width: 1200px) {
+        .container-places .col-4 {
+            flex: 0 0 50%;*/
+            /*  max-width: 47%;*/
+        /*}
+    }
+
+
+    @media (max-width: 770px) {
+        .container-places .col-4 {
+            flex: 0 0 100%;*/
+            /*     max-width: 97%;*/
+        /*}
+    }
+
+.place-inner {
+    border: 1px solid #cddbe7;
+    padding-right: 0px;
+    padding-left: 0px;
+    border-radius: 10px;
+    width: 100%;
+    transition: all .3s ease-in-out;
+    background: #fff;
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    vertical-align: top;
+    margin-bottom: 40px;
+}
+
+        .place-inner .place-inner-top {
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+
+            .place-inner .place-inner-top img {
+                height: 100%;
+                width: 100%;
+            }
+
+            .place-inner .place-inner-top .fl-wpfp-link {
+                position: absolute;
+                color: #fff;
+                right: 70px;
+                top: unset;
+                bottom: 20px;
+                width: 195px;
+                height: 40px;
+            }
+
+
+            .place-inner .place-inner-top a {
+                width: 100%;
+                height: 250px;
+                display: block;
+            }
+
+            .place-inner .place-inner-top .add-in-favorite-place {
+                position: absolute;
+                width: 40px;
+                height: 40px;
+                border-radius: 50% !important;
+                fill: #fff;
+                color: #fff;
+                background-color: #4da1f4;
+                right: 20px;
+                bottom: 20px;
+            }
+
+                .place-inner .place-inner-top .add-in-favorite-place.active {
+                    background-color: #f44153;
+                }
+
+            .place-inner .place-inner-top i.fa.fa-heart-o:before {
+                text-align: center;
+                margin: auto;
+                position: absolute;
+                left: 0;
+                right: 0;
+                font-size: 20px;
+                top: 10px;
+            }
+
+        .place-inner .place-inner-center {
+            padding-top: 35px;
+            padding-bottom: 25px;
+            padding-left: 27px;
+            padding-right: 27px;
+            border-bottom: 1px solid #eeeeee;
+            position: relative;
+        }
+
+
+            .place-inner .place-inner-center span.place-inner-category {
+                position: absolute;
+                padding: 11px 19px;
+                background-color: #f6e03f;
+                left: 20px;
+                top: -20px;
+                font-size: 13px;
+                line-height: 1em;
+                font-weight: 600;
+                color: #222;
+                border-radius: 20px;
+            }
+
+
+            .place-inner .place-inner-center .place-inner-title {
+                font-size: 24px;
+                color: #222222;
+                transition: all .3s ease-in-out;
+                margin-bottom: 0px;
+                display: block;
+                text-decoration: none;
+            }
+
+            .place-inner .place-inner-center .place-inner-title {
+                margin-bottom: 10px;
+            }
+
+            .place-inner .place-inner-center .place-inner-description {
+                max-height: 100px;
+                line-height: 16px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -moz-box;
+                -moz-box-orient: vertical;
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+            }
+
+            .place-inner .place-inner-center .place-inner-contact-info {
+                margin-top: 15px;
+            }
+
+                .place-inner .place-inner-center .place-inner-contact-info span {
+                    margin-bottom: 12px;
+                }
+
+                .place-inner .place-inner-center .place-inner-contact-info span {
+                    display: block;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -moz-box;
+                    -moz-box-orient: vertical;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 1;
+                    -webkit-box-orient: vertical;
+                }
+
+                    .place-inner .place-inner-center .place-inner-contact-info span i {
+                        margin-right: 10px;
+                        color: #4da1f4;
+                    }
+
+        .place-inner .place-inner-bottom {
+            display: flex;
+            padding: 16px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+            .place-inner .place-inner-bottom .place-inner-rating {
+                height: fit-content;
+                top: 0;
+                bottom: 0;
+                position: relative;
+                margin: auto;
+            }
+
+                .place-inner .place-inner-bottom .place-inner-rating .place-inner-contain i {
+                    color: #4da1f4;
+                    font-size: 14px;
+                    margin-right: 5px;
+                }
+
+                .place-inner .place-inner-bottom .place-inner-rating .place-inner-contain .place-inner-rating-sr span {
+                    color: #f44153;
+                    font-weight: 600;
+                }
+
+            .place-inner .place-inner-bottom .place-inner-contain .place-inner-rating-count {
+                display: block;
+                color: #777777;
+                font-size: 12px;
+                margin-left: 25px;
+                line-height: 16px;
+            }
+
+            .place-inner .place-inner-bottom .place-inner-working-hours .place-inner-working-hours-contain .place-inner-working-hours-now-status {
+                text-transform: capitalize;
+                padding-left: 10px;
+                padding-right: 10px;
+                margin-left: 10px;
+                margin-right: 10px;
+                line-height: 48px;
+                position: relative;
+            }
+
+                .place-inner .place-inner-bottom .place-inner-working-hours .place-inner-working-hours-contain .place-inner-working-hours-now-status.fl-open {
+                    color: #18bc4a;
+                }
+
+                .place-inner .place-inner-bottom .place-inner-working-hours .place-inner-working-hours-contain .place-inner-working-hours-now-status:before {
+                    content: '';
+                    position: absolute;
+                    width: 1px;
+                    height: 80px;
+                    background-color: #eeeeee;
+                    display: inline-flex;
+                    top: -30px;
+                    left: 0;
+                }
+
+                .place-inner .place-inner-bottom .place-inner-working-hours .place-inner-working-hours-contain .place-inner-working-hours-now-status:after {
+                    content: '';
+                    position: absolute;
+                    width: 1px;
+                    height: 80px;
+                    background-color: #eeeeee;
+                    display: inline-flex;
+                    top: -30px;
+                    right: 0;
+                }
+
+            .place-inner .place-inner-bottom .place-inner-price span {
+                z-index: 1;
+                position: relative;
+            }
+
+            .place-inner .place-inner-bottom .place-inner-price {
+                text-align: left;
+                line-height: 48px;
+                margin: 0 auto;*/
+                /*width: 46px;*/
+                /*position: relative;
+            }
+
+                .place-inner .place-inner-bottom .place-inner-price span {
+                    z-index: 1;
+                    position: relative;
+                }*/
+
+
+    /*Блок с карточками*/
+
+
+    /*Карта*/
+    .offcanvas-body .fl-heading-bottom {
+        min-width: unset !important;
+        margin-left: 0;
+    }
+
+    .offcanvas-body .fl-heading-bottom {
+        display: flex;
+        position: relative;
+        padding-top: 53px;
+        padding-bottom: 37px;
+        padding-left: 25px;
+        padding-right: 25px;
+        min-width: 1140px;
+    }
+
+        .offcanvas-body .fl-heading-bottom:before {
+            content: '';
+            position: absolute;
+            left: -100%;
+            top: 0;
+            bottom: 0;
+            right: -100%;
+            width: 300%;
+            height: 100%;
+            background-color: #f2f7fb;
+            z-index: -1;
+        }
+
+
+
+
+        .offcanvas-body .fl-heading-bottom .fl-heading-bottom-left {
+            width: 80%;
+        }
+
+            .offcanvas-body .fl-heading-bottom .fl-heading-bottom-left .fl-sorting-showing-info {
+                margin-bottom: 20px;
+                display: block;
+            }
+
+                .offcanvas-body .fl-heading-bottom .fl-heading-bottom-left .fl-sorting-showing-info .fl-sorting-city-name {
+                    font-weight: 600;
+                }
+
+        .offcanvas-body .fl-heading-bottom .fl-heading-bottom-right {
+            width: 20%;
+            position: relative;
+        }
+
+            .offcanvas-body .fl-heading-bottom .fl-heading-bottom-right .places-tax {
+                border: 1px solid #cddbe7;
+                background: #fff;
+                height: 45px;
+                font-size: 14px;
+                padding: 8px 30px;
+                border-radius: 35px;
+                width: 180px;
+                bottom: 0;
+                position: absolute;
+                right: 0;
+                cursor: pointer;
+                -webkit-tap-highlight-color: transparent;
+                box-sizing: border-box;
+                clear: both;
+                display: inline-block;
+                float: none;
+                font-family: inherit;
+                min-height: 38px;
+                outline: 0;
+                padding-left: 18px;
+                padding-right: 35px;
+                -webkit-transition: all .2s ease-in-out;
+                transition: all .2s ease-in-out;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                vertical-align: middle;
+                text-align: left !important;
+                line-height: 28px;
+            }
+
+    .offcanvas-body .col-4 {
+        flex: 0 0 50%;
+    }
+    /*Карта*/
+
+
+/*
+    Страница с местом*/
+.fl-places-content-wrapper {
+    display: flex;
+    margin-top: 125px;
+    margin-bottom: 130px;
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+        .fl-places-content-wrapper .fl-places-reviews-contain {
+            position: relative;
+        }
+
+
+    .elementor-section.elementor-section-boxed > .elementor-container {
+        max-width: 1140px;
+    }
+
+    .elementor-section.elementor-section-boxed > .elementor-container {
+        max-width: 1140px;
+    }
+
+    .elementor-section .elementor-container {
+        display: flex;
+        margin-right: auto;
+        margin-left: auto;
+        position: relative;
+    }
+
+
+    .fl-places-content-wrapper .fl-places-sidebar-contain {
+        height: fit-content;
+        padding: 0px;
+        position: relative;
+        padding-left: 35px;
+    }
+
+
+    .theiaStickySidebar:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+
+    .fl-places-content-wrapper .fl-places-sidebar-contain .fl-places-meta .fl-author-information {
+        padding: 45px 35px;
+        background-color: #f2f7fb;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 45px;
+        text-align:center;
+    }
+
+        .fl-places-content-wrapper .fl-places-sidebar-contain .fl-places-meta .fl-author-information .fl-author-title {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .fl-places-content-wrapper .fl-places-sidebar-contain .fl-places-meta .fl-author-information .fl-author-meta-contain {
+            display: flex;
+            margin: 17px 0;
+        }
+
+            .fl-places-content-wrapper .fl-places-sidebar-contain .fl-places-meta .fl-author-information .fl-author-meta-contain .fl-author-avatar img {
+                border-radius: 50%;
+            }
+
+            .fl-places-content-wrapper .fl-places-sidebar-contain .fl-places-meta .fl-author-information .fl-author-meta-contain .fl-author-meta {
+                line-height: 12px;
+                margin-left: 13px;
+                margin-top: auto;
+                margin-bottom: auto;
+            }
+
+                .fl-places-content-wrapper .fl-places-sidebar-contain .fl-places-meta .fl-author-information .fl-author-meta-contain .fl-author-meta .fl-author-name {
+                    line-height: 18px;
+                   /* font-size: 24px;*/
+                    font-weight: 600;
+                    color: #4da1f4;
+                    display: block;
+                    margin-bottom: 7px;
+                }
+
+.showNumber {
+    padding: 16px 30px;
+    width: 100%;
+    display: block;
+    border-radius: 25px;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #4da1f4;
+    text-align: center;
+    font-size: 16px;
+    line-height: 14px;
+    border: none;
+}
+
+                .fl-places-content-wrapper .fl-places-sidebar-contain .fl-places-meta .fl-author-information .fl-author-meta-contain .fl-author-meta .fl-author-membership {
+                    font-size: 14px;
+                    color: #777777;
+                }
+
+        .fl-places-content-wrapper .fl-places-sidebar-contain .fl-places-meta .fl-author-information .fl-author-contact-contain {
+            display: inline-block;
+        }
+
+            .fl-places-content-wrapper .fl-places-sidebar-contain .fl-places-meta .fl-author-information .fl-author-contact-contain .fl-author-contact {
+                display: flex;
+                position: relative;
+                margin: 10px 0;
+            }
+
+                .fl-places-content-wrapper .fl-places-sidebar-contain .fl-places-meta .fl-author-information .fl-author-contact-contain .fl-author-contact i {
+                    width: 40px;
+                    height: 40px;
+                    background-color: #d8e4ee;
+                    border-radius: 50%;
+                    margin-right: 13px;
+                    position: relative;
+                    color: #142c43;
+                    display: inline-table;
+                    margin-top: 5px;
+                    margin-bottom: auto;
+                }
+
+                .fl-places-content-wrapper .fl-places-sidebar-contain .fl-places-meta .fl-author-information .fl-author-contact-contain .fl-author-contact span {
+                    position: relative;
+                    line-height: 26px;
+                    margin-top: auto;
+                    margin-bottom: auto;
+                }
+
+    .fl-places-content-wrapper .fl-places-sidebar-contain .fl-places-meta .fl-working-hours {
+        padding: 45px 35px 35px;
+        background-color: #f2f7fb;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 45px;
+    }
+
+
+.fl-places-content-wrapper .fl-places-sidebar-contain .fl-places-meta .fl-working-hours {
+    padding: 45px 35px 35px;
+    background-color: #f2f7fb;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 45px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+    .fl-places-content-wrapper .fl-places-sidebar-contain .fl-places-meta .fl-working-hours .fl-working-hours-title {
+        font-size: 20px;
+        font-weight: 600;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .fl-places-content-wrapper .fl-places-sidebar-contain .fl-places-meta .fl-working-hours .fl-working-hours-contain .fl-working-hours-now-status {
+        padding: 16px 30px;
+        width: 100%;
+        display: block;
+        border-radius: 25px;
+        color: #fff;
+        font-family: 'Montserrat', sans-serif;
+        background-color: #4da1f4;
+        text-align: center;
+        font-size: 16px;
+        line-height: 14px;
+        margin-top: 22px;
+    }
+
+        .fl-places-content-wrapper .fl-places-sidebar-contain .fl-places-meta .fl-working-hours .fl-working-hours-contain .fl-working-hours-after {
+            font-size: 12px;
+            color: #777777;
+            text-align: center;
+            display: block;
+            width: 100%;
+            margin-top: 6px;
+        }
+
+
+        .fl-places-content-wrapper .fl-places-sidebar-contain .fl-places-meta .fl-working-hours .fl-working-hours-contain .fl-working-hours-table {
+            padding: 0px;
+            margin-top: 10px;
+        }
+
+            .fl-places-content-wrapper .fl-places-sidebar-contain .fl-places-meta .fl-working-hours .fl-working-hours-contain .fl-working-hours-table li {
+                padding: 9px;
+                border-bottom: 1px solid #d3e0ea;
+                list-style-type: none;
+            }
+
+                .fl-places-content-wrapper .fl-places-sidebar-contain .fl-places-meta .fl-working-hours .fl-working-hours-contain .fl-working-hours-table li .fl-hours-left {
+                    font-size: 16px;
+                    color: #222222;
+                }
+
+                .fl-places-content-wrapper .fl-places-sidebar-contain .fl-places-meta .fl-working-hours .fl-working-hours-contain .fl-working-hours-table li .fl-hours-right {
+                    float: right;
+                }
+/*
+    Галерея*/
+
+    img {
+        max-width: 100%;
+        vertical-align: top;
+    }
+
+    .gallery {
+        display: flex;
+        margin: 10px auto;
+        max-width: 600px;
+        position: relative;
+        padding-top: 66.6666666667%;
+    }
+
+    @media screen and (min-width: 600px) {
+        .gallery {
+            padding-top: 400px;
+        }
+    }
+
+    .gallery__img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    .gallery__thumb {
+        padding-top: 6px;
+        margin: 6px;
+        display: block;
+    }
+
+    .gallery__selector {
+        position: absolute;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+        .gallery__selector:checked + .gallery__img {
+            opacity: 1;
+        }
+
+        .gallery__selector:checked ~ .gallery__item_img .gallery__thumb > img {
+            box-shadow: 0 0 0 3px #FFBA10;
+        }
+
+    .gallery__thumb::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.4);
+    }
+/*    Галерея*/
+
+/*    Бонусы*/
+    .elementor-column-gap-default > .elementor-column > .elementor-element-populated {
+        padding: 10px;
+    }
+
+    .elementor:not(.elementor-bc-flex-widget) .elementor-widget-wrap {
+        display: flex;
+    }
+
+    .elementor-widget-wrap {
+        position: relative;
+        width: 100%;
+        flex-wrap: wrap;
+        align-content: flex-start;
+    }
+
+        .elementor-widget-wrap > .elementor-element {
+            width: 100%;
+        }
+
+    .elementor-element {
+        --widgets-spacing: 20px;
+    }
+
+    .elementor-widget {
+        position: relative;
+    }
+
+
+    .elementor-2433 .elementor-element.elementor-element-011cd57 > .elementor-widget-container {
+        margin: 0px 0px 75px 0px;
+        padding: 0px 0px 80px 0px;
+        border-style: solid;
+        border-width: 0px 0px 1px 0px;
+        border-color: #D8E4EE;
+        border-radius: 0px 0px 0px 0px;
+    }
+
+    .elementor-element .elementor-widget-container {
+        transition: background .3s,border .3s,border-radius .3s,box-shadow .3s,transform var(--e-transform-transition-duration,.4s);
+    }
+
+    .page-builder-places-icon-box-wrap i.icon-diamond {
+        font-size: 18px;
+        position: relative;
+        bottom: 1px;
+        color: #f44153;
+    }
+
+    .page-builder-places-icon-box-wrap .fl-place-rating-title {
+        font-size: 24px;
+        font-weight: 600;
+        margin-left: 10px;
+        margin-bottom: 32px;
+        display: inline-block;
+    }
+
+    .page-builder-places-icon-box-wrap .fl-place-single-features {
+        margin: auto;
+        display: flex;
+        position: relative;
+    }
+
+        .page-builder-places-icon-box-wrap .fl-place-single-features .fl-features-contain:first-child {
+            padding-left: 0px;
+        }
+
+        .page-builder-places-icon-box-wrap .fl-place-single-features .fl-features-contain .fl-icon-wrap {
+            margin-bottom: 20px;
+        }
+
+            .page-builder-places-icon-box-wrap .fl-place-single-features .fl-features-contain .fl-icon-wrap svg {
+                width: 60px;
+                height: 60px;
+                color: #4da1f4;
+                fill: currentColor;
+                position: relative;
+            }
+
+        .page-builder-places-icon-box-wrap .fl-place-single-features .fl-features-contain .fl-icon-title {
+            font-size: 16px;
+            text-align: center;
+            color: #222222;
+        }
+
+        .page-builder-places-icon-box-wrap .fl-place-single-features .fl-features-contain {
+            display: inline-block;
+            text-align: center;
+            width: fit-content;
+            padding: 5px 35px;
+            border-right: 1px solid;
+            border-color: #d8e4ee;
+        }
+/*    Бонусы*/
+
+
+/*    Описание*/
+    .elementor-2433 .elementor-element.elementor-element-a2b560b > .elementor-widget-container {
+        margin: 0px 0px 75px 0px;
+        padding: 0px 0px 80px 0px;
+        border-style: solid;
+        border-width: 0px 0px 1px 0px;
+        border-color: #D8E4EE;
+        border-radius: 0px 0px 0px 0px;
+    }
+
+    .elementor-element .elementor-widget-container {
+        transition: background .3s,border .3s,border-radius .3s,box-shadow .3s,transform var(--e-transform-transition-duration,.4s);
+    }
+
+    .page-builder-custom-text-editor-content-wrap .fl-place-rating-title {
+        font-size: 24px;
+        font-weight: 600;
+        margin-left: 10px;
+        margin-bottom: 32px;
+        display: inline-block;
+    }
+
+    .page-builder-custom-text-editor-content-wrap i.icon-diamond {
+        font-size: 18px;
+        position: relative;
+        bottom: 1px;
+        color: #f44153;
+    }
+
+    .icon-diamond:before {
+        content: "\e043";
+    }
+/*    Описание*/
+
+/*Карта*/
+.fl-places-content-wrapper .fl-places-reviews-contain .fl-places-map {
+  /*  margin-top: 80px;
+    padding-top: 75px;*/
+   /* border-top: 1px solid;*/
+}
+
+
+.fl-places-content-wrapper .fl-places-reviews-contain .fl-places-map .fl-place-rating-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+.fl-places-content-wrapper .fl-places-reviews-contain .fl-places-map #fl-places-map {
+    height: 380px;
+    border-radius: 10px;
+    margin-top: 45px;
+}
+
+/*Карта*/
+
+/*    Контактная информация*/
+
+    .fl-places-content-wrapper .fl-places-reviews-contain .fl-places-contact-info {
+        margin-top: 80px;
+        padding-top: 75px;
+        border-top: 1px solid;
+        border-color: #d8e4ee !important;
+    }
+
+        .fl-places-content-wrapper .fl-places-reviews-contain .fl-places-contact-info .fl-place-rating-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .fl-places-content-wrapper .fl-places-reviews-contain .fl-places-contact-info .fl-contact-info-contain {
+            margin-top: 40px;
+        }
+
+            .fl-places-content-wrapper .fl-places-reviews-contain .fl-places-contact-info .fl-contact-info-contain .fl-place-info {
+                display: block;
+                margin: 10px 0;
+                font-size: 16px;
+                color: #222222;
+            }
+
+                .fl-places-content-wrapper .fl-places-reviews-contain .fl-places-contact-info .fl-contact-info-contain .fl-place-info i {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    background-color: #f2f7fb;
+                    color: #4da1f4;
+                    text-align: center;
+                    line-height: 38px;
+                    margin-right: 15px;
+                    display: inline-block;
+                }
+/*    Контактная информация*/
+/*
+    Отзывы*/
+    .fl-places-content-wrapper .fl-places-reviews-contain .fl-place-bottom-content {
+        margin-top: 80px;
+        padding-top: 85px;
+        border-color: #d8e4ee !important;
+        border-top: 1px solid;
+        position: relative;
+    }
+
+        .fl-places-content-wrapper .fl-places-reviews-contain .fl-place-bottom-content .fl-bottom-rating .fl-place-rating {
+            margin-bottom: 35px;
+        }
+
+        .fl-places-content-wrapper .fl-places-reviews-contain .fl-place-bottom-content .fl-bottom-rating i {
+            font-size: 18px;
+            position: relative;
+            bottom: 1px;
+        }
+
+        .fl-places-content-wrapper .fl-places-reviews-contain .fl-place-bottom-content .fl-bottom-rating .fl-place-rating-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .fl-places-content-wrapper .fl-places-reviews-contain .fl-place-bottom-content .fl-bottom-rating .fl-places-contain {
+            display: inline-block;
+            margin-left: 5px;
+        }
+
+            .fl-places-content-wrapper .fl-places-reviews-contain .fl-place-bottom-content .fl-bottom-rating .fl-places-contain .fl-average span {
+                color: #f44153;
+                font-weight: 600;
+            }
+
+            .fl-places-content-wrapper .fl-places-reviews-contain .fl-place-bottom-content .fl-bottom-rating .fl-places-contain .fl-places-average {
+                color: #777777;
+                font-size: 12px;
+                margin-left: 10px;
+            }
+
+
+    .fl-custom-btn {
+        border-radius: 29px;
+        cursor: pointer;
+        overflow: hidden;
+        position: relative;
+        display: inline-block;
+        line-height: 1;
+        padding: 17px 35px;
+        font-size: 14px;
+        text-transform: uppercase;
+        z-index: 2;
+    }
+
+
+    .fl-places-content-wrapper .fl-places-reviews-contain .fl-place-bottom-content .fl-btn-place-single-anchor {
+        float: right;
+        position: absolute;
+        top: 75px;
+        right: 0;
+        text-decoration: none;
+    }
+
+
+
+    .fl-custom-btn:before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: #f44153;
+        z-index: -2;
+    }
+
+    .fl-places-content-wrapper .fl-places-reviews-contain .fl-place-bottom-content .fl-btn-place-single-anchor:before {
+        background-color: #f44153;
+    }
+
+    .fl-places-content-wrapper .fl-places-reviews-contain .fl-place-bottom-content .fl-btn-place-single-anchor span {
+        color: #fff;
+    }
+
+    .fl-custom-btn:after {
+        content: "";
+        display: block;
+        height: 140%;
+        position: absolute;
+        top: -10px;
+        width: 140%;
+        left: -20%;
+        border-radius: 50%;
+        z-index: -1;
+        transform-origin: 0 50%;
+        transform: skew(-35deg) scaleX(0);
+        transition: transform .6s ease, -webkit-transform .6s ease;
+    }
+
+    .fl-custom-btn:after {
+        background: #4da1f4;
+    }
+
+    .fl-places-content-wrapper .fl-places-reviews-contain .fl-place-bottom-content .fl-btn-place-single-anchor:after {
+        background-color: #4da1f4 !important;
+    }
+
+
+    .fl-places-content-wrapper .fl-places-reviews-contain .fl-place-bottom-content .comments-container {
+        margin-top: 0px;
+    }
+
+        .fl-places-content-wrapper .fl-places-reviews-contain .fl-place-bottom-content .comments-container .comments-list {
+            padding-bottom: 20px;
+            margin-bottom: 73px;
+            border-color: #d8e4ee !important;
+            border-bottom: 1px solid;
+        }
+
+    .bypostauthor {
+        box-sizing: border-box;
+    }
+
+.fl-places-content-wrapper .fl-places-reviews-contain .fl-place-bottom-content .comments-container .comments-list .comment {
+     padding-bottom: 21px;
+        margin-bottom: 21px;
+}
+
+    .fl-places-content-wrapper .fl-places-reviews-contain .fl-place-bottom-content .comments-container .comments-list .comment .comment-container {
+       /* padding-bottom: 21px;
+        margin-bottom: 21px;*/
+        width: 100%;
+    }
+
+        .fl-places-content-wrapper .fl-places-reviews-contain .fl-place-bottom-content .comments-container .comments-list .comment .comment-container .comment-author-content {
+            display: flex;
+            margin-bottom: 11px;
+        }
+
+    .comments-container .comments-list .fl-comment .comment-container .comment-avatar {
+        flex-grow: 0;
+        padding-right: 20px;
+    }
+
+    .fl-places-content-wrapper .fl-places-reviews-contain .fl-place-bottom-content .comments-container .comments-list .comment .comment-container .comment-author-content .comment-avatar {
+        display: inline-block;
+    }
+
+    .comments-container .comments-list .fl-comment .comment-container .comment-avatar img {
+        max-width: 60px;
+        border-radius: 50%;
+        height: auto;
+    }
+
+
+    .fl-places-content-wrapper .fl-places-reviews-contain .fl-place-bottom-content .comments-container .comments-list .comment .comment-container .comment-author-content .fl-comment-author-meta {
+        display: inline-block;
+        margin: 5px 0;
+    }
+
+        .fl-places-content-wrapper .fl-places-reviews-contain .fl-place-bottom-content .comments-container .comments-list .comment .comment-container .comment-author-content .fl-comment-author-meta .fl-comment-author-top .comment-author-name {
+            display: inline-block;
+            font-size: 18px;
+            margin-right: 10px;
+        }
+
+        .fl-places-content-wrapper .fl-places-reviews-contain .fl-place-bottom-content .comments-container .comments-list .comment .comment-container .comment-author-content .fl-comment-author-meta .fl-comment-author-top .comment-rating-show {
+            display: inline-block;
+            position: relative;
+            bottom: 1px;
+        }
+
+    .comment-rating-show .fl-rate-icons i {
+        font-size: 12px;
+        margin: 0 2px;
+        color: #f3c64c;
+    }
+
+    .fl-places-content-wrapper .fl-places-reviews-contain .fl-place-bottom-content .comments-container .comments-list .comment .comment-container .comment-author-content .fl-comment-author-meta .comment--time .fl-link-comment {
+        font-size: 12px;
+        color: #777777;
+    }
+
+    .fl-places-content-wrapper .fl-places-reviews-contain .fl-place-bottom-content .comments-container .comments-list .comment .comment-container .comment-meta {
+        max-width: unset;
+        position: relative;
+    }
+
+    .comments-container .comments-list .fl-comment .comment-container .comment-meta .comment-moderation {
+        line-height: 26px;
+        font-weight: 500;
+    }
+
+    .fl-places-content-wrapper .fl-places-reviews-contain .fl-place-bottom-content .comments-container .comments-list .comment .comment-container .comment-meta .comment-moderation {
+        font-size: 16px;
+    }
+
+html .comment-moderation p {
+    margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+    .fl-places-content-wrapper .fl-places-reviews-contain .fl-place-bottom-content .comments-container .comments-list .comment .comment--reply-wrap {
+     /*   display: none;*/
+    }
+
+.fl-places-content-wrapper .fl-places-reviews-contain .fl-place-bottom-content .comments-container .comments-list .comment .comment--reply-wrap .addReply{
+    text-decoration:none;
+    border:none;
+        color: #4da1f4;
+        background:transparent;
+}
+
+        .fl-places-content-wrapper .fl-places-reviews-contain .fl-place-bottom-content .comments-container .comments-list .comment .comment--reply-wrap .replyBlock {
+            display: none;
+        }
+
+        .fl-places-content-wrapper .fl-places-reviews-contain .fl-place-bottom-content .comments-container .comments-list .comment .comment--reply-wrap .replyBlock.active {
+            display: block;
+        }
+ /*   Отзывы*/
+
+
+/*    Добавление отзыва*/
+    .fl-places-content-wrapper .fl-places-reviews-contain .fl-place-bottom-content .comments-container .fl-form-review-reply .comment-respond .comment-reply-title {
+        margin-bottom: 0px !important;
+    }
+
+
+        .fl-places-content-wrapper .fl-places-reviews-contain .fl-place-bottom-content .comments-container .fl-form-review-reply .comment-respond .comment-reply-title:before {
+            font: normal normal normal 18px/1 FontAwesome;
+            content: "\f006";
+            color: #f44153;
+            position: relative;
+            bottom: 2px;
+            margin-right: 10px;
+        }
+
+    #respond .reply-title {
+        margin-bottom: 65px;
+        display: inline-block;
+        font-size: 24px;
+        font-weight: 700;
+    }
+
+    #respond .reply-title {
+        font-weight: 600;
+        text-transform: none;
+        color: #222;
+        font-size: 30px;
+        padding-bottom: 0;
+        margin-bottom: 10px;
+        display: inline-block;
+        padding-right: 10px;
+    }
+
+    .fl-places-content-wrapper .fl-places-reviews-contain .fl-place-bottom-content .comments-container .fl-form-review-reply .comment-respond .comment-reply-title .reply-title {
+        font-size: 24px !important;
+        margin-bottom: 0px !important;
+    }
+
+    html #respond small {
+        margin-bottom: 0;
+        margin-top: 0;
+        display: inline-block;
+        position: relative;
+        line-height: 1;
+        top: 10px;
+    }
+
+
+    form.fl-comment-form {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+
+
+        form.fl-comment-form .author-name {
+            margin-bottom: 23px;
+            order: 2;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            order: 3;
+        }
+
+    input {
+        width: 100%;
+        color: #222;
+        border-radius: 28px;
+        line-height: 1;
+        padding: 16px 31px;
+        border: 1px solid;
+        max-width: 100%;
+        transition: .3s ease;
+        border-color: #cddbe7;
+    }
+
+
+    form.fl-comment-form .author-email {
+        margin-bottom: 23px;
+        order: 2;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        order: 3;
+    }
+
+    form.fl-comment-form .author-comment {
+        order: 1;
+        width: 100%;
+        margin-bottom: 23px;
+    }
+
+
+    textarea {
+        max-width: 100%;
+        width: 100%;
+        border-radius: 20px;
+        border: 1px solid;
+        min-height: 160px;
+        height: 160px;
+        resize: none;
+        transition: .3s ease;
+        border-color: #d8e4ee;
+        padding: 16px 31px;
+    }
+
+        textarea:focus-visible {
+            border-color: transparent !important;
+            box-shadow: 0 8px 22px 0 rgb(0 0 0 / 10%) !important;
+            transition: .3s ease;
+            outline: none;
+        }
+
+
+    .fl-places-content-wrapper .fl-places-reviews-contain .fl-place-bottom-content .comments-container .fl-form-review-reply .fl-comment-form .submit-btn-container {
+        margin-top: 25px;
+    }
+
+    form.fl-comment-form .submit-btn-container {
+        order: 4;
+        width: 100%;
+        margin-top: 35px;
+        height: 46px;
+    }
+
+    .fl-places-content-wrapper .fl-places-reviews-contain .fl-place-bottom-content .comments-container .fl-form-review-reply .fl-comment-form .submit-btn-container button {
+        float: left;
+        top: 0px;
+        border: none;
+    }
+
+    form.fl-comment-form .submit-btn-container .fl-custom-btn {
+        padding: 20px 45px;
+        float: left;
+        display: block;
+    }
+
+    .comments-container .fl-custom-btn {
+        float: right;
+        position: relative;
+        top: -10px;
+    }
+
+    .fl-custom-btn {
+        border-radius: 29px;
+        cursor: pointer;
+        overflow: hidden;
+        position: relative;
+        display: inline-block;
+        line-height: 1;
+        padding: 17px 35px;
+        font-size: 14px;
+        text-transform: uppercase;
+        z-index: 2;
+    }
+
+    form.fl-comment-form .submit-btn-container .fl-custom-btn span {
+        font-size: 16px;
+    }
+
+    .comments-container .fl-custom-btn span {
+        color: #fff;
+    }
+
+    .fl-custom-btn span {
+        position: relative;
+        font-weight: 600;
+        color: #fff;
+    }
+
+
+
+    .fl-places-content-wrapper .fl-places-reviews-contain .fl-place-bottom-content .comments-container .fl-form-review-reply .fl-comment-form .comment-form-rating {
+        margin-top: 35px;
+        margin-bottom: 25px;
+        padding: 15px 33px;
+        order: 1;
+        border-radius: 25px;
+        display: flex;
+        background-color: #f9f3f3;
+        height: 55px;
+    }
+
+    .comment-form-rating p.stars {
+        margin-left: 25px;
+        margin-right: 15px;
+    }
+
+        .comment-form-rating p.stars a {
+            position: relative;
+            width: 15px;
+            height: 15px;
+            text-indent: -999em;
+            display: inline-block;
+            text-decoration: none;
+            margin-right: 2px;
+            top: 7px;
+        }
+
+            .comment-form-rating p.stars a:before {
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 1em;
+                height: 1em;
+                line-height: 1;
+                font: normal normal normal 14px/1 FontAwesome;
+                text-indent: 0;
+            }
+
+            .comment-form-rating p.stars a:before, .comment-form-rating p.stars a:hover ~ a:before {
+                content: "\f006";
+                width: 15px !important;
+                height: 15px !important;
+                margin-right: 2px !important;
+                color: #f44153;
+            }
+
+    .comment-form-rating .fl-place-raing-number {
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+
+@media(max-width:1300px) {
+
+    .fl-places-content-wrapper .fl-places-reviews-contain .fl-place-bottom-content .fl-btn-place-single-anchor {
+        float: right;
+        position: absolute;
+        top: 79px;
+        right: 0;
+        text-decoration: none;
+    }
+
+    .fl-custom-btn {
+        border-radius: 29px;
+        cursor: pointer;
+        overflow: hidden;
+        position: relative;
+        display: inline-block;
+        line-height: 1;
+        padding: 17px 20px;
+        font-size: 10px;
+        text-transform: uppercase;
+        z-index: 2;
+    }
+}
+
+    /*Добавление отзыва*/
+
+.fromPlacetoLogin {
+    height: 40px;
+    margin-bottom: 12px;
+    margin-top: 12px;
+    width: 180px;
+    border-radius: 25px;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #4da1f4;
+    text-align: center;
+    font-size: 16px;
+    border: none;
+}
+
+    .fromPlacetoLogin:hover {
+
+        background-color: #f44153;
+
+    }
+
+.autorization-link {
+    text-decoration: none;
+    color: black;
+}
+
+
+    .autorization-link:hover {
+        color: #f44153;
+    }
+
+
+@media screen and (max-width: 870px){
+.fl-places-content-wrapper {
+    display: block;
+}}
+    /*Страница с местом*/

@@ -1,0 +1,99 @@
+﻿@model IEnumerable<WebStoreMap.Models.ViewModels.Company.CompanyViewModel>
+
+@{
+    ViewBag.Title = "Моя Компания";
+}
+
+@using PagedList.Mvc;
+@using PagedList;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+<section class="section-content">
+    <div class="container container-content" style=" margin-bottom: 40px;       min-height: 500px; margin-top: 40px;">
+        <div class="row">
+            <div class="col-lg-4" id="addProductBlockMobile">
+                <div class="card addProductCard">
+                    <div class="card-body addProductCardBody">
+                        <h5 class="card-title">Моя компания</h5>
+                        <p class="card-text" style="margin-bottom: 18px;">Изменяйте, добавляйте, удаляйте компанию.</p>
+                        @if (!Model.Any())
+                        {
+                            <center>@Html.ActionLink("Добавить компанию", "AddCompany", "", new { @class = "btn btn-add" })</center>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="allProductsCardBlock">
+                    <div class="card allProductsCard">
+                        <div class="card-header allProductsCardHeader" id="allProductsCardHeaderDesktop">
+
+                        </div>
+                        <div class="card-header allProductsCardHeader" id="allProductsCardHeaderMobile">
+
+                        </div>
+                    </div>
+                    @foreach (var item in ViewBag.OnePageOfCompany)
+                    {
+                        <div class="card mb-3 allProductsCardItem">
+                            <div class="row g-0">
+                                <div class="col-md-4 " style="padding-right: 0; padding-left: 0;">
+                                    <a href="/partner/company/EditCompany/@item.Id">
+                                        @if (@item.ImageName == null)
+                                        {
+                                            <img src="~/Content/img/no_image_big.png" style="width: 100%; height: 100%" />
+                                        }
+                                        else
+                                        {
+                                            <img src="/Images/Uploads/Companies/@item.Id/@item.ImageName" style="width: 100%; height: 100%" />
+                                        }
+                                    </a>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <div class="row" style="height:100%; margin-right: 0 !important; margin-left: 0;">
+                                            <div class="col-sm-9 p-3 ">
+                                                <h5 class="card-title CardOfProductTitle">@item.CompanyName</h5>
+                                                @*<p class="card-text" style="margin-bottom:0px">@product.CompanyName</p>*@
+                                            </div>
+                                            <div class="col-3 p-3 " id="editeDeliteBlockDesktop" style=" padding: 0px !important; ">
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item">         @Html.ActionLink("Изменить", "EditCompany", new { id = item.Id }, new { @class = "btn btn-edit" })</li>
+                                                    <li class="list-group-item">      @Html.ActionLink("Удалить", "DeleteCompany", new { id = item.Id }, new { @class = "btn  btn-delete " })</li>
+
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-9 p-3" id="editeDeliteBlockMobile" style=" padding: 0px !important; ">
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item">         @Html.ActionLink("Изменить", "EditCompany", new { id = item.Id }, new { @class = "btn btn-edit" })</li>
+                                                    <li class="list-group-item">      @Html.ActionLink("Удалить", "DeleteCompany", new { id = item.Id }, new { @class = "btn  btn-delete " })</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col-lg-4" id="addProductBlock">
+                <div class="card addProductCard">
+                    <div class="card-body addProductCardBody">
+                        <h5 class="card-title">Моя компания</h5>
+                        <p class="card-text" style="margin-bottom: 18px;">Изменяйте, добавляйте, удаляйте компанию.</p>
+                        @if (!Model.Any())
+                        {
+                            <center>@Html.ActionLink("Добавить компанию", "AddCompany", "", new { @class = "btn btn-add" })</center>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts
+{
+    <script src="~/Content/MyScripts/CompanyPartnerScript.js"></script>
+}

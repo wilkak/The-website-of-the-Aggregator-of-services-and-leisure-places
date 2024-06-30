@@ -1,0 +1,82 @@
+﻿
+@{ ViewBag.Title = "Тестовые фунции"; }
+
+<style>
+    .card {
+        border: none;
+        box-shadow: 3px 5px 35px rgb(86 68 169 / 10%);
+        border-radius: 0;
+    }
+
+    .dashboard-section .col .card:hover {
+        background: #f44153;
+        color: white !important;
+    }
+
+    .dashboard-section .col .card .card-body {
+        color: black;
+    }
+
+    .dashboard-section .col .card:hover .card-body .card-text {
+        color: white !important;
+    }
+
+    .dashboard-section .col .card:hover .card-body .card-title {
+        color: white !important;
+    }
+</style>
+
+<section class="dashboard-section" style="margin-top:40px">
+    <div class="row row-cols-1 row-cols-md-3 g-4" style="margin-right:0; margin-left:0">
+        <div class="col">
+            <div class="card h-100">
+                <a href="/moderator/Place/Categories?Length=0">
+                    <div class="card-body">
+                        <h5 class="card-title">Категории</h5>
+                        <p class="card-text">Создайте новую категорию или отредактируйте уже созданные</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <a href="/moderator/Place/Places?Length=0">
+                    <div class="card-body">
+                        <h5 class="card-title">Места</h5>
+                        <p class="card-text">Добавьте новое место или отредактируйте уже созданные</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <a href="/moderator/Company/Companies?Length=0">
+                    <div class="card-body">
+                        <h5 class="card-title">Компании</h5>
+                        <p class="card-text">Добавьте компанию или отредактируйте уже созданные</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <a href="/moderator/Sections/Countries?Length=0">
+                    <div class="card-body">
+                        <h5 class="card-title">Страны</h5>
+                        <p class="card-text">Добавьте, отредактируйте, удалите страну</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <a href="/">
+                    <div class="card-body">
+                        <h5 class="card-title">Выход</h5>
+                        <p class="card-text">Выйдите из меню администратора и возвращения в магазин</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

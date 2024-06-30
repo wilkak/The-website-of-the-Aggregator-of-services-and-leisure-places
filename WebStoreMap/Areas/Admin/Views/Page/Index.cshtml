@@ -1,0 +1,114 @@
+﻿@using System.Web
+@model IEnumerable<WebStoreMap.Models.ViewModels.Pages.PageViewModel>
+@{
+    ViewBag.Title = "Страницы";
+}
+
+<section class="section-content">
+    <div class="container container-content" style=" margin-bottom: 40px;min-height: 500px;">
+        <div class="row">
+            <div class="col-lg-4" id="addProductBlockMobile">
+                <div class="card addProductCard">
+                    <div class="card-body addProductCardBody">
+                        <h5 class="card-title ">Создание страницы</h5>
+                        <p class="card-text">Чтобы добавить новую страницу, которой еще нет на сайте, создайте новую карточку страницы и заполните параметры. </p>
+                        <center>
+                            @Html.ActionLink("Создание новой страницы", "AddPage", "", new { @class = "btn btn-add" })
+                        </center>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="allProductsCardBlock">
+                    <div class="card allProductsCard">
+                        <div class="card-header allProductsCardHeader" id="allProductsCardHeaderDesktop">
+                            Страницы уже расположенные на сайте
+                        </div>
+                        <div class="card-header allProductsCardHeader" id="allProductsCardHeaderMobile">
+                            Ваши страницы
+                        </div>
+                    </div>
+                    @foreach (var item in Model)
+                    {
+                        <div class="card mb-3 allProductsCardItem">
+                            <div class="row g-0">
+                                <div class="col">
+                                    <div class="card-body">
+                                        <div class="row" style="height:100%; margin-right: 0 !important; margin-left: 0;">
+                                            <div class="col ">
+                                                <h5 class="card-title CardOfProductTitle">Имя: @Html.DisplayFor(modelItem => item.Title)</h5>
+
+                                                <h5 class="card-title CardOfProductTitle">Ссылка: @Html.DisplayFor(modelItem => item.Slug)</h5>
+
+                                                <h5 class="card-title CardOfProductTitle">Боковая панель: @Html.DisplayFor(modelItem => item.Sidebar)</h5>
+                                            </div>
+                                            <div class="col " style=" padding: 0px !important; ">
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item">
+                                                        @Html.ActionLink("Изменить", "EditPage", new { id = item.Id }, new { @class = "btn btn-edit" })
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        @Html.ActionLink("Подробности", "PageDetails", new { id = item.Id }, new { @class = "btn btn-edit" })
+                                                    </li>
+                                                    <!--Если Slug равен home, не показывать кнопку удаления -->
+                                                    @if (item.Slug != "home")
+                                                    {
+                                                        <li class="list-group-item">
+                                                            @Html.ActionLink("Удалить", "DeletePage", new { id = item.Id }, new { @class = "btn btn-delete" })
+                                                        </li>
+                                                    }
+                                                </ul>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="col-lg-4" id="addProductBlock">
+                <div class="card addProductCard">
+                    <div class="card-body addProductCardBody">
+                        <h5 class="card-title ">Создание страницы</h5>
+                        <p class="card-text">Чтобы добавить новую страницу, которой еще нет на сайте, создайте новую карточку страницы и заполните параметры. </p>
+                        <center>
+                            @Html.ActionLink("Создание новой страницы", "AddPage", "", new { @class = "btn btn-add" })
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*<center>@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Products", new { page }))</center>*@
+</section>
+
+@section Scripts
+{
+    <script>
+        $(function () {
+
+            /* Confirm page deletion */
+
+            $("a.delete").click(function () {
+                if (!confirm("Подтвердите удаление страницы")) return false;
+            });
+
+            /*-----------------------------------------------------------*/
+
+            /* Sorting script */
+
+            $("table#pages tbody").sortable({
+                items: "tr:not(.home)",
+                placeholder: "ui-state-highlight",
+                update: function () {
+                    var ids = $("table#pages tbody").sortable("serialize");
+                    var url = "/admin/Page/ReorderPages";
+
+                    $.post(url, ids, function (data) { });
+                });
+        });
+    </script>
+}

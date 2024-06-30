@@ -1,0 +1,11 @@
+﻿@model WebStoreMap.Models.Data.CityDataTransferObject
+
+<option value="">Город(не выбран)</option>
+@if (ViewBag.City != null)
+{
+
+    foreach (var item in ViewBag.City)
+    {
+        <option value="@item.Value">@item.Text</option>
+    }
+}

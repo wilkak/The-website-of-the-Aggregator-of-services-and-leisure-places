@@ -1,0 +1,476 @@
+﻿
+/*Отзывы*/
+
+.listing-review {
+    padding-bottom: 120px;
+}
+
+.listing-description, .listing-map, .listing-review, .related {
+    position: relative;
+/*    margin-top: 120px;*/
+    padding-top: 80px;
+/*    border-top: 2px dashed #dfdfdf;*/
+}
+
+
+.listing-review {
+    padding-bottom: 120px;
+}
+
+.pg-header-icon {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    line-height: 65px;
+    background: #fff;
+    color: rgba(38,163,135,0.85);
+    bottom: -25px;
+    left: 50%;
+    margin-left: -30px;
+    padding-left: 2px;
+    z-index: 18;
+    border-radius: 50%;
+    font-size: 30px;
+    box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 20%), -2px -2px 2px 0 rgb(0 0 0 / 20%);
+    text-align: center;
+}
+
+.listing-review .col-sm-3, .listing-description .col-sm-9 {
+    padding: 20px;
+}
+
+.average-review {
+    width: 220px;
+    height: 220px;
+    max-width: 220px;
+    position: relative;
+    display: inline-block;
+}
+
+    .average-review:before {
+        content: "";
+        background: #f44153;
+        position: absolute;
+        width: 90%;
+        height: 90%;
+        top: 5%;
+        left: 5%;
+        border: 2px solid #fff;
+        border-radius: 50%;
+        box-shadow: 3px 3px 0 0 rgb(0 0 0 / 26%), -2px -2px 2px 0 rgb(0 0 0 / 26%);
+    }
+
+    .rating, .mood-icon, .average-review .stars, .review-stats {
+        position: absolute;
+        width: 100%;
+        font-family: 'Montserrat', sans-serif;
+        text-align: center;
+        top: 50%;
+        margin-top: -48px;
+        font-size: 60px;
+        color: #fff;
+    }
+
+.mood-icon {
+    top: -10px;
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 33px;
+    width: 44px;
+    height: 44px;
+    line-height: 50px;
+    background: #fff;
+    color:#f44153;
+    border-radius: 50%;
+    text-align: center;
+    left: 50%;
+    margin-left: -22px;
+    /* padding-left: 2px; */
+    box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 20%), -2px -2px 2px 0 rgb(0 0 0 / 20%);
+}
+
+.icon-happy:before {
+    content: "\f118";
+    font-family: "FontAwesome" !important;
+}
+
+.icon-normal:before {
+    content: "\f11a";
+    font-family: "FontAwesome" !important;
+}
+
+.icon-sad:before {
+    content: "\f119";
+    font-family: "FontAwesome" !important;
+}
+
+.average-review .rating, .average-review .stars i {
+    text-shadow: 4px 4px 2px rgb(0 0 0 / 26%);
+}
+
+.average-review .stars {
+    margin-top: 24px;
+    font-size: 13px;
+}
+
+
+.review-stats {
+    position: absolute;
+    z-index: 2;
+    color: #f44153;
+    font-weight:900;
+    font-size: 14px;
+    top: auto;
+    margin-top: 0;
+    bottom: -42px;
+}
+
+.review-counter {
+    position: relative;
+    color: #f44153;
+    display: inline-block;
+    width: 44px;
+    height: 44px;
+    line-height: 45px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 2px 2px 2px 0 rgb(0 0 0 / 20%), -2px -2px 2px 0 rgb(0 0 0 / 20%);
+    top: -8px;
+}
+
+.average-review img {
+    width: 100%;
+}
+
+.review-reputation {
+    position: relative;
+    display: block;
+    margin-top: 60px;
+}
+
+    .review-reputation div {
+        position: relative;
+        min-width: 80px;
+        width: auto;
+        color: black;
+        display: inline-block;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 2px 2px 8px 0 rgb(0 0 0 / 14%), -2px -2px 8px 0 rgb(0 0 0 / 14%);
+    }
+
+        .review-reputation div:before {
+            font-family: "Font Awesome 6 Free";
+            content: "\e473";
+            position: relative;
+            display: block;
+            width: 100%;
+            text-align: center;
+            font-size: 25px;
+            color: #4da1f4;
+            margin: 18px 0 0 0;
+            font-weight: 900;
+            padding: 0;
+            line-height: 25px;
+        }
+
+        .review-reputation div:after {
+            font-family: "FontAwesome";
+            content: "\f0d8";
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            margin-left: -9px;
+            font-size: 30px;
+            color: #fff;
+            text-shadow: 0 -2px 2px rgb(0 0 0 / 16%);
+        }
+
+    .review-reputation h4 {
+        color: #4da1f4;
+        margin: 0;
+        padding: 15px 15px 12px 15px;
+        text-transform: uppercase;
+        font-size: 18px;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+
+.write-review {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+    .write-review .button {
+        font-size: 16px;
+        padding: 10px 13px 10px 50px;
+        overflow: hidden;
+        position: relative;
+        display: inline-block;
+        font-family: 'Montserrat', sans-serif;
+        width: 220px;
+        background-color: #f44153;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 22px;
+        border: 1px solid #f44153 !important;
+    }
+
+        .write-review .button:before {
+            font-family: "Font Awesome 6 Free";
+            content: "\f004";
+            display: inline-block;
+            background: rgba(0,0,0,0.1);
+            height: 100%;
+            line-height: 45px;
+            width: 40px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 18px;
+        }
+
+.author-block {
+    margin-top: 60px;
+}
+
+.author-avatar {
+    position: relative;
+    margin-bottom: 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-position: center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    display: inline-block;
+}
+
+.author-stats {
+    position: absolute;
+    width: 100%;
+    top: 78px;
+    z-index: 2;
+    text-align: center;
+    color: #f44153;
+}
+
+.author-name {
+    text-decoration: none;
+    color: black !important;
+    font-family: 'Montserrat', sans-serif;
+    display: inline-block;
+    font-size: 18px;
+    margin-bottom: 5px;
+    margin-left: 7px;
+}
+
+.author-vote-mood {
+    position: relative;
+    display: inline-block;
+    color: #f44153;
+    font-size: 22px;
+    top: 3px;
+    margin-right: 1px;
+}
+
+.author-vote {
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
+    display: inline-block;
+    background: #f44153;
+    border-radius: 5px;
+    padding: 3px 7px 2px 7px;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 11px;
+    top: -2px;
+    margin-right: 2px;
+}
+
+    .author-vote .stars {
+        display: inline-block;
+        padding-left: 3px;
+    }
+
+.data {
+    position: relative;
+    font-weight: normal;
+    font-family: 'Montserrat', sans-serif;
+    top: -2px;
+}
+
+    .data:before {
+        position: relative;
+        font-size: 16px;
+        padding: 0 6px 0 2px;
+        top: 2px;
+    }
+
+.listing-review .author-title {
+    display: block;
+    padding-left: 120px;
+    font-style: italic;
+    font-weight: bold;
+    color: #404040;
+}
+
+    .listing-review .author-title:before, .listing-review .author-title:after {
+        content: "\"";
+    }
+
+.author-description {
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+    padding-left: 122px;
+    padding-top: 2px;
+}
+
+/*НУЖНО*/
+@media (max-width: 767px) {
+    .listing-description .col-sm-3 {
+        padding-top: 0;
+    }
+}
+
+@media (min-width: 768px) {
+    .col-sm-9 {
+        width: 75%;
+    }
+}
+
+@media (min-width: 768px) {
+    .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9 {
+        float: left;
+    }
+}
+
+@media (max-width: 767px) {
+    .description-container {
+        border-top: 2px dashed #ddd;
+        padding-top: 30px;
+    }
+}
+
+
+
+/*НУЖНО*/
+@media only screen and (max-width: 600px) {
+    .author-block .text-left {
+        text-align: center;
+    }
+}
+
+@media (max-width: 767px) {
+    .col-sm-12 {
+        padding: 0;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .author-block .text-left {
+        text-align: center;
+    }
+}
+
+@media (max-width: 767px) {
+    .col-sm-12 {
+        padding: 0;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .author-avatar.pull-left {
+        float: none !important;
+        display: block;
+        left: 50%;
+        margin-left: -50px;
+        margin-bottom: 40px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .pull-left, .pull-right {
+        display: block !important;
+        float: none !important;
+        margin: 0 auto;
+        margin-bottom: 8px;
+    }
+}
+
+
+@media only screen and (max-width: 600px) {
+    .author-vote-mood, .author-name, .data, .author-title, .author-description {
+        display: block;
+        text-align: center;
+        margin: 0;
+        padding: 0 !important;
+    }
+}
+
+
+.replyBlock {
+    display: none;
+}
+
+    .replyBlock.active {
+        display: inline;
+    }
+
+
+.offcanvas-add-comment {
+    width: 100% !important;
+    background: rgb(77,147,244,0.55);
+}
+
+
+.panel-form h4 {
+    margin: 16px 0 16px 0;
+}
+
+.back-from-comment-button {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    display: inline-block;
+    color: #fff;
+    cursor: pointer;
+    font-size: 30px;
+    z-index: 1010;
+}
+
+
+.panel {
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
+    box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
+}
+
+.panel-form {
+    position: relative;
+    border-color: #ccc;
+    box-shadow: 0 2px 3px 0 rgb(0 0 0 / 20%);
+    width: 260px;
+    max-width: 100%;
+    display: block;
+    top: 50%;
+    opacity: 0;
+}
+
+.panel-heading {
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.panel-body {
+    padding: 15px;
+}

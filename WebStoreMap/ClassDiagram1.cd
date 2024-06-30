@@ -1,0 +1,732 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="WebStoreMap.Controllers.AccountController">
+    <Position X="0.5" Y="20" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAFAAAAAgAABAAAhAIAAAQAAIAAAAEQAAAAAAA=</HashCode>
+      <FileName>Controllers\AccountController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.Data.CategoryDataTransferObject">
+    <Position X="6" Y="19.5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAQACAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Models\Data\CategoryDataTransferObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.Data.CityDataTransferObject">
+    <Position X="4" Y="19.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>IAAGAAAAoEgAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Data\CityDataTransferObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.BundleConfig">
+    <Position X="2.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\BundleConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.FilterConfig">
+    <Position X="12.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\FilterConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.RouteConfig">
+    <Position X="4" Y="16.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\RouteConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.MvcApplication">
+    <Position X="7.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAQAAAAAAAAA=</HashCode>
+      <FileName>Global.asax.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Areas.Admin.AdminAreaRegistration">
+    <Position X="0.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Areas\Admin\AdminAreaRegistration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Areas.Admin.Controllers.CommentController">
+    <Position X="14.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAAAAAEAAAAABAAAEAAAAIIAA=</HashCode>
+      <FileName>Areas\Admin\Controllers\CommentController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Areas.Admin.Controllers.CompanyController" Collapsed="true">
+    <Position X="7.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAABAAgAAECAAEAAAAAAAA=</HashCode>
+      <FileName>Areas\Admin\Controllers\CompanyController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Areas.Admin.Controllers.DashboardController">
+    <Position X="4" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Areas\Admin\Controllers\DashboardController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Areas.Admin.Controllers.EmailController">
+    <Position X="0.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Areas\Admin\Controllers\EmailController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Areas.Admin.Controllers.PageController">
+    <Position X="9.25" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAQEAAAAAAAAAAAAAAAAACAAAggAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Areas\Admin\Controllers\PageController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Areas.Admin.Controllers.PlaceController">
+    <Position X="4" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAACQAIgAAIDAAGAIAAAAAAAEAAAEkEQEAAAAAA=</HashCode>
+      <FileName>Areas\Admin\Controllers\PlaceController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Areas.Admin.Controllers.RatingController">
+    <Position X="16.25" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAgAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Areas\Admin\Controllers\RatingController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Areas.Admin.Controllers.SectionsController">
+    <Position X="7.5" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>UAgACQAAQAAQAEICAAAQAgAIgAAAAAAAAAFRhAAAAAA=</HashCode>
+      <FileName>Areas\Admin\Controllers\SectionsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Areas.Admin.Controllers.TestController">
+    <Position X="2.25" Y="18.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Areas\Admin\Controllers\TestController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Areas.Admin.Controllers.UserController">
+    <Position X="4" Y="17.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAQAAAAAAEAAAAAAAAAAAAAAAgAAEAAAAAAgA=</HashCode>
+      <FileName>Areas\Admin\Controllers\UserController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Areas.Moderator.Controllers.CommentController">
+    <Position X="16.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAEAAAAIIAA=</HashCode>
+      <FileName>Areas\Moderator\Controllers\CommentController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Areas.Moderator.Controllers.CompanyController" Collapsed="true">
+    <Position X="9.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAgAABAAAAAECAAEAAAAAAAA=</HashCode>
+      <FileName>Areas\Moderator\Controllers\CompanyController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Areas.Moderator.Controllers.DashboardController">
+    <Position X="2.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Areas\Moderator\Controllers\DashboardController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Areas.Moderator.Controllers.PlaceController">
+    <Position X="2.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAACQAIgAAIDAAGAIAAAAAAAEAAAEkEQEAAAAAA=</HashCode>
+      <FileName>Areas\Moderator\Controllers\PlaceController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Areas.Moderator.Controllers.RatingController">
+    <Position X="14.5" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAgAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Areas\Moderator\Controllers\RatingController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Areas.Moderator.Controllers.SectionsController">
+    <Position X="7.5" Y="20.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>UAgACQAAQAAQAEICAAAQAgAIgAAAAAAAAAFRhAAAAAA=</HashCode>
+      <FileName>Areas\Moderator\Controllers\SectionsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Areas.Moderator.Controllers.TestController">
+    <Position X="0.5" Y="18.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Areas\Moderator\Controllers\TestController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Areas.Moderator.ModeratorAreaRegistration">
+    <Position X="5.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Areas\Moderator\ModeratorAreaRegistration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Areas.Partner.Controllers.CompanyController" Collapsed="true">
+    <Position X="5.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAACAAAAAAAABAAgAAECAAEAAAAAAAA=</HashCode>
+      <FileName>Areas\Partner\Controllers\CompanyController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Areas.Partner.Controllers.DashboardController">
+    <Position X="7.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Areas\Partner\Controllers\DashboardController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Areas.Partner.Controllers.PlaceController">
+    <Position X="5.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACQAAAAAICAAGAIAAAAAAAAAAAEkEQEAAAAAA=</HashCode>
+      <FileName>Areas\Partner\Controllers\PlaceController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Areas.Partner.PartnerAreaRegistration">
+    <Position X="16.25" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Areas\Partner\PartnerAreaRegistration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Controllers.ChatRoomController">
+    <Position X="7.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\ChatRoomController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Controllers.CompanyController">
+    <Position X="4" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Controllers\CompanyController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Controllers.DashboardController">
+    <Position X="5.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\DashboardController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Controllers.DesiredController">
+    <Position X="14.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAQAAAAAAAAiAAACAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\DesiredController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Controllers.FavoritesController">
+    <Position X="9.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAQAAAAAAAAgAAACAAAAEAAAgAAAA=</HashCode>
+      <FileName>Controllers\FavoritesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Controllers.InformationController">
+    <Position X="16.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAIAAAAAAAAAAAAAAAAAEAQ=</HashCode>
+      <FileName>Controllers\InformationController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Controllers.MapController">
+    <Position X="4" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\MapController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Controllers.PagesController">
+    <Position X="12.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEEAAAAAAQA=</HashCode>
+      <FileName>Controllers\PagesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Controllers.PlaceController">
+    <Position X="7.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAABEAAAAAAAAAAAAAAAAAAAAAAAAEAAAAACAE=</HashCode>
+      <FileName>Controllers\PlaceController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Controllers.RatingController">
+    <Position X="18" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAAAAAA=</HashCode>
+      <FileName>Controllers\RatingController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Controllers.SearchController">
+    <Position X="5.75" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAACAIAAAAAAAAAAAAAAgCAAEAEAAAAAA=</HashCode>
+      <FileName>Controllers\SearchController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Controllers.SectionsController">
+    <Position X="4" Y="22.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAIAAAAAIAAAABAAAAAAAAAAAAAAAAAEAEAAAAAA=</HashCode>
+      <FileName>Controllers\SectionsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.Data.CityInformationDataTransferObject">
+    <Position X="9.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAABAAAgAAAIAAAAAAAAAAABBAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Models\Data\CityInformationDataTransferObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.Data.CommentDataTransferObject">
+    <Position X="18" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAAAAAAAAAAAAAAAgAAAAAAAABAEAACAAIBAA=</HashCode>
+      <FileName>Models\Data\CommentDataTransferObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.Data.CompanyDataTransferObject">
+    <Position X="11" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIDQAAwAAAgAAgAARAAQAhAgAAJBAAAAAABAAQAAAA=</HashCode>
+      <FileName>Models\Data\CompanyDataTransferObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.Data.CountryDataTransferObject">
+    <Position X="14.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAACAQAAAEAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Data\CountryDataTransferObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.Data.CountryInformationDataTransferObject">
+    <Position X="16.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAoAAAAAAAAAAAAAAIRBAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Models\Data\CountryInformationDataTransferObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.Data.DataBase">
+    <Position X="9.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAASAABAAAACAgAgAAAQAAAgAgEAgACGCAAAAIIAQ=</HashCode>
+      <FileName>Models\Data\DataBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.Data.DesiredDataTransferObject">
+    <Position X="16.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAgAAABAA=</HashCode>
+      <FileName>Models\Data\DesiredDataTransferObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.Data.FavoriteDataTransferObject">
+    <Position X="7.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAgAAABAA=</HashCode>
+      <FileName>Models\Data\FavoriteDataTransferObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.Data.LinkDataTransferObject">
+    <Position X="18" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAgAAAAAAAAAAABAAAAQAAAAAA=</HashCode>
+      <FileName>Models\Data\LinkDataTransferObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.Data.PageDataTransferObject">
+    <Position X="11" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAEAAAAABAAAQAAIAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Models\Data\PageDataTransferObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.Data.PlaceDataTransferObject">
+    <Position X="9.25" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAHEAABoUogAgAIAAAIQAgAAHIRBAECAAACBAQASAA=</HashCode>
+      <FileName>Models\Data\PlaceDataTransferObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.Data.RatingDataTransferObject">
+    <Position X="0.5" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAAAAAAAAAAAAAAAgAAAAABAEBAEAACAAABAA=</HashCode>
+      <FileName>Models\Data\RatingDataTransferObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.Data.RegionDataTransferObject">
+    <Position X="4" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAACAAAAAEgAAAAAAAAIAAAAAAIQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Data\RegionDataTransferObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.Data.RegionInformationDataTransferObject">
+    <Position X="5.75" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAggAgAAAAAAAAAAAAAAARBAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Models\Data\RegionInformationDataTransferObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.Data.RegistrationUserDataTransferObject">
+    <Position X="11" Y="18.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAEAAAAAAAAAAAAAAQAQAAAABBAACAAQAAgAAAAg=</HashCode>
+      <FileName>Models\Data\RegistrationUserDataTransferObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.Data.ReplyDataTransferObject">
+    <Position X="12.75" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAEAAAAAAAAAAAAAAgAAAAAAAAhAAAACAAAAAA=</HashCode>
+      <FileName>Models\Data\ReplyDataTransferObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.Data.RoleDataTransferObject">
+    <Position X="0.5" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Models\Data\RoleDataTransferObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.Data.SidebarDataTransferObject">
+    <Position X="16.25" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Data\SidebarDataTransferObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.Data.UserDataTransferObject">
+    <Position X="5.75" Y="16.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAEAAAAAAAAAAAAAAQAQAAAABBAACAAQAAgAAAAg=</HashCode>
+      <FileName>Models\Data\UserDataTransferObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.Data.UserRoleDataTransferObject">
+    <Position X="14.5" Y="19.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAIAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Data\UserRoleDataTransferObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.Email.EmailService">
+    <Position X="2.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Email\EmailService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.Email.ForgotPasswordViewModel">
+    <Position X="14.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Email\ForgotPasswordViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.Email.ResetPasswordViewModel">
+    <Position X="18" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEACAAAAAAAAAAAAAAAAAAAAACAAAAAAAAIAA=</HashCode>
+      <FileName>Models\Email\ResetPasswordViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.Encoding.CaptchaImage">
+    <Position X="4" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABCAAAAAAAAAAAEAAAAAAAhAAAAAACAAAAAA=</HashCode>
+      <FileName>Models\Encoding\CaptchaImage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.Encoding.Encrypt">
+    <Position X="5.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Encoding\Encrypt.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.ViewModels.Account.LoginUserViewModel">
+    <Position X="2.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAgAgAAA=</HashCode>
+      <FileName>Models\ViewModels\Account\LoginUserViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.ViewModels.Account.PictureViewModel">
+    <Position X="18" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ViewModels\Account\PictureViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.ViewModels.Account.UserNavigationPartialViewModel">
+    <Position X="11" Y="21.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Models\ViewModels\Account\UserNavigationPartialViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.ViewModels.Account.UserProfileInformationViewModel">
+    <Position X="18" Y="22.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAEAAAAAAAAAAAAAAQAQAAAAABAAAAAAAAgAAAAg=</HashCode>
+      <FileName>Models\ViewModels\Account\UserProfileInformationViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.ViewModels.Account.UserProfileViewModel">
+    <Position X="14.5" Y="21.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAEAEAAAAAAAAAAAAQAQAAAAABAACAAAAAgAAIAg=</HashCode>
+      <FileName>Models\ViewModels\Account\UserProfileViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.ViewModels.Account.UserRegistrationViewModel">
+    <Position X="16.25" Y="19.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAEAEAAAAAAAAAAAAQAQAAAABBAACAAQAAgAAIAg=</HashCode>
+      <FileName>Models\ViewModels\Account\UserRegistrationViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.ViewModels.Account.UserRoleEditorViewModel">
+    <Position X="16.25" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAEIAAAAAAAAAEAAAQAQAAAABAAACAAQAEgAAIAg=</HashCode>
+      <FileName>Models\ViewModels\Account\UserRoleEditorViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.ViewModels.Account.UserRoleInformationViewModel">
+    <Position X="18" Y="18.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAEIAAAAAAAAAEAAAQAQAAAABAAACAAQAEgAAIAg=</HashCode>
+      <FileName>Models\ViewModels\Account\UserRoleInformationViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.ViewModels.Account.UserViewModel">
+    <Position X="6" Y="21.5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAEAEAAAAAAAAAAAAQAQAAAABBAACAAQAAgAAIAg=</HashCode>
+      <FileName>Models\ViewModels\Account\UserViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.ViewModels.Chat.CommentPlaceViewModel">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAEAAAAAAAAAAAAAAAAgAAAAABAABAAAACAAIBAg=</HashCode>
+      <FileName>Models\ViewModels\Chat\CommentPlaceViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.ViewModels.Chat.CommentViewModel">
+    <Position X="2.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAgAAAAAAAABAAAACAAABAA=</HashCode>
+      <FileName>Models\ViewModels\Chat\CommentViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.ViewModels.Chat.PlaceCommentViewModel">
+    <Position X="0.5" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAIAA=</HashCode>
+      <FileName>Models\ViewModels\Chat\PlaceCommentViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.ViewModels.Chat.ReplyPlaceViewModel">
+    <Position X="14.5" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAEAAAAAAAAAAAAAAAAgAAAAAAAAhAAAACAAAAAg=</HashCode>
+      <FileName>Models\ViewModels\Chat\ReplyPlaceViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.ViewModels.Chat.ReplyViewModel">
+    <Position X="16.25" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Models\ViewModels\Chat\ReplyViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.ViewModels.Company.CompanyViewModel">
+    <Position X="12.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAICQAAwAAAgAAgAARAAQAhAgAAJBAEAAAABAAAAAAA=</HashCode>
+      <FileName>Models\ViewModels\Company\CompanyViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.ViewModels.Desired.DesiredViewModel">
+    <Position X="18" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACEAAAAQAAAAAAAAAAAAgAgAAAQBAAAAAAgAAABAA=</HashCode>
+      <FileName>Models\ViewModels\Desired\DesiredViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.ViewModels.Email.EmailViewModel">
+    <Position X="4" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Models\ViewModels\Email\EmailViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.ViewModels.Email.LinkViewModel">
+    <Position X="0.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAgAAAAAAAAAAABAAAAQAAAAAA=</HashCode>
+      <FileName>Models\ViewModels\Email\LinkViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.ViewModels.Favorites.FavoritesViewModel">
+    <Position X="11" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACEAAAAQAAAAAAAAAAAAgAgAAAQBAAAAAAgAAABAA=</HashCode>
+      <FileName>Models\ViewModels\Favorites\FavoritesViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.ViewModels.geodan.CityInformationViewModel">
+    <Position X="11" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAEAAABIEAgAAAIAAAIAAAAAAABBAEAAAAAAAQAAAA=</HashCode>
+      <FileName>Models\ViewModels\Geodan\CityInformationViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.ViewModels.geodan.CityViewModel">
+    <Position X="12.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAGAAAAgEgAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ViewModels\Geodan\CityViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.ViewModels.geodan.CountryInformationViewModel">
+    <Position X="18" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAABEAgAAAAAAAIAAAAAAIBBAEAABAAAAQAAAA=</HashCode>
+      <FileName>Models\ViewModels\Geodan\CountryInformationViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.ViewModels.geodan.CountryViewModel">
+    <Position X="0.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAACAQAAAEAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ViewModels\Geodan\CountryViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.ViewModels.geodan.RegionInformationViewModel">
+    <Position X="7.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAgEggAAAAAAAIAAAAAAATBAEAAAAIAAQAAAA=</HashCode>
+      <FileName>Models\ViewModels\Geodan\RegionInformationViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.ViewModels.geodan.RegionViewModel">
+    <Position X="9.25" Y="20.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAACAAAAgEAAAAAAAAAIAAAAAAIQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ViewModels\Geodan\RegionViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.ViewModels.Pages.PageViewModel">
+    <Position X="14.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAEAAAAABAAAQAAIAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Models\ViewModels\Pages\PageViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.ViewModels.Pages.SidebarViewModel">
+    <Position X="18" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ViewModels\Pages\SidebarViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.ViewModels.Place.CategoryViewModel">
+    <Position X="5.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAQACAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Models\ViewModels\Place\CategoryViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.ViewModels.Place.PlaceViewModel">
+    <Position X="12.75" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IBAGUAABoUogAiAIAAAIQAgAAHIRVAECAAACBAQAQAA=</HashCode>
+      <FileName>Models\ViewModels\Place\PlaceViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.ViewModels.Rating.PlaceRatingViewModel">
+    <Position X="11" Y="16.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAECAAAAAAAA=</HashCode>
+      <FileName>Models\ViewModels\Rating\PlaceRatingViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.ViewModels.Rating.RatingViewModel">
+    <Position X="2.25" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAEEAAAAAAAAAAAAAAAgAAAAABAEBAAAACAAABAg=</HashCode>
+      <FileName>Models\ViewModels\Rating\RatingViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.ViewModels.Role.RoleViewModel">
+    <Position X="2.25" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ViewModels\Role\RoleViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.ViewModels.Role.UserRoleViewModel">
+    <Position X="11" Y="22.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ViewModels\Role\UserRoleViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.ViewModels.Search.SearchViewModel">
+    <Position X="7.5" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Models\ViewModels\Search\SearchViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Models.Work.DeleteLink" BaseTypeListCollapsed="true">
+    <Position X="11" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Work\DeleteLink.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.486" Collapsed="true" />
+  </Class>
+  <Class Name="WebStoreMap.Models.Work.DeleteLinkSheduler">
+    <Position X="12.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Work\DeleteLinkSheduler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WebStoreMap.Properties.Settings">
+    <Position X="14.5" Y="16.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAABAIAAAAAABABAAAAgABAAAAAQ=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

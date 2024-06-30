@@ -1,0 +1,10 @@
+﻿@model WebStoreMap.Models.ViewModels.Account.UserNavigationPartialViewModel
+
+@if (@Model.FirstName != "Admin")
+{
+    <a class="dropdown-item" href="/account/user-profile">@Model.FirstName @Model.LastName<i class="uil uil-arrow-right"></i></a>
+}
+else
+{
+    <a class="dropdown-item" href="/account/user-profile">@Model.FirstName<i class="uil uil-arrow-right"></i></a>
+}

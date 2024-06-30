@@ -1,0 +1,537 @@
+﻿@model IEnumerable<WebStoreMap.Models.ViewModels.Place.PlaceViewModel>
+
+@{ ViewBag.Title = ViewBag.CityInfo.CityName; }
+
+<link href="~/Content/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+<link href="~/Content/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+<!-- Font special for pages-->
+<link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+<!-- Vendor CSS-->
+<link href="~/Content/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+<link href="~/Content/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+<script src="https://cdn.maptiler.com/maplibre-gl-js/v2.2.0-pre.2/maplibre-gl.js"></script>
+<link href="https://cdn.maptiler.com/maplibre-gl-js/v2.2.0-pre.2/maplibre-gl.css" rel="stylesheet" />
+
+<!--Информация о городе-->
+<div class="city-header" style="position: relative; z-index: 0;">
+    <div class="header--bg-shadow"></div>
+    <div class="city-header-text-container">
+        <h1 class="city-title" cityId=@ViewBag.CityInfo.CityId>@ViewBag.CityInfo.CityName</h1>
+        <span class="city-description">@ViewBag.CityInfo.Description</span>
+        <div class="city-meta">
+            <div class="city-meta-single first">
+                <i class="fa fa-address-book-o"></i>
+                <span class="city-meta-title">Площадь</span>
+                <span class="city-meta-sm">@ViewBag.CityInfo.Square</span>
+            </div>
+
+            <div class="city-meta-single second">
+                <i class="fa fa-address-book-o"></i>
+                <span class="city-meta-title">Год основания</span>
+                <span class="city-meta-sm">@ViewBag.CityInfo.YearOfFoundation</span>
+            </div>
+
+            <div class="city-meta-single third">
+                <i class="fa fa-address-book-o"></i>
+                <span class="city-meta-title">Страна</span>
+                <span class="city-meta-sm">Россия</span>
+            </div>
+
+            <div class="city-meta-single fouth">
+                <i class="fa fa-address-book-o"></i>
+                <span class="city-meta-title">Население</span>
+                <span class="city-meta-sm">@ViewBag.CityInfo.Population</span>
+            </div>
+        </div>
+    </div>
+    <div style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none; z-index: -100;">
+        <img class="jarallax-img" src="/Images/Uploads/Cities/@ViewBag.CityInfo.CityId/@ViewBag.CityInfo.ImageName" style=" object-fit: cover; object-position: 50% 50%; max-width: none; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none;">
+    </div>
+</div>
+
+<section class="section-search-filter">
+    <div class="section-search-filter-container container">
+        <div class="search-block-on-page">
+            <input type="text" class="section-top-search-text-input" placeholder="Введи текст..." id="SearchString" name="SearchString" value="@ViewBag.SearchString">
+            <input type="hidden" id="CatId" name="CatId" value=@ViewBag.SelectedCat>
+            <input type="hidden" id="CityId" name="CityId" value=@ViewBag.CityInfo.CityId>
+            <div class="section-top-search-cat-select" tabindex="0" id="CategorySelector">
+                <span class="current" style="border-right:none">Туры</span>
+                @Html.Action("CategoryMenuPartial", "Place")
+            </div>
+            <button class="section-top-search-btn" id="SearchButton">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+        <div class="sort-block-on-page">
+            <span class="sort-block-on-page-sort-type" filterType="По возрастанию">По цене ⇅</span>
+            <span class="sort-block-on-page-sort-type" filterType="По убыванию">По цене ⇵</span>
+            <span class="sort-block-on-page-sort-type" filterType="Старые">По новизне ⇅</span>
+            <span class="sort-block-on-page-sort-type" filterType="Новые">По новизне ⇵</span>
+            <span class="sort-block-on-page-open-map" id="offcanvasMapBtn" data-bs-toggle="offcanvas" href="#offcanvasMap" role="button" aria-controls="offcanvasMap">Карта</span>
+        </div>
+    </div>
+</section>
+
+
+<!--Результаты-->
+<div class="container container-places" style="padding: 70px 0; min-height: fit-content;" id="result">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-4">
+                <div class="place-inner" data-id="2433" data-location="Bistro" data-lat="40.711300455427" data-lng="-74.005143830954">
+                    <div class="place-inner-top">
+
+                        @if (Request.IsAuthenticated)
+                        {
+                            if (item.IsThisInFavorites == true)
+                            {
+                                <span class="add-in-favorite-place active" id=@item.Id>
+                                    <i class="fa fa-heart-o"></i>
+                                </span>
+
+                            }
+                            else
+                            {
+                                <span class="add-in-favorite-place" id=@item.Id>
+                                    <i class="fa fa-heart-o"></i>
+                                </span>
+                            }
+                        }
+                        <a href="/place/Place-details/@item.Slug">
+                            @if (item.ImageName != null)
+                            {
+                                <img src="/Images/Uploads/Places/@item.Id/Thumbs/@item.ImageName" class="" alt="">
+                            }
+                            else
+                            {
+                                <img alt="" src="/Content/img/no_image_big.png" style=" width: 100%; height:100%;">
+                                <img src="/Content/img/no_image_big.png" class="" alt="">
+                            }
+                        </a>
+                    </div>
+                    <div class="place-inner-center">
+                        <span class="place-inner-category">@item.CategoryName</span>
+                        <a class="place-inner-title" href="/place/Place-details/@item.Slug">@item.PlaceName</a>
+                        <div class="place-inner-description">@item.Description</div>
+                        <div class="place-inner-contact-info">
+                            <span class="place-inner-address">
+                                <i class="fa-solid fa-location-dot" aria-hidden="true"></i>@item.Address
+                            </span>
+                            <span class="place-inner-phone">
+                                <i class="fa-solid fa-phone" aria-hidden="true"></i>@item.PhoneNumber
+                            </span>
+                        </div>
+                    </div>
+                    <div class="place-inner-bottom">
+                        <div class="place-inner-rating">
+                            <div class="place-inner-contain">
+                                <i class="fa-regular fa-star" aria-hidden="true"></i>
+                                <span class="place-inner-rating-sr">
+                                    Рейтинг
+                                    @if (item.RaitingOfPlace.ToString() != "NaN")
+                                    {
+                                        <span>@item.RaitingOfPlace.ToString("0.0")</span>
+                                    }
+                                    else
+                                    {
+                                        <span> - </span>
+                                    }
+                                </span>
+                                @*<span class="place-inner-rating-count"> (12 отзывов)</span>*@
+                            </div>
+                        </div>
+                        <div class="place-inner-working-hours">
+                            <div class="place-inner-working-hours-contain">
+                                <span class="place-inner-working-hours-now-status fl-open">Открыто</span>
+                            </div>
+                        </div>
+                        <div class="place-inner-price">
+                            <span>~@String.Format("{0:N0}", item.Price).Replace(",", " ")₽</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="offcanvas offcanvas-start" style="width:100%" tabindex="-1" id="offcanvasMap" aria-labelledby="offcanvasMapLabel">
+    <div class="offcanvas-body" style="width:100%; padding:0; display:inline-flex">
+        <div id="mapProductsBlock" style=" width: 60%; height: 100%; overflow: auto;">
+            <div class="row listing white listingMap" id="mapResult" style="margin:auto">
+                @foreach (var item in Model)
+                {
+                    if (item.Latitude != null && item.Longitude != null)
+                    {
+                        <div class="col-4 placeItem-mapPage" style="max-width: 500px;">
+                            <div class="place-inner" data-id="2433" data-location="Bistro" data-lat="40.711300455427" data-lng="-74.005143830954">
+                                <div class="place-inner-top">
+                                    @if (Request.IsAuthenticated)
+                                    {
+                                        if (item.IsThisInFavorites == true)
+                                        {
+                                            <span class="add-in-favorite-place active" id=@item.Id>
+                                                <i class="fa fa-heart-o"></i>
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="add-in-favorite-place" id=@item.Id>
+                                                <i class="fa fa-heart-o"></i>
+                                            </span>
+                                        }
+                                    }
+                                    <div class="place-inner-top-hover-btns">
+                                        <a class="place-inner-top-readmore" href="">Подробнее</a>
+                                        <span class="place-inner-top-show-place-on-map" placeLat="@item.Latitude" placeLng="@item.Longitude"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+                                    </div>
+                                    <a href="">
+                                        @if (item.ImageName != null)
+                                        {
+                                            <img src="/Images/Uploads/Places/@item.Id/Thumbs/@item.ImageName" class="" alt="">
+                                        }
+                                        else
+                                        {
+                                            <img alt="" src="/Content/img/no_image_big.png" style=" width: 100%; height:100%;">
+                                            <img src="/Content/img/no_image_big.png" class="" alt="">
+                                        }
+                                    </a>
+                                </div>
+                                <div class="place-inner-center">
+                                    <span class="place-inner-category">@item.CategoryName</span>
+                                    <a class="place-inner-title" href="">@item.PlaceName</a>
+                                    <div class="place-inner-description">@item.Description</div>
+                                    <div class="place-inner-contact-info">
+                                        <span class="place-inner-address">
+                                            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>@item.Address
+                                        </span>
+                                        <span class="place-inner-phone">
+                                            <i class="fa-solid fa-phone" aria-hidden="true"></i>@item.PhoneNumber
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="place-inner-bottom">
+                                    <div class="place-inner-rating">
+                                        <div class="place-inner-contain">
+                                            <i class="fa-regular fa-star" aria-hidden="true"></i>
+                                            <span class="place-inner-rating-sr">
+                                                Рейтинг
+                                                @if (item.RaitingOfPlace.ToString() != "NaN")
+                                                {
+                                                    <span>@item.RaitingOfPlace.ToString("0.0")</span>
+                                                }
+                                                else
+                                                {
+                                                    <span> - </span>
+                                                }
+                                            </span>
+                                            @*<span class="place-inner-rating-count"> (12 отзывов)</span>*@
+                                        </div>
+                                    </div>
+                                    <div class="place-inner-working-hours">
+                                        <div class="place-inner-working-hours-contain">
+                                            <span class="place-inner-working-hours-now-status fl-open">Открыто</span>
+                                        </div>
+                                    </div>
+                                    <div class="place-inner-price">
+                                        <span>~@String.Format("{0:N0}", item.Price).Replace(",", " ")₽</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+        <div id="map" style="width: 40%; height:100%; z-index: 1"></div>
+        <div class="back-listing-button" data-bs-dismiss="offcanvas" aria-label="Close">
+            <i class="fa-solid fa-arrow-left"></i>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts
+{
+    <!--Добавление в избранное-->
+    <script>
+        $("#result").delegate('.add-in-favorite-place', 'click', function () {
+            if ($(this).hasClass('active')) {
+                $(this).removeClass('active');
+            }
+            else {
+                $(this).addClass('active');
+            }
+            let Id = $(this).attr('id');
+            var url = "/favorites/AddToFavoritesPartial";
+            $.get(url, {
+                Id: Id
+            }, function myfunction(data) {
+                $(".ajaxfavorites").html(data);
+            });
+        });
+    </script>
+
+    <!--Открытие списка с категориями-->
+    <script>
+        var clickDropdownCategoryMain = 0;
+        $("#CategorySelector").click(function () {
+
+            if (clickDropdownCategoryMain % 2 == 0) {
+                $(this).addClass("open");
+            }
+            else {
+                $(this).removeClass("open");
+            }
+            clickDropdownCategoryMain++;
+        });
+    </script>
+
+    <!--Замена выбранной категории-->
+    <script>
+        $("#CategorySelector").find(".option").click(function () {
+            $("#CategorySelector").find("span.current").text($(this).text());
+            $("#CategorySelector").find(".option").removeClass("selected");
+            $(this).addClass("selected");
+            $("#CatId").val($(this).attr("id"));
+        });
+    </script>
+
+    <!--Заполение категории при загрузке страницы-->
+    <script>
+        $(document).ready(function () {
+            var catId = $("#CatId").val();
+            $("#CategorySelector").find(".option").removeClass("selected");
+            var selectedCat = $("#CategorySelector").find(".option[id='" + CSS.escape(catId) + "']");
+            $(selectedCat).addClass("selected");
+            $("#CategorySelector").find(".current").text($(selectedCat).text());
+        });
+    </script>
+
+    <!--При изменении типа сортировки-->
+    <script>
+        $(".sort-block-on-page-sort-type").click(function () {
+            $(".sort-block-on-page-sort-type").removeClass('active');
+            $(this).addClass('active');
+
+            var SortType = ($(this).attr('filterType'));
+            //console.log(SortType);
+            var CatId = $("#CatId").val();
+            //console.log(CatId);
+            var CityId = $("#CityId").val();
+            //console.log(CityId);
+            var SearchString = $("#SearchString").val();
+
+            $.ajax({
+                type: "GET",
+                url: "/Search/GetPlaces",
+                data: {
+                    CatId: CatId, CityId: CityId, SortType: SortType, SearchString: SearchString
+                },
+                success: function (data) {
+                    $("#result").empty();
+                    $("#result").append(data);
+                },
+                error: function (data) {
+                }
+            })
+        });
+    </script>
+
+    <!--При изменении категории-->
+    <script>
+        $("#CategorySelector").find(".option").click(function () {
+            $("#CategorySelector").find("span.current").text($(this).text());
+            $("#CategorySelector").find(".option").removeClass("selected");
+            $(this).addClass("selected");
+            $("#CatId").val($(this).attr("id"));
+
+            var CatId = $("#CatId").val();
+            //console.log(CatId);
+            var CityId = $("#CityId").val();
+            //console.log(CityId);
+            var SearchString = $("#SearchString").val();
+            //console.log(SearchString);
+            var SortType = $(".sort-block-on-page-sort-type.active").attr('filterType');
+            //console.log(SortType);
+
+            $.ajax({
+                type: "GET",
+                url: "/Search/GetPlaces",
+                data: {
+                    CatId: CatId, CityId: CityId, SortType: SortType, SearchString: SearchString
+                },
+                success: function (data) {
+                    $("#result").empty();
+                    $("#result").append(data);
+                },
+                error: function (data) {
+                }
+            })
+        });
+    </script>
+
+    <!--При нажатии кнопки-->
+    <script>
+        $("#SearchButton").click(function () {
+            var CatId = $("#CatId").val();
+            //console.log(CatId);
+            var CityId = $("#CityId").val();
+            //console.log(CityId);
+            var SearchString = $("#SearchString").val();
+            //console.log(SearchString);
+            var SortType = $(".sort-block-on-page-sort-type.active").attr('filterType');
+            //console.log(SortType);
+
+            $.ajax({
+                type: "GET",
+                url: "/Search/GetPlaces",
+                data: {
+                    CatId: CatId, CityId: CityId, SortType: SortType, SearchString: SearchString
+                },
+                success: function (data) {
+                    $("#result").empty();
+                    $("#result").append(data);
+                },
+                error: function (data) {
+                }
+            })
+        });
+    </script>
+
+
+    <link href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.Default.css" />
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@v0.74.0/dist/L.Control.Locate.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@v0.74.0/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.74.0/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="~/Content/css/map-page.css" type="text/css" asp-append-version="true" />
+    <script>
+         let config = {
+            minZoom: 1,
+            maxZomm: 18
+        };
+        // magnification with which the map will start
+        const zoom = 3;
+        // co-ordinates
+        const lat = @ViewBag.CityLatitude;
+        const lon = @ViewBag.CityLongitude;
+        // calling map
+        var map = L.map("map", config).setView([lat, lon], zoom);
+        // Used to load and display tile layers on the map
+        // Most tile servers require attribution, which you can set under `Layer`
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            attribution:
+            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+        L.Control.geocoder().addTo(map);
+        map.addControl(new L.Control.Fullscreen());
+        L.control.locate().addTo(map);
+        let Markers = [];
+        function addMarker(latitude, longitude, id, name, imagename, slug, price, oldprice, rating, address, category) {
+        let marker = new L.Marker([latitude, longitude]);
+        let ImageSlug = '';
+        if (!imagename) {
+            ImageSlug = '/Content/img/no_image_big.png';
+        }
+        else {
+            ImageSlug = '/Images/Uploads/Places/' + id + '/Thumbs/' + imagename;
+        }
+        let RatingBlock = '';
+        if (rating !== rating) {
+            RatingBlock = '';
+        }
+        else {
+            RatingBlock = '<div class="pop-rating">' + rating + '</div>';
+        }
+        let PriceBlock = '';
+        if ((oldprice != 0) && (oldprice > price)) {
+            PriceBlock = '<div class="ribbon"> ' + price + '₽ <del>' + oldprice + '₽</del></div>'
+        }
+        else {
+            PriceBlock = '<div class="ribbon"> ' + price + '₽</div>'
+        }
+        marker.bindPopup(
+            '<a href="/place/place-details/' + slug + '"> <div class="maplink" style="cursor: pointer;">' + RatingBlock + '<div class="pop-img" style="background-image:url(' + ImageSlug + ')"><div class="pop-coor-icon"></div>' + PriceBlock + '</div><div class="pop-coors"> <div class="pop-title">' + name + '</div><div class="pop-category">' + category + '</div><div class="pop-address">' + address + '</div></div></a>'
+        );
+        Markers.push(marker);
+        }
+
+        @foreach (var item in Model)
+        {
+            if(item.Latitude != null && item.Longitude != null)
+            {
+                @:addMarker(@item.Latitude, @item.Longitude, @item.Id, '@item.PlaceName', '@item.ImageName', '@item.Slug', @item.Price, @item.OldPrice, @item.RaitingOfPlace, '@item.Address', '@item.CategoryName');
+            }
+        }
+
+        var clusters = L.markerClusterGroup();
+
+        for (var i = 0; i < Markers.length; i++)
+        {
+            clusters.addLayer(Markers[i]);
+        }
+        map.addLayer(clusters);
+
+
+        map.on('moveend', function () {
+            var Bounds = map.getBounds();
+
+            var NorthWestLat = Bounds.getNorthWest().lat,
+                NorthWestLng = Bounds.getNorthWest().lng,
+                NorthEastLat = Bounds.getNorthEast().lat,
+                NorthEastLng = Bounds.getNorthEast().lng,
+                SouthWestLat = Bounds.getSouthWest().lat,
+                SouthWestLng = Bounds.getSouthWest().lng,
+                SouthEastLat = Bounds.getSouthEast().lat,
+                SouthEastLng = Bounds.getSouthEast().lng;
+
+            var CategoriesButtons = null;
+            var ActiveButton = null;
+
+            var CatId = null;
+
+            var CityId = $("#CityId").val();
+
+            $.ajax({
+                type: "GET",
+                url: "/Sections/GetPlacesForMap",
+                data: {
+                    CatId: CatId, CityId: CityId, NorthWestLat: NorthWestLat, NorthWestLng: NorthWestLng, NorthEastLat: NorthEastLat, NorthEastLng: NorthEastLng, SouthWestLat: SouthWestLat, SouthWestLng: SouthWestLng, SouthEastLat: SouthEastLat, SouthEastLng: SouthEastLng
+                },
+                success: function (data) {
+                    $("#mapResult").empty();
+                    $("#mapResult").append(data);
+                },
+                error: function (data) {
+
+                }
+            });
+        });
+
+
+        $("#mapResult").delegate('.place-inner-top-show-place-on-map', 'click', function () {
+            //alert(1);
+            var placeLat = $(this).attr("placelat");
+            var placeLng = $(this).attr("placelng");
+       /*     alert(placeLat);*/
+            //alert(placeLng);
+            map.setView([placeLat, placeLng], 20);
+        });
+    </script>
+
+}

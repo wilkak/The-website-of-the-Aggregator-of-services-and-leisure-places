@@ -1,0 +1,114 @@
+﻿
+
+@model IEnumerable<WebStoreMap.Models.ViewModels.Account.UserRoleInformationViewModel>
+
+@{
+    ViewBag.Title = "Пользователи";
+}
+
+@using PagedList.Mvc;
+@using PagedList;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+
+
+
+<section class="section-content">
+    <div class="container container-content" style=" margin-bottom: 40px;min-height: 500px;">
+        <div class="row">
+            <div class="col-lg-4" id="addProductBlockMobile">
+                <div class="card addProductCard">
+                    <div class="card-body addProductCardBody">
+                        <h5 class="card-title ">Добавление пользователя</h5>
+                        <p class="card-text">Чтобы добавить нового пользователя, которого еще нет на сайте, создайте новую карточку пользователя и заполните параметры. </p>
+
+
+
+                        <center>   @Html.ActionLink("Добавить нового пользователя", "AddUser", "", new { @class = "btn btn-add" })</center>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="allProductsCardBlock">
+                    <div class="card allProductsCard">
+                        <div class="card-header allProductsCardHeader" id="allProductsCardHeaderDesktop">
+                            Пользователи
+                        </div>
+                        <div class="card-header allProductsCardHeader" id="allProductsCardHeaderMobile">
+                            Пользователи
+                        </div>
+                    </div>
+                    @foreach (var item in ViewBag.OnePageOfUsers)
+                    {
+                        <div class="card mb-3 allProductsCardItem">
+                            <div class="row g-0">
+                                <div class="col">
+                                    <div class="card-body">
+                                        <div class="row" style="height:100%; margin-right: 0 !important; margin-left: 0;">
+                                            <div class="col ">
+                                                <h5 class="card-title CardOfProductTitle">Имя: @item.FirstName @item.LastName </h5>
+
+                                                <h5 class="card-title CardOfProductTitle">Роль: @item.RoleName</h5>
+
+                                                <h5 class="card-title CardOfProductTitle">Вид: @item.View</h5>
+                                            </div>
+                                            <div class="col" id="editeDeliteBlockDesktop" style=" padding: 0px !important; ">
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item">@Html.ActionLink("Изменить", "EditUser", new { id = item.Id }, new { @class = "btn btn-edit" })</li>
+                                                    <li class="list-group-item">@Html.ActionLink("Изменить Роль", "EditRoleUser", new { id = item.Id }, new { @class = "btn btn-edit" })</li>
+                                                    <li class="list-group-item">@Html.ActionLink("Удалить", "DeleteUser", new { id = item.Id }, new { @class = "btn btn-delete " })</li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-9 p-3" id="editeDeliteBlockMobile" style=" padding: 0px !important; ">
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item">@Html.ActionLink("Изменить", "EditUser", new { id = item.Id }, new { @class = "btn btn-edit" })</li>
+                                                    <li class="list-group-item">@Html.ActionLink("Изменить Роль", "EditRoleUser", new { id = item.Id }, new { @class = "btn btn-edit" })</li>
+                                                    <li class="list-group-item">@Html.ActionLink("Удалить", "DeleteUser", new { id = item.Id }, new { @class = "btn btn-delete " })</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="col-lg-4" id="addProductBlock">
+                <div class="card addProductCard">
+                    <div class="card-body addProductCardBody">
+                        <h5 class="card-title ">Добавление пользователя</h5>
+                        <p class="card-text">Чтобы добавить нового пользователя, которого еще нет на сайте, создайте новую карточку пользователя и заполните параметры. </p>
+
+                        <select id="SelectedRol" name="SelectedRol" class="btn btn-add" style="margin-bottom:30px">
+                            <option value="0" class="option-category">All</option>
+                            @foreach (var item in ViewBag.Roles)
+                            {
+                                if (ViewBag.SelectedRol == item.Value)
+                                {
+                                    <option selected="selected" class="option-category" value="@item.Value">@item.Text</option>
+
+                                }
+
+                                else
+                                {
+                                    <option class="option-category" value="@item.Value">@item.Text</option>
+
+                                }
+
+                            }
+                        </select>
+
+                        <center>@Html.ActionLink("Добавить нового пользователя", "AddUser", "", new { @class = "btn btn-add" })</center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <center>@Html.PagedListPager((IPagedList)ViewBag.OnePageOfUsers, page => Url.Action("Users", new { page, rolId = ViewBag.SelectedRol }))</center>
+</section>
+@section Scripts
+        {
+    <script src="~/Content/MyScripts/UsersScript.js"></script>
+}

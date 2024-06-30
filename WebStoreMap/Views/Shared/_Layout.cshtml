@@ -1,0 +1,371 @@
+﻿﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="yandex-verification" content="73ebe0b36e2a23f2" />
+    <meta name="google-site-verification" content="GHA-4aqzI9ow-OXRjSdRoq-7-C7svyErfM6Unesw7P4" />
+    <meta name="msvalidate.01" content="2ABD9F8C7942FE9739AB4D7F0CA955E5" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Capriola|Roboto" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Roboto:wght@900&display=swap" rel="stylesheet">
+    <title>@ViewBag.Title · STREET TRAVEL</title>
+    @if (ViewBag.Title == "Главная")
+    {
+
+        <meta name="description" content="Туристические услуги. Авторские туры. STREET TRAVEL — Агрегатор в мире путешествий! Мы стараемся подыскать для Вас, только лучшие предложения, со всех уголков страны!">
+        <meta name="keywords" content="туристические услуги, авторские туры, cплавы по рекам, походы, восхождения на вершины, автомобильные туры, туры по низким ценам">
+
+    }
+    else
+    {
+        @RenderSection("head", false)
+    }
+    <script src="https://kit.fontawesome.com/a0728c37d3.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="~/Content/Site.css" type="text/css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Content/css/main_page.css" type="text/css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Content/css/search-page.css" type="text/css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Content/css/login-page.css" type="text/css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Content/css/edit-profile.css" type="text/css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Content/css/desire-page.css" type="text/css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Content/css/place-details-page.css" type="text/css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" type="text/css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Content/bootstrap-select.min.css" type="text/css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Content/css/newStyle.css" type="text/css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Content/css/error-page.css" type="text/css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Content/css/review-page.css" type="text/css" asp-append-version="true" />
+    @*  <link rel="stylesheet" href="~/Content/css/error-page.css" type="text/css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/Content/css/message-page.css" type="text/css" asp-append-version="true" />*@
+</head>
+<body id="body">
+    
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="font-family: 'Montserrat', sans-serif;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/Dashboard/Index">STREET TRAVEL</a>
+            <div id="navbarMobile">
+                <button class="open-menu-block" type="button" data-bs-toggle="offcanvas" href="#offcanvasScrolling" role="button" aria-controls="offcanvasScrolling">
+                    <i class="fa-solid fa-bars-staggered fa-flip-horizontal"></i>
+                </button>
+                <button class="open-search-block" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarDesktop">
+                <div class="left-content">
+                    <div class="logo-container">
+                        @*<img src="" alt="Site Logotype" class="img-logotype">*@
+                    </div>
+                    @*   <form class="search" role="search" method="get" id="searchform">  *@
+                    @using (Html.BeginForm("Index", "Search", FormMethod.Get, new { @class = "search" }))//FormMethod.Post))
+                    {
+                        <fieldset>
+                            <input type="text" class="searchinput" value="" name="SearchString" id="search-form" placeholder="Введите текст..." style="border-color: #cddbe7;">
+                            <div class="searchsubmit">
+                                <input type="submit" id="searchsubmit" class="submit-btn" value=" ">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </div>
+                        </fieldset>
+                    }
+                    @*</form>*@
+                </div>
+
+                <div class="right-content">
+                    <ul class="navbar-nav nav-menu">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">Города</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Сотрудничество</a>
+                        </li>
+                                <li class="nav-item dropdown">
+                                    <button class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa-regular fa-user"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                        @if (Request.IsAuthenticated)
+                                        {
+                                            if (User.IsInRole("Partner"))
+                                            {
+                                                <!--Ссылка на партнер зону-->
+                                                <li>
+                                                    @Html.ActionLink("Мой бизнес", "Index", "Dashboard", new { area = "Partner" }, new { @class = "dropdown-item" })
+                                                </li>
+                                            }
+                                            else if (User.IsInRole("Admin"))
+                                            {
+                                                <!--Ссылка на админ зону-->
+                                                <li>
+                                                    @Html.ActionLink("Административная область", "Index", "Dashboard", new { area = "Admin" }, new { @class = "dropdown-item" })
+                                                </li>
+                                            }
+                                            else if (User.IsInRole("Moderator"))
+                                            {
+                                                <!--Ссылка на зону модератора-->
+                                                <li>
+                                                    @Html.ActionLink("Модераторская область", "Index", "Dashboard", new { area = "Moderator" }, new { @class = "dropdown-item" })
+                                                </li>
+                                            }
+                                            <li>
+                                                @Html.ActionLink("Мой Профиль", "UserProfileInfo", "Account", null, new { @class = "dropdown-item" })
+                                            </li>
+                                            <li>
+                                                @Html.ActionLink("Выход", "Logout", "Account", null, new { @class = "dropdown-item" })
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <!--Если не авторизован и находится на странице логина-->
+                                            if (ViewBag.Title == "Login")
+                                            {
+                                                <li>
+                                                    <a href="/account/create-account" class="dropdown-item" style="text-decoration: none">Регистрация</a>
+                                                </li>
+                                                <li>
+                                                    @Html.ActionLink("Вход", "Login", "Account", null, new { @class = "dropdown-item" })
+                                                </li>
+                                            }
+                                            <!--Если не авторизован и не находится на странице логина-->
+                                            if (ViewBag.Title != "Login")
+                                            {
+                                                <li>
+                                                    <a href="/account/create-account" class="dropdown-item" style="text-decoration: none">Регистрация</a>
+                                                </li>
+                                                <li>
+                                                    @Html.ActionLink("Вход", "Login", "Account", null, new { @class = "dropdown-item" })
+                                                </li>
+                                            }
+                                        }
+
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+</nav>
+
+    <div class="offcanvas offcanvas-top offcanvas-search" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel" style=" height: 100%;">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasTopLabel"></h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Закрыть" style="z-index:100"></button>
+        </div>
+        <div class="offcanvas-body">
+            <form class="search" role="search" method="get" id="searchform" style="z-index:100">
+                <fieldset>
+                    <input type="text" class="searchinput" value="" name="s" id="search-form" placeholder="Введите текст..." style="border-color: #cddbe7;">
+                    <div class="searchsubmit">
+                        <input type="submit" id="searchsubmit" class="submit-btn" value="">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+ 
+        <div class="offcanvas offcanvas-start offcanvas-menu" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas-header">
+                <h2 class="offcanvas-title" id="offcanvasExampleLabel">Меню</h2>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close">
+                    <span style=" width: 1.8em; height: 1.8em;" class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="offcanvas-body">
+                <div>
+                    <ul class="navbar-nav navbar-nav-mobile me-auto mb-2 mb-lg-0">
+                        <li>
+                            <a class="nav-item" href="/">Главная</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    @if (ViewBag.Sidebar == "Yes")
+    {
+        @RenderBody()
+    }
+    else
+    {
+        @RenderBody()
+
+    }
+
+    @if (Request.IsAuthenticated)
+    {
+        if (ViewBag.Title != "Избранное")
+        {
+
+            @Html.Action("FavoritesPartial", "Favorites")
+        }
+    }
+
+    <footer class="section-footer">
+        <div class="section-footer_top-content">
+            <div class="container">
+                <div class="row">
+                    <div class="section-footer_column section-footer_column-first col-lg-3 col-md-6" style=" margin-top: 15px;">
+                        @*<div class="footer-widget footer-widget-image">
+                                <img width="305" height="110" src="~/Content/img/icons/111.png" class="image wp-image-2714  attachment-full size-full"  sizes="(max-width: 305px) 100vw, 305px">
+                            </div>*@
+                        <div class="footer-widget footer-widget-text">
+                            <div class="footer-widget-text-block">
+                                <p>STREET TRAVEL - это агрегатор услуг и мест досуга, позволяющий находить необходимые услуги в твоем городе.</p>
+                            </div>
+                        </div>
+                        <div class="footer-widget footer-widget_contact-info">
+                            <div class="footer-widget_contact-info-block">
+                                <div class="block-left">E-Mail:</div>
+                                <div class="block-right">
+                                    <a href="mailto:info@streettravel.net"> info@streettravel.net</a>
+                                </div>
+                            </div>
+                            <div class="footer-widget_contact-info-block">
+                                <div class="block-left">Телефон:</div>
+                                <div class="block-right">
+                                    <a href="tel:+7-900-095-10-93"> +7-900-095-10-93</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section-footer_column section-footer_column-second col-lg-3 col-md-6" style="padding-left: 73px;">
+                        <div class="footer-widget footer-widget_menu">
+                            <h5 class="footer-widget_title">О нас</h5>
+                            <ul>
+                                <li class="nav-item">
+                                    <a href="#">О компании</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#">Сотрудничество</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#">Поддержка</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#">Контакты</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#">Как это работает</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="section-footer_column section-footer_column-third col-lg-3 col-md-6" style=" padding-left: 5px; flex: 0 0 18.48%; max-width: 18.48%;">
+                        <div class="footer-widget footer-widget_menu">
+                            <h5 class="footer-widget_title">Популярные города</h5>
+                            <ul>
+                                <li class="nav-item">
+                                    <a href="#">Москва</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#">Челябинск</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#">Екатеринбург</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#">Новосибирск</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#">Сочи</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="section-footer_column section-footer_column-four col-lg-3 col-md-6" style="flex: 0 0 31%; max-width: 31%;">
+                        <div class="footer-widget footer-widget-text">
+                            <h5 class="footer-widget_title">Скачивай приложение</h5>
+                            <div class="footer-widget-text-block">
+                                <p>Скачивай приложение и используй сервис в любом месте и в любое время</p>
+                            </div>
+                        </div>
+                        <div class="footer-widget footer-widget-image">
+                            <a href="#">
+                                <img width="219" height="74" src="/Content/img/icons/appstore.png" class="image wp-image-422  attachment-full size-full" alt="" decoding="async" loading="lazy" style="max-width: 100%; height: auto;">
+                            </a>
+                        </div>
+                        <div class="footer-widget footer-widget-image">
+                            <a href="#">
+                                <img width="220" height="74" src="~/Content/img/icons/playstore.png" class="image wp-image-423  attachment-full size-full" alt="" decoding="async" loading="lazy" style="max-width: 100%; height: auto;">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section-footer_bottom-content container">
+            <div class="sign-up-block">
+                <div class="sign-up-block-contain">
+                    <div>
+                        <h5 class="sign-up-block-title">Подписывайся на рассылку</h5>
+                        <div>
+                            <form class="sign-up-block-form">
+                                <div class="sign-up-block-form-fields">
+                                    @*<label>Signup For Latest News</label>*@
+                                    <input type="email" class="sign-up-block-form-fields-input" name="EMAIL" placeholder="Введите свою почту" required="">
+                                    <input type="submit" class="sign-up-block-form-fields-btn" value="ПОДПИСАТЬСЯ">
+                                </div>
+                                <div class="mc4wp-response"></div>
+                            </form><!-- / Mailchimp for WordPress Plugin -->
+                        </div>
+                    </div>
+                </div>
+                <div class="sign-up-block-social">
+                    <h5 class="sign-up-block-social-title">Мы в социальных сетях</h5>
+                    <a class="footer-social_icon" href="#">
+                        <i class="fa-brands fa-vk"></i>Вконтакте
+                    </a>
+                    <a class="footer-social_icon" href="#">
+                        <i class="fa-brands fa-telegram"></i>Телеграм
+                    </a>
+                    <a class="footer-social_icon" href="#">
+                        <i class="fa-brands fa-square-whatsapp"></i>WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-company">
+            <span>STREET TRAVEL - 2023</span>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @*<script src="~/Scripts/jquery-3.6.1.slim.min.js"></script>*@
+    <script src="~/Scripts/popper.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    @RenderSection("scripts", required: false)
+    @*@RenderSection("scripts", required: false)*@
+    @*<script src="~/Content/DesignScript/CloseNavBarToggle.js"></script>
+        <script src="~/Content/DesignScript/OpenSearchInput.js"></script>
+        <script src="~/Content/DesignScript/OpenFilterBox.js"></script>
+        <script src="~/Content/DesignScript/ButtonInfoColorChange.js"></script>
+        <script src="~/Content/DesignScript/Animation.js"></script>*@
+
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+            var z = null; m[i].l = 1 * new Date();
+            for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        })
+            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(90264247, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/90264247" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+</body>
+</html>

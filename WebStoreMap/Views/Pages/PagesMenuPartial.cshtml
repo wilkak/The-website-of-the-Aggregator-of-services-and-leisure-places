@@ -1,0 +1,22 @@
+﻿@model IEnumerable<WebStoreMap.Models.ViewModels.Pages.PageViewModel>
+@{
+    string tempPageTitle = (string)TempData["PageTitle"];
+}
+
+@foreach (var item in Model)
+{
+
+    if (tempPageTitle == item.Title)
+    {
+<p class="footer-item">
+    <a href="/@item.Slug" class="text-white footer-item-text">@item.Title</a>
+</p>
+    }
+    else
+    {
+<p class="footer-item">
+    <a href="/@item.Slug" class="text-white footer-item-text">@item.Title</a>
+</p>
+    }
+
+}

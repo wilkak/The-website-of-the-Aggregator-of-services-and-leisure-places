@@ -1,0 +1,376 @@
+﻿@{ ViewBag.Title = "Главная"; }
+@*
+    <style>
+        .search-cities {
+            overflow: auto;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .search-cities::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+        }
+        .footer-style {
+            margin-top: -95px;
+            z-index: 10;
+            position: relative;
+        }
+    </style>
+
+    <section class="section-main">
+        <div class="container section-main__container">
+            <div class="section-main__content-centralized">
+                <div class="section-main__search-block" id="searchBlock">
+                    @using (Html.BeginForm("Index", "Sections", FormMethod.Get, new { id = "searchForm" }))
+                    {
+                        <form>
+                            <fieldset>
+                                @Html.TextBox("SearchString", "", new { @class = "form-control", type = "text", placeholder = "" })
+                                @Html.TextBox("CityId", "", new { @class = "form-control", type = "text", placeholder = "", style = "display:none;" })
+                                @Html.TextBox("CatId", "", new { @class = "form-control", type = "text", placeholder = "", style = "display:none;" })
+                            </fieldset>
+                            <div class="search-cities-toggle" style="opacity: 1;" id="searchCityToggle">
+                                <i class="fa-solid fa-city" style="font-size:20px"></i>
+                            </div>
+                            <div class="search-cities" id="searchCities">
+                                <div class="cities-list" id="citiesList">
+                                    @Html.Action("CitiesMenuPartial", "Sections")
+                                    <input class="chosen-city" type="hidden" name="city" value="0">
+                                </div>
+                            </div>
+                            <div class="search-submit">
+                                <input type="submit" value="" id="searchSubmit">
+                                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                            </div>
+                        </form>
+                    }
+                </div>
+                <div class="section-main__search-categories" style=" width: 100%; left: 0%;">
+                    <div class="categories">
+                        @Html.Action("CategoryMenuPartial", "Place")
+                    </div>
+                    <i class="more-categories fa fa-plus"></i>
+                    <i class="minus-categories fa fa-minus"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+*@
+
+
+
+
+<section class="section-top-search">
+    <div class="section-top-search-bg"></div>
+    <div class="section-top-search-container">
+        <div class="section-top-search-column">
+            <div class="section-top-search-widget">
+                <div class="section-top-search-element">
+                    <div class="section-top-search-widget-container">
+                        <div class="section-top-search-widget-container-title">
+                            <h1>Открой для себя новые места</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-top-search-element">
+                    <div class="section-top-search-widget-container">
+                        <div class="section-top-search-widget-container-content">
+                            <div class="section-top-search-widget-container-content-text">
+                                Найди услуги &amp; места для развлечений, путешествий &amp; отдыха
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-top-search-element">
+                    <div class="section-top-search-widget-container">
+                        <div class="section-top-search-widget-container-zone">
+                            <div class="section-top-search-widget-container-contain">
+                                @using (Html.BeginForm("Index", "Search", FormMethod.Get, new { id = "searchForm" }))
+                                {
+                                    <form>
+                                        <div class="section-top-search-widget-container-top">
+                                            <input type="text" class="section-top-search-text-input" placeholder="Введи текст..." id="SearchString" name="SearchString">
+                                            <input type="hidden" id="CatId" name="CatId">
+                                            <input type="hidden" id="CityId" name="CityId">
+                                            <div class="section-top-search-cat-select" tabindex="0" id="CitySelector">
+                                                <span class="current">Город</span>
+                                                @Html.Action("CitiesMenuPartial", "Sections")
+                                            </div>
+                                            <div class="section-top-search-cat-select" tabindex="0" id="CategorySelector">
+                                                <span class="current" style="border-right:none">Категория</span>
+                                                 @Html.Action("CategoryMenuPartial", "Place")
+                                            </div>
+                                            <button class="section-top-search-btn" type="submit">
+                                                <i class="fa-solid fa-magnifying-glass"></i>
+                                            </button>
+                                        </div>
+                                    </form>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-popular-cities-top">
+    <div class="section-popular-cities-top-container container">
+        <div class="section-popular-cities-top-column">
+            <div class="section-popular-cities-top-widget">
+                <div class="popular-cities-top-widget-title">
+                    <div class="popular-cities-top-widget-title-container">
+                        <div class="popular-cities-top-widget-title-text">
+                            <span class="popular-cities-top-widget-title-text-top">Города с популярными местами</span>
+                            <h1 class="title">Популярные города</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-popular-cities-bottom">
+    <div class="section-popular-cities-bottom-container container">
+        <div class="section-popular-cities-bottom-column">
+            <div class="section-popular-cities-bottom-column-populated">
+                <div class="section-popular-cities-bottom">
+                    <div class="section-popular-cities-bottom-widget-container">
+                        <div class="section-popular-cities-bottom-places-cities-wrap">
+                            <div class="city-row">
+                                <div class="section-popular-cities-bottom-places-city-contain city-width-one">
+                                    <a class="section-popular-cities-bottom-places-city-href" href="/Sections?SearchString=&CityId=1&CatId=0&city=0">
+                                        <div class="section-popular-cities-bottom-places-city-shadow"></div>
+                                        <div class="section-popular-cities-bottom-places-city-gradient"></div>
+                                        <img class="fl-city-img" style="width: 537px; height: 300px;" src="https://upload.wikimedia.org/wikipedia/commons/c/c1/%D0%A4%D0%BE%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D1%8F_%D0%A7%D0%B5%D0%BB%D1%8F%D0%B1%D0%B8%D0%BD%D1%81%D0%BA%D0%B0_%D1%81_%D0%BE%D1%82%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%D0%BC_%282021%29.jpg">
+                                        @*<span class="section-popular-cities-bottom-places-city-count ">12 мест</span>*@
+                                        <span class="section-popular-cities-bottom-places-city-meta ">
+                                            <span class="section-popular-cities-bottom-places-city-title">Челябинск</span>
+                                            <span class="section-popular-cities-bottom-places-city-country">Россия</span>
+                                        </span>
+                                    </a>
+                                </div>
+                                <div class="section-popular-cities-bottom-places-city-contain city-width-two">
+                                    <a class="section-popular-cities-bottom-places-city-href" href="/Sections?SearchString=&CityId=1&CatId=0&city=0">
+                                        <div class="section-popular-cities-bottom-places-city-shadow"></div>
+                                        <div class="section-popular-cities-bottom-places-city-gradient"></div>
+                                        <img class="fl-city-img" style="width: 265px; height: 300px;" src="https://www.fonstola.ru/pic/201508/640x960/fonstola.ru_195144.jpg">
+                                        @*<span class="section-popular-cities-bottom-places-city-count ">10 мест</span>*@
+                                        <span class="section-popular-cities-bottom-places-city-meta ">
+                                            <span class="section-popular-cities-bottom-places-city-title fl-text-regular-style">Москва</span>
+                                            <span class="section-popular-cities-bottom-places-city-country">Россия</span>
+                                        </span>
+                                    </a>
+                                </div>
+                                <div class="section-popular-cities-bottom-places-city-contain city-width-two">
+                                    <a class="section-popular-cities-bottom-places-city-href" href="/Sections?SearchString=&CityId=1&CatId=0&city=0">
+                                        <div class="section-popular-cities-bottom-places-city-shadow"></div>
+                                        <div class="section-popular-cities-bottom-places-city-gradient"></div>
+                                        <img decoding="async" class="fl-city-img" style="width: 265px; height: 300px;" src="https://sun9-15.userapi.com/impg/cP8W6MjfHzM3mMLKapB4aHnVDfC3tGic5ekgwQ/LzUE-h2oCrY.jpg?size=1280x1599&quality=96&sign=e2c0c0fc991c6faffde8dbd693329e6a&c_uniq_tag=ZvWBnE2ADwkhGdgEOcrjl-Aie1aio7QtdlvOaQyLfHo&type=album">
+                                        @*<span class="section-popular-cities-bottom-places-city-count ">6 мест</span>*@
+                                        <span class="section-popular-cities-bottom-places-city-meta ">
+                                            <span class="section-popular-cities-bottom-places-city-title fl-text-regular-style">Екатеринбург</span>
+                                            <span class="section-popular-cities-bottom-places-city-country">Россия</span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="city-row">
+                                <div class="section-popular-cities-bottom-places-city-contain city-width-two">
+                                    <a class="section-popular-cities-bottom-places-city-href" href="/Sections?SearchString=&CityId=1&CatId=0&city=0">
+                                        <div class="section-popular-cities-bottom-places-city-shadow"></div>
+                                        <div class="section-popular-cities-bottom-places-city-gradient"></div>
+                                        <img decoding="async" class="fl-city-img" style="width: 265px; height: 300px;" src="https://sun6-23.userapi.com/s/v1/if1/ooKSLSaRz6nsLLKII9SjO9MgGiEUNqZPKFlMYUPS3XINmt4qeAYu3NJZsneFy_WFUOApJE_k.jpg?size=350x487&quality=96&crop=219,0,350,487&ava=1">
+                                        @*<span class="section-popular-cities-bottom-places-city-count ">13 мест</span>*@
+                                        <span class="section-popular-cities-bottom-places-city-meta ">
+                                            <span class="section-popular-cities-bottom-places-city-title fl-text-regular-style">Новосибирск</span>
+                                            <span class="section-popular-cities-bottom-places-city-country">Россия</span>
+                                        </span>
+                                    </a>
+                                </div>
+                                <div class="section-popular-cities-bottom-places-city-contain city-width-two">
+                                    <a class="section-popular-cities-bottom-places-city-href" href="/Sections?SearchString=&CityId=1&CatId=0&city=0">
+                                        <div class="section-popular-cities-bottom-places-city-shadow"></div>
+                                        <div class="section-popular-cities-bottom-places-city-gradient"></div>
+                                        <img decoding="async" class="fl-city-img" style="width: 265px; height: 300px;" src="https://sochistream.ru/wp-content/uploads/2018/02/yz78G_VaP0I.jpg" />
+                                        @*<span class="section-popular-cities-bottom-places-city-count ">6 мест</span>*@
+                                        <span class="section-popular-cities-bottom-places-city-meta ">
+                                            <span class="section-popular-cities-bottom-places-city-title fl-text-regular-style">Сочи</span>
+                                            <span class="section-popular-cities-bottom-places-city-country">Россия</span>
+                                        </span>
+                                    </a>
+                                </div>
+                                <div class="section-popular-cities-bottom-places-city-contain city-width-one">
+                                    <a class="section-popular-cities-bottom-places-city-href" href="/Sections?SearchString=&CityId=1&CatId=0&city=0">
+                                        <div class="section-popular-cities-bottom-places-city-shadow"></div>
+                                        <div class="section-popular-cities-bottom-places-city-gradient"></div>
+                                        <img decoding="async" class="fl-city-img" style="width: 537px; height: 300px;" src="https://sportishka.com/uploads/posts/2022-04/1650544230_2-sportishka-com-p-istoricheskii-tsentr-sankt-peterburga-kras-2.jpg">
+                                        @*<span class="section-popular-cities-bottom-places-city-count ">5 мест</span>*@
+                                        <span class="section-popular-cities-bottom-places-city-meta ">
+                                            <span class="section-popular-cities-bottom-places-city-title fl-text-regular-style">Санкт-Петербург</span>
+                                            <span class="section-popular-cities-bottom-places-city-country">Россия</span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="partner-section">
+    <div class="partner-section-container container">
+        <div class="row">
+            <div class="col partner-section-container-column">
+                <div class="partner-section-container-widget">
+                    <div class="partner-section-container-element">
+                        <div class="partner-section-container-widget-container">
+                            <div class="partner-section-container-widget-box">
+                                <div class="partner-section-container-widget-box-top-content">
+                                    <img src="https://st.focusedcollection.com/18590116/i/650/focused_209283560-stock-photo-close-male-hands-using-laptop.jpg" height="230">
+                                    @*<div class="widget-box-top-content-icon">
+                                    </div>*@
+                                </div>
+                                <div class="partner-section-container-widget-box-bottom-content">
+                                    <h5 class="widget-box-title">
+                                        Регистрация
+                                    </h5>
+                                    <div class="widget-box-content">
+                                        Зарегиструйтесь чтобы получить доступ у сотни мест и услуг в десятках городах
+                                    </div>
+                                    <a class="widget-box-btn" href="#">Подробнее</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col partner-section-container-column">
+                <div class="partner-section-container-widget">
+                    <div class="partner-section-container-element">
+                        <div class="partner-section-container-widget-container">
+                            <div class="partner-section-container-widget-box">
+                                <div class="partner-section-container-widget-box-top-content">
+                                    <img src="https://img1.pixel-shot.com/small/c/c/6/9/cc69ae20de3d99f1c8f5ad5270e8086a.JPG" height="230">
+                                    @*<div class="widget-box-top-content-icon">
+                                    </div>*@
+                                </div>
+                                <div class="partner-section-container-widget-box-bottom-content">
+                                    <h5 class="widget-box-title">
+                                        Партнерство
+                                    </h5>
+                                    <div class="widget-box-content">
+                                        Стань партнером прямо сейчас для размещения услуг своей компании
+                                    </div>
+                                    <a class="widget-box-btn" href="#">Подробнее</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col partner-section-container-column">
+                <div class="partner-section-container-widget">
+                    <div class="partner-section-container-element">
+                        <div class="partner-section-container-widget-container">
+                            <div class="partner-section-container-widget-box">
+                                <div class="partner-section-container-widget-box-top-content">
+                                    <img src="https://st.focusedcollection.com/13397678/i/650/focused_167718532-stock-photo-side-view-portrait-businessman-suit.jpg" height="230">
+                                    @*<div class="widget-box-top-content-icon">
+                                    </div>*@
+                                </div>
+                                <div class="partner-section-container-widget-box-bottom-content">
+                                    <h5 class="widget-box-title">
+                                        Премиум
+                                    </h5>
+                                    <div class="widget-box-content">
+                                        Приобрети премиум аккаунт партнера для размещения услуг на главной странице
+                                    </div>
+                                    <a class="widget-box-btn" href="#">Подробнее</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <!--Aнимация для блоков с инфой про партнерство-->
+    <script>
+        $(".partner-section-container-widget").click(function () {
+            $(".partner-section-container-widget-box").removeClass("active");
+            $(this).find(".partner-section-container-widget-box").addClass("active");
+        });
+
+        $(".partner-section-container-widget").hover(function () {
+            $(".partner-section-container-widget-box").removeClass("active");
+            $(this).find(".partner-section-container-widget-box").addClass("active");
+        });
+    </script>
+
+
+    <!--Анимация наведения на город-->
+    <script>
+        $(".section-popular-cities-bottom-places-city-contain").hover(function () {
+            $(".section-popular-cities-bottom-places-city-gradient").removeClass("active");
+            $(this).find(".section-popular-cities-bottom-places-city-gradient").addClass("active");
+            $(".section-popular-cities-bottom-places-city-count").removeClass("active");
+            $(this).find(".section-popular-cities-bottom-places-city-count").addClass("active");
+        });
+    </script>
+
+
+    <!--Открытие списка с категориями-->
+    <script>
+        var clickDropdownCategoryMain = 0;
+        var clickDropdownCategoryMain2 = 0;
+        $("#CategorySelector").click(function () {
+
+            if (clickDropdownCategoryMain % 2 == 0) {
+                $(this).addClass("open");
+            }
+            else {
+                $(this).removeClass("open");
+            }
+            clickDropdownCategoryMain++;
+        });
+        $("#CitySelector").click(function () {
+
+            if (clickDropdownCategoryMain2 % 2 == 0) {
+                $(this).addClass("open");
+            }
+            else {
+                $(this).removeClass("open");
+            }
+            clickDropdownCategoryMain2++;
+        });
+    </script>
+
+
+    <!--Замена выбранной категории-->
+    <script>
+        $("#CategorySelector").find(".option").click(function () {
+            $("#CategorySelector").find("span.current").text($(this).text());
+            $("#CategorySelector").find(".option").removeClass("selected");
+            $(this).addClass("selected");
+            $("#CatId").val($(this).attr("id"));
+        });
+    </script>
+
+    <script>
+        $("#CitySelector").find(".option").click(function () {
+            $("#CitySelector").find("span.current").text($(this).text());
+            $("#CitySelector").find(".option").removeClass("selected");
+            $(this).addClass("selected");
+            $("#CityId").val($(this).attr("id"));
+        });
+    </script>
+}

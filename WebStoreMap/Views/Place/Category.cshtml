@@ -1,0 +1,152 @@
+﻿@model IEnumerable<WebStoreMap.Models.ViewModels.Place.PlaceViewModel>
+
+@{ViewBag.Title = ViewBag.CategoryName;}
+
+@section head {
+    <meta name="description" content="@ViewBag.CategoryName. Тревел-предложения по лучшей цене. Туры специально для Вас. streettravel.net — агрегатор в мире путешествий! Мы стараемся подыскать для Вас, только лучшие предложения, со всех уголков страны!">
+    <meta name="keywords" content="@ViewBag.CategoryName, Тревел-предложения, туры, авторские туры, авторские @ViewBag.CategoryName">
+}
+
+<style>
+
+    .addtocart {
+        position: absolute;
+        top: 15%;
+        left: 91%;
+        transform: translate(-20%, -90%);
+        -ms-transform: translate(-20%, -90%);
+        background-color: transparent;
+        color: white;
+        font-size: 16px;
+        padding: 6px 11px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+        .addtocart:hover {
+            color: #54a15d;
+        }
+</style>
+
+<section class="section-top-category">
+    <div class="container section-top-category__container">
+        <div class="container section-top-category__info _anim-items _anim-no-hide">Категории <span style="color:#54a15d">»</span> @ViewBag.CategoryName</div>
+        <h1 class="container section-top-category__infobig _anim-items _anim-no-hide">Street Travel</h1>
+    </div>
+</section>
+
+<section class="section-content">
+    <div class="container container-content">
+        <div class="right-alight-block">
+            <button class="btn-type2">@Html.ActionLink("Смотреть на карте", "Index", "Map", new { Categories = @ViewBag.CategoryName }, null)</button>
+        </div>
+        <div class="row row-cols-1 row-cols-md-3 g-4 product-items-block" style="padding-top: 40px!important">
+            @foreach (var item in Model)
+            {
+            <div class="col">
+                <div class="card product-card h-100 _anim-load-window-items">
+                    <div class="hovereffect">
+                        <a href="/shop/product-details/@item.Slug">
+                            @if (item.ImageName != null)
+                                {
+                            <img src="/Images/Uploads/Products/@item.Id/@item.ImageName" class="card-img-top" alt="...">
+                                }
+                                else
+                                {
+                            <img src="/Content/img/no_image_big.png" class="card-img-top" alt="...">
+                                }
+                        </a>
+                        @if (Request.IsAuthenticated)
+                            {
+                        <a class="addtocart" onclick="sendData(@item.Id)"><i class="fa-solid fa-heart"></i></a>
+                            }
+                    </div>
+                    <div class="card-body product">
+                        <h5 class="card-title product">@Html.DisplayFor(modelItem => item.CategoryName)</h5>
+                        <p style="margin-bottom: 0 !important; font-family: 'Montserrat', sans-serif; color: #162b32;">от</p>
+                        <p class="category-price">
+                            <a>@Html.DisplayFor(modelItem => item.Price)₽</a>
+                            @if (item.OldPrice != 0.00m)
+                                {
+                            <a class="old-price"> @Html.DisplayFor(modelItem => item.OldPrice)₽</a>
+                                }
+                        </p>
+                        <form action="/shop/product-details/@item.Slug">
+                            <center><button href="/shop/product-details/@item.Slug" class="btn-type1">Подробности</button></center>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        var id; // global variable
+        function sendData(valueId) {
+            id = valueId;
+        }
+        //var a = (id).toString();
+
+        $(function () {
+
+            $("a.addtocart").click(function (e) {
+                e.preventDefault();
+
+                $("span.loader").addClass("ib");
+
+                var url = "/Desired/AddToCartPartial";
+
+                $.get(url, {
+                    id: id
+                }, function myfunction(data) {
+                    $(".ajaxcart").html(data);
+                }).done(function () {
+                    $("span.loader").removeClass("ib");
+                    $("div.ajaxmsg").addClass("ib");
+
+                    setTimeout(function () {
+                        $("div.ajaxmsg").fadeOut("fast");
+                        $("div.ajaxmsg").removeClass("ib");
+                    }, 2000);
+                });
+            });
+        });
+                                    /****************************************/
+    </script>
+
+    @*<script>
+
+                        var btns = document.getElementsByClassName("addtocart");
+                        for (var i = 0; i < btns.length; i++) {
+                            $(function () {
+
+                                $("a.addtocart").click(function (e) {
+                                    e.preventDefault();
+
+                                    $("span.loader").addClass("ib");
+
+                                    var url = "/desired/AddToCartPartial";
+
+                                    $.get(url, {
+                                        id: @item.Id
+                }, function myfunction(data) {
+                                        $(".ajaxcart").html(data);
+                                    }).done(function () {
+                                        $("span.loader").removeClass("ib");
+                                        $("div.ajaxmsg").addClass("ib");
+
+                                        setTimeout(function () {
+                                            $("div.ajaxmsg").fadeOut("fast");
+                                            $("div.ajaxmsg").removeClass("ib");
+                                        }, 2000);
+                                    });
+                                });
+                                /****************************************/
+                            });
+                        }
+        </script>*@
+}

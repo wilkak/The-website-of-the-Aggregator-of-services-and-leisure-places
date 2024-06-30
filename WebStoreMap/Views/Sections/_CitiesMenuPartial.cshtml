@@ -1,0 +1,25 @@
+﻿@model IEnumerable<WebStoreMap.Models.ViewModels.geodan.CityInformationViewModel>
+
+<ul class="list">
+    <li id="0" class="option selected">Все</li>
+    @foreach (var item in Model)
+    {
+        <li id="@item.CityId" class="option">@item.CityName</li>
+    }
+</ul>
+
+@*@for (int i = 0; i < Model.Count(); i++)
+{
+
+    if (i == 0)
+    {
+        <a id=@Model.ElementAt(i).CityId class="current"><span>@Model.ElementAt(i).CityName</span></a>
+    }
+    else
+    {
+        <a id=@Model.ElementAt(i).CityId><span>@Model.ElementAt(i).CityName</span></a>
+    }
+
+
+
+}*@

@@ -1,0 +1,126 @@
+﻿@model WebStoreMap.Models.ViewModels.Account.UserProfileViewModel
+
+@{
+    ViewBag.Title = "Редактирование профиля";
+}
+<style>
+    .navbar-style {
+        background: #f44153;
+    }
+
+    .navbar-nav .nav-item .nav-link:hover {
+        color: #fff;
+    }
+
+    .navbar-nav .nav-item .nav-link:hover {
+        color: #D0D0D0;
+    }
+
+    .listing-item .listing-item-link:before {
+        display: none;
+    }
+</style>
+
+<section class="text-center" style="margin-bottom:40px">
+    <!-- Background image -->
+    <div class="card shadow-5-strong user-profile-card" style=" margin-left: auto; margin-right: auto; margin-top: 80px; margin-bottom: 80px; max-width: 1200px; background-color: #f2f7fb; border-radius: 30px; overflow: hidden; border: none; ">
+        <div class="card-body py-5 px-md-5">
+            <div class="row d-flex justify-content-center">
+                <h4 class="userprodile-header">Редактор профиля</h4>
+                <div class="col-lg-8">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <form>
+                            @if (TempData["SM"] != null)
+                            {
+                                <div class="alert alert-success">
+                                    @TempData["SM"]
+                                </div>
+                            }
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger", style = "list-style-type: none" })
+                            @Html.HiddenFor(model => model.Id)
+                            <div class="form-outline mb-4" style=" margin-bottom: 0.8rem !important; ">
+                                <center>
+                                    <div class="group">
+                                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "input-profile", style = "text-decoration: none; font-family: 'Montserrat', sans-serif;" } })
+                                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "label-profile", style = "color:red; text-decoration: none; font-family: 'Montserrat', sans-serif;" })
+                                        <center>
+                                            <label class="label-profile">Имя</label>
+                                        </center>
+                                    </div>
+                                </center>
+                            </div>
+                            <div class="form-outline mb-4" style=" margin-bottom: 0.8rem !important; ">
+                                <center>
+                                    <div class="group">
+                                        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "input-profile", style = "text-decoration: none; font-family: 'Montserrat', sans-serif;" } })
+                                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "label-profile", style = "color:red; text-decoration: none; font-family: 'Montserrat', sans-serif;" })
+                                        <center>
+                                            <label class="label-profile">Фамилия</label>
+                                        </center>
+                                    </div>
+                                </center>
+                            </div>
+                            <div class="form-outline mb-4" style=" margin-bottom: 0.8rem !important; ">
+                                <center>
+                                    <div class="group">
+                                        @Html.EditorFor(model => model.EmailAddress, new { htmlAttributes = new { @class = "input-profile", style = "text-decoration: none; font-family: 'Montserrat', sans-serif;" } })
+                                        @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "label-profile", style = "color:red; text-decoration: none; font-family: 'Montserrat', sans-serif;" })
+                                        <center>
+                                            <label class="label-profile">Почта</label>
+                                        </center>
+                                    </div>
+                                </center>
+                            </div>
+                            <div class="form-outline mb-4" style=" margin-bottom: 0.8rem !important; ">
+                                <center>
+                                    <div class="group">
+                                        @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "input-profile", style = "text-decoration: none; font-family: 'Montserrat', sans-serif;" } })
+                                        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "label-profile", style = "color:red; text-decoration: none; font-family: 'Montserrat', sans-serif;" })
+                                        <center>  <label class="label-profile">Номер телефона</label></center>
+                                    </div>
+                                </center>
+                            </div>
+                            <div class="form-outline mb-4" style=" margin-bottom: 0.8rem !important; ">
+                                <center>
+                                    <div class="group">
+                                        @Html.PasswordFor(model => model.Password, new { @class = "input-profile" })
+                                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "label-profile", style = "color:red; text-decoration: none; font-family: 'Montserrat', sans-serif;" })
+                                        <center>
+                                            <label class="label-profile">Пароль</label>
+                                        </center>
+                                    </div>
+                                </center>
+                            </div>
+                            <div class="form-outline mb-4" style=" margin-bottom: 0.8rem !important; ">
+                                <center>
+                                    <div class="group">
+                                        @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "input-profile" })
+                                        @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "label-profile", style = "color:red; text-decoration: none; font-family: 'Montserrat', sans-serif;" })
+                                        <center>  <label class="label-profile">Подтверждение пароля</label></center>
+                                    </div>
+                                </center>
+                            </div>
+                            <div class="form-outline mb-4" style=" margin-bottom: 0.8rem !important; ">
+                                <center>
+                                    <div class="group">
+                                        <label class="label-profile" for="form3Example3">Введите текст с картинки</label>
+                                        <img src='@Url.Action("Captcha", "Account")' alt='captcha' style=" margin-top: -12px; margin-bottom: 10px;"/>
+                                        @Html.EditorFor(model => model.Captcha, new { htmlAttributes = new { @class = "input-profile", style = "text-decoration: none; font-family: 'Montserrat', sans-serif;" } })
+                                        @Html.ValidationMessageFor(model => model.Captcha)
+                                    </div>
+                                </center>
+                            </div>
+                            <div class="form-outline mb-4" style=" margin-bottom: 0.8rem !important; ">
+                                <center>
+                                    <button type="submit" class="btn-edit-profile">Сохранить</button>
+                                </center>
+                            </div>
+                        </form>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

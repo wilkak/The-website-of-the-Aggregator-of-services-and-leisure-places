@@ -1,0 +1,271 @@
+﻿/**/
+
+.profile-img {
+    text-align: center;
+    border-radius: 150px;
+    width: 160px;
+    height: 160px;
+    overflow: hidden;
+    border: 1px solid #cfcfcf;
+}
+
+    .profile-img img {
+        width: 160px;
+        height: 160px;
+    }
+
+    .profile-img .file {
+        position: relative;
+        overflow: hidden;
+        margin-top: -80%;
+        width: 90%;
+        height: 51px;
+        border: none;
+        border-radius: 0;
+        font-size: 13px;
+        padding: 6px 0px;
+        background: #212529b8;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+
+
+
+        .profile-img .file input {
+            opacity: 0;
+            position: relative;
+            width: 90%;
+            top: -25px;
+            background: #212529b8;
+        }
+
+
+/* form starting stylings ------------------------------- */
+.group {
+    position: relative;
+    /*	margin-bottom: 35px;*/
+}
+
+.input-profile {
+    background:white;
+    width: 80%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+    .input-profile:focus {
+        outline: none;
+        border-color: transparent !important;
+        box-shadow: 0 8px 22px 0 rgb(0 0 0 / 10%) !important;
+        transition: .3s ease;
+    }
+
+/* LABEL ======================================= */
+.label-profile {
+    font-size: 16px;
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* active state */
+.input-profile:focus ~ label, .input-profile:valid ~ label {
+    top: -20px;
+    left: 5px;
+    font-size: 14px;
+    color: #54a15d;
+}
+
+.btn-edit-img {
+    border-radius: 28px;
+    padding: 6px 15px;
+    position: relative;
+    text-transform: uppercase;
+    border: none;
+    background-color: #f44153;
+    color: white;
+    width: auto;
+    font-family: 'Montserrat', sans-serif;
+}
+
+    .btn-edit-img:hover {
+        background: #4da1f4;
+    }
+
+
+.btn-edit-profile {
+    padding: 10px 25px;
+    position: relative;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 28px;
+    background-color: #f44153;
+    color: white;
+    width: auto;
+    font-family: 'Montserrat', sans-serif;
+}
+
+    .btn-edit-profile:hover {
+        background: #4da1f4;
+    }
+
+.user-profile-card {
+    margin-right: 23rem;
+    margin-left: 23rem;
+}
+
+
+@media(max-width:1800px) {
+    .user-profile-card {
+        margin-right: 22rem;
+        margin-left: 22rem;
+    }
+}
+
+@media(max-width:1600px) {
+    .user-profile-card {
+        margin-right: 16rem;
+        margin-left: 16rem;
+    }
+}
+
+@media(max-width:1550px) {
+    .user-profile-card {
+        margin-right: 15rem;
+        margin-left: 15rem;
+    }
+}
+
+@media(max-width:1500px) {
+    .user-profile-card {
+        margin-right: 14rem;
+        margin-left: 14rem;
+    }
+}
+
+@media(max-width:1400px) {
+    .user-profile-card {
+        margin-right: 13rem;
+        margin-left: 13rem;
+    }
+}
+
+@media(max-width:1300px) {
+    .user-profile-card {
+        margin-right: 11rem;
+        margin-left: 11rem;
+    }
+}
+
+
+@media(max-width:1170px) {
+    .user-profile-card {
+        margin-right: 10rem;
+        margin-left: 10rem;
+    }
+}
+
+@media(max-width:1100px) {
+    .user-profile-card {
+        margin-right: 9rem;
+        margin-left: 9rem;
+    }
+}
+
+@media(max-width:1050px) {
+    .user-profile-card {
+        margin-right: 6rem;
+        margin-left: 6rem;
+    }
+}
+
+.userprofile-image-zone-desktop {
+    display: inline;
+}
+
+.userprofile-image-zone-mobile {
+    display: none;
+    margin-bottom: 20px;
+}
+
+
+.userprodile-header {
+    margin-bottom: 40px;
+    font-weight: 700 !important;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+@media(max-width:989px) {
+    .user-profile-card {
+        margin-right: 1rem;
+        margin-left: 1rem;
+    }
+
+    .userprofile-image-zone-desktop {
+        display: none;
+    }
+
+    .userprofile-image-zone-mobile {
+        display: inline;
+    }
+
+
+
+
+    .profile-img {
+        text-align: center;
+        border-radius: 150px;
+        width: 100px;
+        height: 100px;
+        overflow: hidden;
+        border: 1px solid #cfcfcf;
+    }
+
+        .profile-img img {
+            width: 100px;
+            height: 100px;
+        }
+
+        .profile-img .file {
+            position: relative;
+            overflow: hidden;
+            margin-top: -35%;
+            width: 90%;
+            height: 40px;
+            border: none;
+            border-radius: 0;
+            font-size: 10px;
+            padding: 2px 0px;
+            background: #212529b8;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+
+
+    .userprodile-header {
+        margin-bottom: 20px;
+    }
+
+    .btn-edit-img {
+        font-size: 12px;
+    }
+
+    .profile-img .file input {
+        opacity: 0;
+        position: relative;
+        width: 90%;
+        top: -17px;
+        background: #212529b8;
+    }
+
+
+    /*	.label-profile {
+		top: -20px;
+		left: 50px;
+
+	}*/
+
+    .btn-edit-profile {
+        font-size: 12px;
+    }
+}
+/**/

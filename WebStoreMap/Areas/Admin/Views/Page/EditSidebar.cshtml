@@ -1,0 +1,53 @@
+﻿@model WebStoreMap.Models.ViewModels.Pages.SidebarViewModel
+@{
+    ViewBag.Title = "Редактирование панели";
+}
+
+
+<section class="text-center">
+    <!-- Background image -->
+    <div class="card mx-4 mx-md-5 shadow-5-strong" style="margin-top: 60px; margin-bottom: 60px; margin-right: 3rem !important; margin-left: 3rem !important; background: hsla(0, 0%, 100%, 0.8); backdrop-filter: blur(30px); ">
+        <div class="card-body py-5 px-md-5">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <h4 class="fw-bold mb-5 addProductHeader">Редактирование панели</h4>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <form>
+                            @if (TempData["SM"] != null)
+                            {
+                                <div class="alert alert-success">
+                                    @TempData["SM"]
+                                </div>
+                            }
+                            <div class="form-outline mb-4">
+                                <center>@Html.ValidationSummary(true, "", new { @class = "text-danger" })</center>
+                                <center>@Html.HiddenFor(model => model.Id)</center>
+                            </div>
+                            <div class="form-outline mb-4">
+                                @Html.TextAreaFor(model => model.Body, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <center>    <button type="submit" class="btn-add" style=" width: 200px;">Отредактировать</button></center>
+                            </div>
+
+                        </form>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+@*Добавляем скрипт подмены body на CKEditor *@
+@section Scripts
+{
+    <script>CKEDITOR.replace("body")</script>
+}
+

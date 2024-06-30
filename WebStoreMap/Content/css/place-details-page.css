@@ -1,0 +1,362 @@
+﻿/**/
+
+.place-header-block {
+    min-height: 500px;
+    position: relative;
+    padding-top: 110px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.place-header-block .place-header-block-bg {
+    bottom: 0;
+    position: absolute;
+    height: 500px;
+    width: 100%;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #000000 100%);
+    opacity: .9;
+    z-index: 1;
+}
+
+.place-header-block .place-header-block-gallery {
+    max-height: 500px;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+.place-header-block .container {
+    display: flex;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    bottom: 66px;
+    z-index: 1;
+}
+
+@media (max-width: 680px) {
+    .place-header-block .container {
+        display: block;
+    }
+}
+
+.place-header-block .container .place-header-block-left {
+    position: relative;
+    display: flex;
+    width: 50%;
+    margin: auto;
+}
+
+@media screen and (max-width: 870px) {
+    .place-header-block .container .place-header-block-left {
+        width: 75%;
+    }
+}
+
+@media (max-width: 680px) {
+    .place-header-block .container .place-header-block-left {
+        width: 100%;
+        margin: 0;
+    }
+}
+
+.place-header-block .container .place-header-block-left .place-header-block-title {
+    color: #fff;
+    margin-left: 35px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.place-header-block .container .place-header-block-left .place-header-block-title .place-header-block-title-bc .place-header-block-title-place-bc span {
+    border-color: #f44153;
+    font-size: 16px;
+    margin-right: 13px;
+    border-bottom: 1px solid #f44153;
+    padding-bottom: 1px;
+    transition: all .3s ease-in-out;
+}
+
+.place-header-block .container .place-header-block-left .place-header-block-title .place-header-block-place-title {
+    display: block;
+    margin: 14px 0px;
+    line-height: 1.1;
+    font-size: 44px;
+    font-weight: 600;
+}
+
+.place-header-block .container .place-header-block-left .place-header-block-title .place-header-block-place-rating {
+    margin-top: 10px;
+}
+
+
+.place-header-block .container .place-header-block-left .place-header-block-title .place-header-block-place-rating .fl-places-contain i {
+    font-size: 16px;
+    color: #4da1f4;
+}
+
+.place-header-block .container .place-header-block-left .place-header-block-title .place-header-block-place-rating .place-header-block-contain .place-header-block-place-rating-number {
+    color: #f44153;
+    font-weight: 600;
+}
+
+.place-header-block .container .place-header-block-right {
+    position: relative;
+    width: 50%;
+    text-align: right;
+    margin: auto;
+}
+
+@media (max-width: 680px) {
+    .place-header-block .container .place-header-block-right {
+        width: 100%;
+        text-align: left;
+        margin-left: 35px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+}
+
+.place-header-block .container .place-header-block-right .place-header-icons {
+    height: 40px;
+}
+
+.place-header-block .container .place-header-block-right .place-header-icons .place-header-icon-to-comment-block {
+    width: 40px;
+    height: 40px;
+    background-color: #20c5ac;
+    display: inline-block;
+    border-radius: 50%;
+    transition: all .3s ease-in-out;
+    opacity: 1;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+    .place-header-block .container .place-header-block-right .place-header-icons .place-header-icon-add-to-favorites {
+        width: 40px;
+        height: 40px;
+        background-color: #4da1f4;
+        display: inline-block;
+        border-radius: 50%;
+        transition: all .3s ease-in-out;
+        opacity: 1;
+        margin-right: 5px;
+        margin-left: 5px;
+        color:white;
+        border:none;
+    }
+
+        .place-header-block .container .place-header-block-right .place-header-icons .place-header-icon-add-to-favorites:hover {
+            background-color: #f44153;
+        }
+
+        .place-header-block .container .place-header-block-right .place-header-icons .place-header-icon-add-to-favorites i {
+            color: white;
+        }
+
+
+    .place-header-block .container .place-header-block-right .place-header-icons .place-header-icon-to-contact-info {
+        width: 40px;
+        height: 40px;
+        background-color: #20c5ac;
+        display: inline-block;
+        border-radius: 50%;
+        transition: all .3s ease-in-out;
+        opacity: 1;
+        margin-right: 5px;
+        margin-left: 5px;
+        color: white;
+        border: none;
+    }
+
+        .place-header-block .container .place-header-block-right .place-header-icons .place-header-icon-to-contact-info:hover {
+            opacity: .8;
+        }
+
+        .place-header-block .container .place-header-block-right .place-header-icons .place-header-icon-to-contact-info i {
+            color: white;
+        }
+
+    .place-header-block .container .place-header-block-right .place-header-icons .place-header-icon-to-comment {
+        width: 40px;
+        height: 40px;
+        background-color: #f4a34d;
+        display: inline-block;
+        border-radius: 50%;
+        transition: all .3s ease-in-out;
+        opacity: 1;
+        margin-right: 5px;
+        margin-left: 5px;
+        color: white;
+        border: none;
+    }
+
+        .place-header-block .container .place-header-block-right .place-header-icons .place-header-icon-to-comment:hover {
+            opacity: .8;
+        }
+
+        .place-header-block .container .place-header-block-right .place-header-icons .place-header-icon-to-comment i {
+            color: white;
+        }
+
+
+    .place-header-block .container .place-header-block-right .place-header-icons .place-header-icon-to-rating {
+        width: 40px;
+        height: 40px;
+        background-color: #f44153;
+        display: inline-block;
+        border-radius: 50%;
+        transition: all .3s ease-in-out;
+        opacity: 1;
+        margin-right: 5px;
+        margin-left: 5px;
+        color: white;
+        border: none;
+    }
+
+        .place-header-block .container .place-header-block-right .place-header-icons .place-header-icon-to-rating:hover {
+            opacity: .8;
+        }
+
+        .place-header-block .container .place-header-block-right .place-header-icons .place-header-icon-to-rating i {
+            color: white;
+        }
+
+
+.place-header-block .container .place-header-block-right .place-header-icons .place-header-icon-to-comment-block i {
+    color: #ffffff;
+    text-align: center;
+    display: block;
+    line-height: 40px;
+}
+
+
+    .place-header-block .container .place-header-block-right .place-header-icons .place-header-icon-contact-info {
+        display: inline-flex;
+        justify-content: flex-end;
+        font-size: 15px;
+        position: relative;
+        transition: all .3s ease-in-out;
+        opacity: 1;
+        border: none;
+    }
+
+.place-header-block .container .place-header-block-right .place-header-icons .place-header-icon-contact-info .place-header-icon-contact-info-s-c {
+    position: relative;
+    text-align: right;
+}
+
+.place-header-block .container .place-header-block-right .place-header-icons .place-header-icon-contact-info .place-header-icon-contact-info-s-c a.place-header-icon-contact-info-btn-share {
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: #f44153;
+}
+
+.place-header-block .container .place-header-block-right .place-header-icons .place-header-icon-contact-info .place-header-icon-contact-info-s-c a.place-header-icon-contact-info-btn-share i {
+    border: none;
+    background: none;
+    line-height: 40px;
+}
+
+
+.place-header-block .container .place-header-block-right .place-header-icons .place-header-icon-contact-info .place-header-icon-contact-info-s-c .place-header-icon-contact-buttons-contain {
+    text-align: center;
+    transition: all 0.3s;
+    height: 0px;
+    overflow: hidden;
+    position: absolute;
+    left: -80%;
+    right: 0;
+}
+
+
+.place-header-block .container .place-header-block-right .place-header-icons .place-header-icon-contact-info .place-header-icon-contact-info-s-c .place-header-icon-contact-buttons-contain.active {
+    height: fit-content;
+    transition: all 0.3s;
+    position: absolute;
+    top: 45px;
+    width: 100px;
+    margin: auto;
+    padding-top: 15px;
+    z-index: 9;
+}
+
+
+.place-header-block .container .place-header-block-right .place-header-icons .place-header-icon-contact-info .place-header-icon-contact-info-s-c .place-header-icon-contact-buttons-contain .place-header-icon-contact-icon-contain {
+    transition: all .3s ease-in-out;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-color: #f44153;
+}
+
+.place-header-block .container .place-header-block-right .place-header-icons .place-header-icon-contact-info .place-header-icon-contact-info-s-c .place-header-icon-contact-buttons-contain .place-header-icon-contact-icon-contain .place-header-icon-contact-btn-icon {
+    color: #ffffff;
+    transition: all .3s ease-in-out;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-color: #f44153;
+}
+
+.place-header-block .container .place-header-block-right .place-header-icons .fl-wpfp-link {
+    margin-left: 3px;
+    display: inline-flex;
+    color: #fff;
+    transition: all .3s ease-in-out;
+    opacity: 1;
+}
+
+
+.place-header-block .container .place-header-block-right .place-header-icons .fl-wpfp-link .wpfp-link i {
+    background-color: #4da1f4;
+    top: 2px;
+    color: #ffffff;
+    text-align: center;
+    display: block;
+    line-height: 40px;
+    visibility: visible;
+    width: 40px;
+    border-radius: 50%;
+    height: 40px;
+}
+
+
+.place-header-block .container .place-header-block-right .place-header-icons .place-header-icon-to-gallery {
+    width: 40px;
+    height: 40px;
+    background-color: #f4a34d;
+    display: inline-block;
+    border-radius: 50%;
+    transition: all .3s ease-in-out;
+    opacity: 1;
+}
+
+
+.place-header-block .container .place-header-block-right .place-header-icons .place-header-icon-to-gallery i {
+    color: #ffffff;
+    text-align: center;
+    display: block;
+    line-height: 40px;
+}
+
+.fl-places-content-wrapper {
+    display: flex;
+    margin-top: 125px;
+    margin-bottom: 130px;
+    position: relative;
+}
+
+.fl-places-content-wrapper .fl-places-reviews-contain {
+    position: relative;
+}
+
+
+

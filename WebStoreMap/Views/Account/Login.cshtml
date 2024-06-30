@@ -1,0 +1,65 @@
+﻿@model WebStoreMap.Models.ViewModels.Account.LoginUserViewModel
+@{
+    ViewBag.Title = "Вход";
+}
+
+    <div class="login-wrap">
+        <div class="login-html">
+            <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">ВХОД</label>
+            <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab"><a href="~/account/create-account" style="color:black; text-decoration:none; ">РЕГИСТРАЦИЯ</a></label>
+            <div class="login-form">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="sign-in-htm">
+                        <div class="group">
+                            <label for="user" class="label">E-mail</label>
+                            @Html.EditorFor(model => model.EmailAddress, new { htmlAttributes = new { @class = "input", placeholder = "Почта", id = "user", type = "text" } })
+                        </div>
+                        <div class="group">
+                            <label for="pass" class="label">Пароль</label>
+                            @Html.PasswordFor(model => model.Password, new { @class = "input", placeholder = "Пароль", id = "pass", type = "password" })
+                        </div>
+                        <div class="group">
+                            <label for="check">
+                                @Html.EditorFor(model => model.RememberMe, new { @class = "check", id = "check", type = "checkbox", style = "width:auto" })
+                                Запомнить меня
+                            </label>
+                        </div>
+                        <div class="group">
+                            <input type="submit" class="button" value="Войти">
+                        </div>
+                        <div class="hr"></div>
+                        <div class="foot-lnk">
+                            @Html.ActionLink("Забыли пароль?", "ForgotPassword", "Account", null, new { @class = "forgot-password" })
+                        </div>
+                    </div>
+                }
+                @*<div class="sign-up-htm">
+                    <div class="group">
+                        <label for="user" class="label">Username</label>
+                        <input id="user" type="text" class="input">
+                    </div>
+                    <div class="group">
+                        <label for="pass" class="label">Password</label>
+                        <input id="pass" type="password" class="input" data-type="password">
+                    </div>
+                    <div class="group">
+                        <label for="pass" class="label">Repeat Password</label>
+                        <input id="pass" type="password" class="input" data-type="password">
+                    </div>
+                    <div class="group">
+                        <label for="pass" class="label">Email Address</label>
+                        <input id="pass" type="text" class="input">
+                    </div>
+                    <div class="group">
+                        <input type="submit" class="button" value="Sign Up">
+                    </div>
+                    <div class="hr"></div>
+                    <div class="foot-lnk">
+                        <label for="tab-1">Already Member?</a>
+                    </div>
+                </div>*@
+            </div>
+        </div>
+    </div>

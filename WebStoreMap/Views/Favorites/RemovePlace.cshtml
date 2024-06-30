@@ -1,0 +1,79 @@
+﻿﻿@model IEnumerable<WebStoreMap.Models.ViewModels.Favorites.FavoritesViewModel>
+
+
+
+@foreach (var item in ViewBag.FavoritesViewModelList)
+{
+    <div class="row" id="@item.PlaceId">
+        <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+            <!-- Image -->
+            <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
+                @if (item.Image != null)
+                {
+                    <img alt="" src="/Images/Uploads/Places/@item.PlaceId/Thumbs/@item.Image" class="w-100" />
+                }
+                else
+                {
+                    <img alt="" src="/Content/img/no_image_big.png" class="w-100" />
+                }
+                <a href="#!">
+                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+            <p style=" font-family: 'Montserrat', sans-serif;"><strong>@item.PlaceName</strong></p>
+            <button type="button" class="btn btn-sm me-1 mb-2 btn-remove-item" data-mdb-toggle="tooltip"
+                    title="Remove item" place-id="@item.PlaceId">
+                <i class="fas fa-trash"></i>
+            </button>
+            @*<button type="button" class="btn btn-sm mb-2 btn-add-to-desired-item" data-mdb-toggle="tooltip"
+                    title="Move to the wish list">
+                <i class="fas fa-heart"></i>
+            </button>*@
+        </div>
+
+        <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+            <p class="text-start text-md-center" style=" font-family: 'Montserrat', sans-serif;">
+                <strong>~</strong><strong class="PlacePrice">@item.Price</strong><strong>₽</strong>
+            </p>
+        </div>
+    </div>
+    <hr class="my-4" />
+}
+
+
+
+@section Scripts {
+    <script>
+
+
+        $("#favorites-items").find(".btn-remove-item").click(function (e) {
+            var PlaceId = $(this).attr("place-id");
+            $.ajax({
+                type: "GET",
+                url: "/Favorites/RemovePlace",
+                data: {
+                    PlaceId: PlaceId
+                },
+                success: function (data) {
+                    $("#favorites-items").empty();
+                    $("#favorites-items").append(data);
+                },
+                error: function (data) {
+                }
+            })
+            setTimeout(explode, 200);
+        });
+
+
+        function explode() {
+            alert($(".btn-remove-item").length);
+        }
+    </script>
+
+
+    @*<script src="~/Content/MyScripts/IncrementProductInFavoritesScript.js"></script>*@
+
+}
